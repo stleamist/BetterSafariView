@@ -22,20 +22,29 @@ struct ContentView: View {
         // A NavigationView is just for demonstrating NaiveSafariView with NavigationLink.
         NavigationView {
             VStack(spacing: 8) {
+                Spacer()
+                
                 Button(action: {
                     self.showingFullScreenSafariView = true
                 }) {
                     Text("FullScreenSafariView with .safariView()")
                 }
+                .buttonStyle(RoundedButtonStyle(.primary))
                 .safariView(isPresented: $showingFullScreenSafariView) {
                     URL(string: repositoryURLString)!
                 }
+                
+                Text("IN COMPARISON WITH")
+                    .font(Font.body.smallCaps())
+                    .foregroundColor(.secondary)
+                    .padding(.top, 16)
                 
                 Button(action: {
                     self.showingNaiveSafariViewSheet = true
                 }) {
                     Text("NaiveSafariView with .sheet()")
                 }
+                .buttonStyle(RoundedButtonStyle(.secondary))
                 .sheet(isPresented: $showingNaiveSafariViewSheet) {
                     NaiveSafariView(url: URL(string: sheetDocumentURLString)!)
                 }
@@ -43,7 +52,9 @@ struct ContentView: View {
                 NavigationLink(destination: NaiveSafariView(url: URL(string: navigationLinkDocumentURLString)!)) {
                     Text("NaiveSafariView with NavigationLink()")
                 }
+                .buttonStyle(RoundedButtonStyle(.secondary))
             }
+            .padding(16)
             .navigationBarTitle("FullScreenSafariViewDemo", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
