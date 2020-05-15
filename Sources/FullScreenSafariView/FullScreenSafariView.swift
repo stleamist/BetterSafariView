@@ -63,7 +63,7 @@ struct SafariViewModifier: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     
     func safariView(isPresented: Binding<Bool>, content: () -> URL) -> some View {
         let url = content()
