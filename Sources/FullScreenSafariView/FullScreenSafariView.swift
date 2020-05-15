@@ -31,7 +31,11 @@ struct SafariViewHosting: UIViewControllerRepresentable {
             safariViewController.delegate = context.coordinator
             uiViewController.present(safariViewController, animated: true)
         } else {
-            uiViewController.dismiss(animated: true)
+            /// Check if the `uiViewController` is a instance of the `SFSafariViewController`
+            /// to prevent other controllers presented by the container view from being dismissed unintentionally.
+            if uiViewController.presentedViewController is SFSafariViewController {
+                uiViewController.dismiss(animated: true)
+            }
         }
     }
     
