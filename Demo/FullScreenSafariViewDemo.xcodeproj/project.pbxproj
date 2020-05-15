@@ -14,6 +14,7 @@
 		C75727F3246E3CC00061A843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75727F2246E3CC00061A843 /* Preview Assets.xcassets */; };
 		C75727F6246E3CC00061A843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75727F4246E3CC00061A843 /* LaunchScreen.storyboard */; };
 		C75727FF246E3E650061A843 /* FullScreenSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C75727FE246E3E650061A843 /* FullScreenSafariView */; };
+		C79E19CE246E4560008D6D92 /* NaiveSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79E19CD246E4560008D6D92 /* NaiveSafariView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		C75727F2246E3CC00061A843 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C75727F5246E3CC00061A843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C75727F7246E3CC00061A843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C79E19CD246E4560008D6D92 /* NaiveSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveSafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				C75727E9246E3CBE0061A843 /* AppDelegate.swift */,
 				C75727EB246E3CBE0061A843 /* SceneDelegate.swift */,
 				C75727ED246E3CBE0061A843 /* ContentView.swift */,
+				C79E19CD246E4560008D6D92 /* NaiveSafariView.swift */,
 				C75727EF246E3CC00061A843 /* Assets.xcassets */,
 				C75727F4246E3CC00061A843 /* LaunchScreen.storyboard */,
 				C75727F7246E3CC00061A843 /* Info.plist */,
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79E19CE246E4560008D6D92 /* NaiveSafariView.swift in Sources */,
 				C75727EA246E3CBE0061A843 /* AppDelegate.swift in Sources */,
 				C75727EC246E3CBE0061A843 /* SceneDelegate.swift in Sources */,
 				C75727EE246E3CBE0061A843 /* ContentView.swift in Sources */,
