@@ -7,10 +7,22 @@
 //
 
 import SwiftUI
+import FullScreenSafariView
 
 struct ContentView: View {
+    
+    let repositoryURLString = "https://github.com/stleamist/FullScreenSafariView"
+    @State private var showingSafariView = false
+    
     var body: some View {
-        Text("Hello, World!")
+        Button(action: {
+            self.showingSafariView.toggle()
+        }) {
+            Text("Present SafariView")
+        }
+        .safariView(isPresented: $showingSafariView) {
+            URL(string: repositoryURLString)!
+        }
     }
 }
 
