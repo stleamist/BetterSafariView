@@ -5,4 +5,4 @@
 
 # FullScreenSafariView
 
-A way to present a full-screen SFSafariViewController in SwiftUI.
+A clean way to present a full-screen SFSafariViewController with a push transition in SwiftUI.

@@ -69,6 +69,11 @@ struct SafariViewModifier: ViewModifier {
 
 public extension View {
     
+    /// Presents a `SFSafariViewController`.
+    ///
+    /// - Parameters:
+    ///     - isPresented: A `Binding` to whether the `SFSafariViewController` is presented.
+    ///     - content: A closure returning the `URL` to load.
     func safariView(isPresented: Binding<Bool>, content: () -> URL) -> some View {
         let url = content()
         return self.modifier(SafariViewModifier(isPresented: isPresented, url: url))
