@@ -8,8 +8,4 @@ final class FullScreenSafariViewTests: XCTestCase {
         // results.
         XCTAssertEqual(FullScreenSafariView().text, "Hello, World!")
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
