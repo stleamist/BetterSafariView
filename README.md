@@ -79,3 +79,6 @@ For more details, see [Adding Package Dependencies to Your App](https://develope
 <img src="/Docs/Images/FullScreenSafariViewDemo-ContentView.png" width="375">
 
 You can compare the behavior of FullScreenSafariView with the other two ways above in the demo project. Check out the demo app by opening FullScreenSafariView.xcworkspace.
+
+## License
+FullScreenSafariView is released under the MIT license. See [LICENSE](/LICENSE) for details.
