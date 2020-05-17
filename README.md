@@ -3,6 +3,24 @@
     <img src="/Docs/Images/FullScreenSafariView-Logotype.svg">
 </p>
 
+<p align="center">
+    <a href="https://swift.org/">
+        <img src="https://img.shields.io/badge/Swift-5.1-f05138" alt="Swift: 5.1">
+    </a>
+    <a href="https://github.com/stleamist/FullScreenSafariView/releases/latest">
+        <img src="https://img.shields.io/github/v/release/stleamist/FullScreenSafariView?label=version" alt="version">
+    </a>
+    <a href="https://swift.org/package-manager/">
+        <img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen" alt="SwiftPM: compatible">
+    </a>
+    <a href="/LICENSE">
+        <img src="https://img.shields.io/github/license/stleamist/FullScreenSafariView" alt="license">
+    </a>
+    <a href="https://twitter.com/stleamist">
+        <img src="https://img.shields.io/badge/contact-@stleamist-1da1f2" alt="contact: @stleamist">
+    </a>
+</p>
+
 # FullScreenSafariView
 FullScreenSafariView is a clean way to present a full-screen SFSafariViewController with a push transition in SwiftUI.
 
