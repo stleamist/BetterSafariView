@@ -31,7 +31,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(RoundedButtonStyle(.primary))
                 .safariView(isPresented: $showingFullScreenSafariView) {
-                    URL(string: repositoryURLString)!
+                    SafariView(url: URL(string: repositoryURLString)!)
                 }
                 
                 Text("IN COMPARISON WITH")
