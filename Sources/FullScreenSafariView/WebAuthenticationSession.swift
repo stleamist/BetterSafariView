@@ -6,19 +6,24 @@ public struct WebAuthenticationSession {
     
     let url: URL
     let callbackURLScheme: String?
-    let prefersEphemeralWebBrowserSession: Bool
     let completionHandler: ASWebAuthenticationSession.CompletionHandler
+    
+    var prefersEphemeralWebBrowserSession: Bool = false
     
     public init(
         url: URL,
         callbackURLScheme: String?,
-        prefersEphemeralWebBrowserSession: Bool = false,
         completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler
     ) {
         self.url = url
         self.callbackURLScheme = callbackURLScheme
-        self.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
         self.completionHandler = completionHandler
+    }
+    
+    public func prefersEphemeralWebBrowserSession(_ prefersEphemeralWebBrowserSession: Bool) -> Self {
+        var modified = self
+        modified.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
+        return modified
     }
 }
 
