@@ -39,72 +39,104 @@ class WebAuthenticationSessionViewController: UIViewController, ASWebAuthenticat
 struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepresentable {
     
     @Binding var item: Item?
-    var onDismiss: (() -> Void)? = nil
-    var sessionBuilder: (Item) -> WebAuthenticationSession
+    var representationBuilder: (Item) -> WebAuthenticationSession
     
     func makeUIViewController(context: Context) -> WebAuthenticationSessionViewController {
-        WebAuthenticationSessionViewController()
+        return WebAuthenticationSessionViewController()
     }
     
     func updateUIViewController(_ uiViewController: WebAuthenticationSessionViewController, context: Context) {
         
-        // SFAuthenticationViewController의 프레젠테이션 컨트롤러 델리게이트 지정을 위해
-        // 뷰가 업데이트될 때마다 뷰가 띄우고 있는 뷰 컨트롤러를 확인한다.
-        // SFAuthenticationViewController는 SFSafariViewController의 비공개 서브클래스이다.
-        if let safariViewController = uiViewController.presentedViewController as? SFSafariViewController {
-            safariViewController.presentationController?.delegate = context.coordinator
-        }
+        setPresentationControllerDismissalDelegateToSafariViewController(presentedBy: uiViewController, in: context)
         
-        if let item = self.item {
-            // Coordinator의 currentSession이 nil이 아닐 경우 중복 실행된 것이므로 함수를 탈출한다.
-            guard context.coordinator.currentSession == nil else { return }
-            
-            // 완료 핸들러에 item을 nil로 설정하고 currentSession을 nil로 설정하는 코드를 주입하기 위해 커스텀 구조체 WebAuthenticationSession을 사용한다.
-            // (ASWebAuthenticationSession 인스턴스는 퍼블릭 게터 / 세터가 없다.)
-            let sessionData = sessionBuilder(item)
-            let session = ASWebAuthenticationSession(url: sessionData.url, callbackURLScheme: sessionData.callbackURLScheme) { (callbackURL, error) in
-                sessionData.completionHandler(callbackURL, error)
-                self.item = nil
-                context.coordinator.currentSession = nil
-            }
-            session.prefersEphemeralWebBrowserSession = sessionData.prefersEphemeralWebBrowserSession
-            
-            // ASWebAuthenticationSession 시작에 필수적인 presentationContextProvider를 지정한다.
-            // ASWebAuthenticationPresentationContextProviding는 SFAuthenticationViewController를 띄울 윈도우를 반환하며,
-            // 일반적으로 해당 윈도우의 루트 뷰 컨트롤러에서 present(_:animated:completion:)을 호출해 SFAuthenticationViewController를 띄운다.
-            session.presentationContextProvider = uiViewController
-            
-            context.coordinator.currentSession = session
-            session.start()
-        } else {
-            context.coordinator.currentSession?.cancel()
-            context.coordinator.currentSession = nil
+        let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
+        
+        switch itemUpdateChange { // (oldItem, newItem)
+        case (.none, .none):
+            ()
+        case let (.none, .some(newItem)):
+            startWebAuthenticationSession(on: uiViewController, in: context, using: newItem)
+        case (.some, .some):
+            ()
+        case (.some, .none):
+            cancelWebAuthenticationSession(from: uiViewController, in: context)
         }
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        return Coordinator(onDismissed: resetItemBinding)
     }
     
-    class Coordinator: NSObject, UIAdaptivePresentationControllerDelegate {
+    private func setPresentationControllerDismissalDelegateToSafariViewController(presentedBy uiViewController: UIViewController, in context: Context) {
+        guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
+            return
+        }
+        safariViewController.presentationController?.delegate = context.coordinator.presentationControllerDismissalDelegate
+    }
+    
+    private func startWebAuthenticationSession(on webAuthenticationSessionViewController: WebAuthenticationSessionViewController, in context: Context, using item: Item) {
+        let representation = representationBuilder(item)
+        let session = ASWebAuthenticationSession(
+            url: representation.url,
+            callbackURLScheme: representation.callbackURLScheme,
+            completionHandler: { (callbackURL, error) in
+                resetItemBinding()
+                representation.completionHandler(callbackURL, error)
+            }
+        )
+        applyRepresentation(representation, to: session)
+        session.presentationContextProvider = webAuthenticationSessionViewController
         
-        var parent: WebAuthenticationSessionHosting
-        var currentSession: ASWebAuthenticationSession?
+        context.coordinator.session = session
+        session.start()
+    }
+    
+    private func cancelWebAuthenticationSession(from uiViewController: UIViewController, in context: Context) {
+        context.coordinator.session?.cancel()
+        context.coordinator.session = nil
+    }
+    
+    private func applyRepresentation(_ representation: WebAuthenticationSession, to session: ASWebAuthenticationSession) {
+        session.prefersEphemeralWebBrowserSession = representation.prefersEphemeralWebBrowserSession
+    }
+    
+    private func resetItemBinding() {
+        self.item = nil
+    }
+    
+    class Coordinator {
         
-        init(_ parent: WebAuthenticationSessionHosting) {
-            self.parent = parent
+        var session: ASWebAuthenticationSession?
+        var itemStorage: ItemStorage
+        let presentationControllerDismissalDelegate: PresentationControllerDismissalDelegate
+        
+        init(onDismissed: @escaping () -> Void) {
+            self.itemStorage = ItemStorage()
+            self.presentationControllerDismissalDelegate = PresentationControllerDismissalDelegate(onDismissed: onDismissed)
         }
         
-        // MARK: UIAdaptivePresentationControllerDelegate
+        struct ItemStorage {
+            
+            private var item: Item?
+            
+            mutating func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
+                let oldItem = self.item
+                self.item = newItem
+                return (oldItem: oldItem, newItem: newItem)
+            }
+        }
         
-        // 시트를 풀 다운으로 내렸을 때 완료 핸들러가 실행되지 않아 item이 nil로 초기화되지 않는 문제가 있다.
-        // SFAuthenticationViewController의 프레젠테이션 컨트롤러 델리게이트로 Coordinator를 설정하고,
-        // 뷰 컨트롤러가 dismiss되었을 때 item을 nil로 설정하도록 한다.
-        func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-            parent.item = nil
-            currentSession?.cancel()
-            currentSession = nil
-            parent.onDismiss?()
+        class PresentationControllerDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
+            
+            private let onDismissed: () -> Void
+            
+            init(onDismissed: @escaping () -> Void) {
+                self.onDismissed = onDismissed
+            }
+            
+            func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+                onDismissed()
+            }
         }
     }
 }
@@ -113,7 +145,7 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
     
     @Binding var isPresented: Bool
     var onDismiss: (() -> Void)? = nil
-    var sessionBuilder: () -> WebAuthenticationSession
+    var representationBuilder: () -> WebAuthenticationSession
     
     private var item: Binding<Bool?> {
         .init(
@@ -122,16 +154,15 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
         )
     }
     
-    private func itemSessionBuilder(bool: Bool) -> WebAuthenticationSession {
-        return sessionBuilder()
+    private func itemRepresentationBuilder(bool: Bool) -> WebAuthenticationSession {
+        return representationBuilder()
     }
     
     func body(content: Content) -> some View {
-        return content.background(
+        content.background(
             WebAuthenticationSessionHosting(
                 item: item,
-                onDismiss: onDismiss,
-                sessionBuilder: itemSessionBuilder
+                representationBuilder: itemRepresentationBuilder
             )
         )
     }
@@ -141,14 +172,13 @@ struct ItemWebAuthenticationSessionPresentationModifier<Item: Identifiable>: Vie
     
     @Binding var item: Item?
     var onDismiss: (() -> Void)? = nil
-    var sessionBuilder: (Item) -> WebAuthenticationSession
+    var representationBuilder: (Item) -> WebAuthenticationSession
     
     func body(content: Content) -> some View {
-        return content.background(
+        content.background(
             WebAuthenticationSessionHosting(
                 item: $item,
-                onDismiss: onDismiss,
-                sessionBuilder: sessionBuilder
+                representationBuilder: representationBuilder
             )
         )
     }
@@ -156,31 +186,44 @@ struct ItemWebAuthenticationSessionPresentationModifier<Item: Identifiable>: Vie
 
 public extension View {
     
+    /// Starts a web authentication session when a given condition is true.
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to whether the web authentication session should be started.
+    ///   - content: A closure returning the `WebAuthenticationSession` to start.
     func webAuthenticationSession(
         isPresented: Binding<Bool>,
         onDismiss: (() -> Void)? = nil,
-        sessionBuilder: @escaping () -> WebAuthenticationSession
+        content representationBuilder: @escaping () -> WebAuthenticationSession
     ) -> some View {
-        return self.modifier(
+        self.modifier(
             WebAuthenticationSessionPresentationModifier(
                 isPresented: isPresented,
-                onDismiss: onDismiss,
-                sessionBuilder: sessionBuilder
+                representationBuilder: representationBuilder
             )
         )
     }
     
     // FIXME: Dismiss and replace the view if the identity changes
+    
+    /// Starts a web authentication session using the given item as a data source
+    /// for the `WebAuthenticationSession` to start.
+    ///
+    /// - Parameters:
+    ///   - item: A binding to an optional source of truth for the web authentication session.
+    ///     When representing a non-`nil` item, the system uses `content` to
+    ///     create a session representation of the item.
+    ///     If the identity changes, the system cancels a
+    ///     currently-started session and replace it by a new session.
+    ///   - content: A closure returning the `WebAuthenticationSession` to start.
     func webAuthenticationSession<Item: Identifiable>(
         item: Binding<Item?>,
-        onDismiss: (() -> Void)? = nil,
-        sessionBuilder: @escaping (Item) -> WebAuthenticationSession
+        content representationBuilder: @escaping (Item) -> WebAuthenticationSession
     ) -> some View {
-        return self.modifier(
+        self.modifier(
             ItemWebAuthenticationSessionPresentationModifier(
                 item: item,
-                onDismiss: onDismiss,
-                sessionBuilder: sessionBuilder
+                representationBuilder: representationBuilder
             )
         )
     }
