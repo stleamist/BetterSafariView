@@ -117,8 +117,8 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
     
     private var item: Binding<Bool?> {
         .init(
-            get: { isPresented ? true : nil },
-            set: { isPresented = ($0 != nil) }
+            get: { self.isPresented ? true : nil },
+            set: { self.isPresented = ($0 != nil) }
         )
     }
     
