@@ -55,31 +55,28 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        let itemUpdateChange = context.coordinator.updateItem(item)
+        let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
         
         switch itemUpdateChange { // (oldItem, newItem)
         case (.none, .none):
-            return
+            ()
         case let (.none, .some(newItem)):
             presentSafariViewController(from: uiViewController, in: context, using: newItem)
-            return
         case let (.some, .some(newItem)):
             updateSafariViewController(presentedBy: uiViewController, using: newItem)
-            return
         case (.some, .none):
             dismissSafariViewController(from: uiViewController)
-            return
         }
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        return Coordinator(onFinished: resetItemBindingAndExecuteDismissalHandler)
     }
     
     private func presentSafariViewController(from uiViewController: UIViewController, in context: Context, using item: Item) {
         let representation = representationBuilder(item)
         let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
-        safariViewController.delegate = context.coordinator
+        safariViewController.delegate = context.coordinator.safariViewControllerFinishDelegate
         applyRepresentation(representation, to: safariViewController)
         uiViewController.present(safariViewController, animated: true)
     }
@@ -103,24 +100,43 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         safariViewController.dismissButtonStyle = representation.dismissButtonStyle
     }
     
-    class Coordinator: NSObject, SFSafariViewControllerDelegate {
+    private func resetItemBindingAndExecuteDismissalHandler() {
+        self.item = nil
+        self.onDismiss?()
+    }
+    
+    class Coordinator {
         
-        private let parent: SafariViewHosting
-        private var item: Item?
-
-        init(_ parent: SafariViewHosting) {
-            self.parent = parent
+        var itemStorage: ItemStorage
+        let safariViewControllerFinishDelegate: SafariViewControllerFinishDelegate
+        
+        init(onFinished: @escaping () -> Void) {
+            self.itemStorage = ItemStorage()
+            self.safariViewControllerFinishDelegate = SafariViewControllerFinishDelegate(onFinished: onFinished)
         }
         
-        func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
-            let oldItem = self.item
-            self.item = newItem
-            return (oldItem: oldItem, newItem: newItem)
+        struct ItemStorage {
+            
+            private var item: Item?
+            
+            mutating func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
+                let oldItem = self.item
+                self.item = newItem
+                return (oldItem: oldItem, newItem: newItem)
+            }
         }
         
-        func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-            parent.item = nil
-            parent.onDismiss?()
+        class SafariViewControllerFinishDelegate: NSObject, SFSafariViewControllerDelegate {
+            
+            private let onFinished: () -> Void
+            
+            init(onFinished: @escaping () -> Void) {
+                self.onFinished = onFinished
+            }
+            
+            func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+                onFinished()
+            }
         }
     }
 }
@@ -198,11 +214,12 @@ public extension View {
     /// for the `SafariView` to present.
     ///
     /// - Parameters:
-    ///   - item: A binding to an optional source of truth for the alert.
+    ///   - item: A binding to an optional source of truth for the Safari view.
     ///     When representing a non-`nil` item, the system uses `content` to
-    ///     create an `SafariView` of the item.
+    ///     create a `SafariView` of the item.
     ///     If the identity changes, the system dismisses a
     ///     currently-presented Safari view and replace it by a new Safari view.
+    ///   - onDismiss: A closure executed when the Safari view dismisses.
     ///   - content: A closure returning the `SafariView` to present.
     func safariView<Item: Identifiable>(
         item: Binding<Item?>,
