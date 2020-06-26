@@ -59,7 +59,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         case (.some, .some):
             ()
         case (.some, .none):
-            cancelWebAuthenticationSession(from: uiViewController, in: context)
+            cancelWebAuthenticationSession(in: context)
         }
     }
     
@@ -74,7 +74,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         safariViewController.presentationController?.delegate = context.coordinator.presentationControllerDismissalDelegate
     }
     
-    private func startWebAuthenticationSession(on webAuthenticationSessionViewController: WebAuthenticationSessionViewController, in context: Context, using item: Item) {
+    private func startWebAuthenticationSession(on presentationContextProvider: ASWebAuthenticationPresentationContextProviding, in context: Context, using item: Item) {
         let representation = representationBuilder(item)
         let session = ASWebAuthenticationSession(
             url: representation.url,
@@ -85,13 +85,13 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
             }
         )
         applyRepresentation(representation, to: session)
-        session.presentationContextProvider = webAuthenticationSessionViewController
+        session.presentationContextProvider = presentationContextProvider
         
         context.coordinator.session = session
         session.start()
     }
     
-    private func cancelWebAuthenticationSession(from uiViewController: UIViewController, in context: Context) {
+    private func cancelWebAuthenticationSession(in context: Context) {
         context.coordinator.session?.cancel()
         context.coordinator.session = nil
     }

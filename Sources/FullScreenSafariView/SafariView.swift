@@ -82,16 +82,18 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     private func updateSafariViewController(presentedBy uiViewController: UIViewController, using item: Item) {
-        if let safariViewController = uiViewController.presentedViewController as? SFSafariViewController {
-            let representation = representationBuilder(item)
-            applyRepresentation(representation, to: safariViewController)
+        guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
+            return
         }
+        let representation = representationBuilder(item)
+        applyRepresentation(representation, to: safariViewController)
     }
     
     private func dismissSafariViewController(from uiViewController: UIViewController) {
-        if uiViewController.presentedViewController is SFSafariViewController {
-            uiViewController.dismiss(animated: true)
+        guard uiViewController.presentedViewController is SFSafariViewController else {
+            return
         }
+        uiViewController.dismiss(animated: true)
     }
     
     private func applyRepresentation(_ representation: SafariView, to safariViewController: SFSafariViewController) {
