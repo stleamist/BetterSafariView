@@ -55,33 +55,20 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        let itemUpdateChange = context.coordinator.updateItem(item)
         
-        if let item = self.item {
-            let representation = representationBuilder(item)
-            
-            /// Fix an issue where a new view controller is instantiated in duplicate
-            /// whenever `updateUIViewController(_:context:)` is called.
-            ///
-            /// Also, fix an issue where a new view controller is presented and dismissed immediately
-            /// because `updateUIViewController(_:context:)` is called
-            /// before the `item` is changed to `nil` in `safariViewControllerDidFinish(_:)`
-            /// when the existing view controller is dismissed using a swipe gesture, not the dismiss button.
-            ///
-            if let safariViewController = uiViewController.presentedViewController as? SFSafariViewController {
-                updateSafariViewController(safariViewController, for: representation)
-                return
-            }
-            
-            let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
-            safariViewController.delegate = context.coordinator
-            updateSafariViewController(safariViewController, for: representation)
-            uiViewController.present(safariViewController, animated: true)
-        } else {
-            /// Check if the `uiViewController` is a instance of the `SFSafariViewController`
-            /// to prevent other controllers presented by the container view from being dismissed unintentionally.
-            if uiViewController.presentedViewController is SFSafariViewController {
-                uiViewController.dismiss(animated: true)
-            }
+        switch itemUpdateChange { // (oldItem, newItem)
+        case (.none, .none):
+            return
+        case let (.none, .some(newItem)):
+            presentSafariViewController(from: uiViewController, in: context, using: newItem)
+            return
+        case let (.some, .some(newItem)):
+            updateSafariViewController(presentedBy: uiViewController, using: newItem)
+            return
+        case (.some, .none):
+            dismissSafariViewController(from: uiViewController)
+            return
         }
     }
     
@@ -89,17 +76,46 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         Coordinator(self)
     }
     
-    private func updateSafariViewController(_ safariViewController: SFSafariViewController, for representation: SafariView) {
+    private func presentSafariViewController(from uiViewController: UIViewController, in context: Context, using item: Item) {
+        let representation = representationBuilder(item)
+        let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
+        safariViewController.delegate = context.coordinator
+        applyRepresentation(representation, to: safariViewController)
+        uiViewController.present(safariViewController, animated: true)
+    }
+    
+    private func updateSafariViewController(presentedBy uiViewController: UIViewController, using item: Item) {
+        if let safariViewController = uiViewController.presentedViewController as? SFSafariViewController {
+            let representation = representationBuilder(item)
+            applyRepresentation(representation, to: safariViewController)
+        }
+    }
+    
+    private func dismissSafariViewController(from uiViewController: UIViewController) {
+        if uiViewController.presentedViewController is SFSafariViewController {
+            uiViewController.dismiss(animated: true)
+        }
+    }
+    
+    private func applyRepresentation(_ representation: SafariView, to safariViewController: SFSafariViewController) {
         safariViewController.preferredBarTintColor = representation.preferredBarTintColor
         safariViewController.preferredControlTintColor = representation.preferredControlTintColor
         safariViewController.dismissButtonStyle = representation.dismissButtonStyle
     }
     
     class Coordinator: NSObject, SFSafariViewControllerDelegate {
-        let parent: SafariViewHosting
+        
+        private let parent: SafariViewHosting
+        private var item: Item?
 
         init(_ parent: SafariViewHosting) {
             self.parent = parent
+        }
+        
+        func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
+            let oldItem = self.item
+            self.item = newItem
+            return (oldItem: oldItem, newItem: newItem)
         }
         
         func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
