@@ -3,8 +3,10 @@ import SafariServices
 
 public struct SafariView {
     
+    public typealias Configuration = SFSafariViewController.Configuration
+    
     let url: URL
-    let configuration: SFSafariViewController.Configuration
+    let configuration: Configuration
     
     var preferredBarTintColor: UIColor?
     var preferredControlTintColor: UIColor?
@@ -31,6 +33,14 @@ public struct SafariView {
         var modified = self
         modified.dismissButtonStyle = style
         return modified
+    }
+}
+
+public extension SafariView.Configuration {
+    convenience init(entersReaderIfAvailable: Bool = false, barCollapsingEnabled: Bool = true) {
+        self.init()
+        self.entersReaderIfAvailable = entersReaderIfAvailable
+        self.barCollapsingEnabled = barCollapsingEnabled
     }
 }
 
