@@ -90,6 +90,9 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     private func dismissSafariViewController(from uiViewController: UIViewController) {
+        
+        // Check if the `uiViewController` is a instance of the `SFSafariViewController`
+        // to prevent other controllers presented by the container view from being dismissed unintentionally.
         guard uiViewController.presentedViewController is SFSafariViewController else {
             return
         }
