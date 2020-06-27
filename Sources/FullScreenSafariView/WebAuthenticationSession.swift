@@ -33,6 +33,12 @@ public struct WebAuthenticationSession {
         modified.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
         return modified
     }
+    
+    // MARK: Modification Applier
+    
+    func applyModification(to webAuthenticationSession: ASWebAuthenticationSession) {
+        webAuthenticationSession.prefersEphemeralWebBrowserSession = self.prefersEphemeralWebBrowserSession
+    }
 }
 
 // ASWebAuthenticationSession 시작에 필수적인 presentationContextProvider를 구현하기 위해 커스텀 뷰 컨트롤러 WebAuthenticationSessionViewController를 사용한다.
@@ -104,7 +110,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
                 representation.completionHandler(callbackURL, error)
             }
         )
-        applyRepresentation(representation, to: session)
+        representation.applyModification(to: session)
         session.presentationContextProvider = presentationContextProvider
         
         context.coordinator.session = session
@@ -114,10 +120,6 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     private func cancelWebAuthenticationSession(in context: Context) {
         context.coordinator.session?.cancel()
         context.coordinator.session = nil
-    }
-    
-    private func applyRepresentation(_ representation: WebAuthenticationSession, to session: ASWebAuthenticationSession) {
-        session.prefersEphemeralWebBrowserSession = representation.prefersEphemeralWebBrowserSession
     }
     
     private func resetItemBinding() {
