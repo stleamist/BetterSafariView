@@ -56,7 +56,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         // 뷰가 업데이트될 때마다 뷰가 띄우고 있는 뷰 컨트롤러를 매번 확인하여
         // 세션 시작 직후 최대한 빨리 델리게이트를 지정하도록 한다.
         // SFAuthenticationViewController는 SFSafariViewController의 비공개 서브클래스이다.
-        setPresentationControllerDismissalDelegateToSafariViewController(presentedBy: uiViewController, in: context)
+        setInteractiveDismissalDelegateToSafariViewController(presentedBy: uiViewController, in: context)
         
         let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
         
@@ -73,17 +73,17 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(onDismissed: resetItemBinding)
+        return Coordinator(onInteractiveDismiss: resetItemBinding)
     }
     
     // 모달 시트를 풀 다운으로 내렸을 때 완료 핸들러가 실행되지 않아 item이 nil로 재설정되지 않는 문제가 있다.
     // SFAuthenticationViewController의 프레젠테이션 컨트롤러 델리게이트로 Coordinator의 PresentationControllerDismissalDelegate를 설정하여
     // 뷰 컨트롤러가 dismiss되었을 때 item이 nil로 재설정되도록 한다.
-    private func setPresentationControllerDismissalDelegateToSafariViewController(presentedBy uiViewController: UIViewController, in context: Context) {
+    private func setInteractiveDismissalDelegateToSafariViewController(presentedBy uiViewController: UIViewController, in context: Context) {
         guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
             return
         }
-        safariViewController.presentationController?.delegate = context.coordinator.presentationControllerDismissalDelegate
+        safariViewController.presentationController?.delegate = context.coordinator.interactiveDismissalDelegate
     }
     
     private func startWebAuthenticationSession(on presentationContextProvider: ASWebAuthenticationPresentationContextProviding, in context: Context, using item: Item) {
@@ -120,11 +120,11 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         
         var session: ASWebAuthenticationSession?
         var itemStorage: ItemStorage
-        let presentationControllerDismissalDelegate: PresentationControllerDismissalDelegate
+        let interactiveDismissalDelegate: InteractiveDismissalDelegate
         
-        init(onDismissed: @escaping () -> Void) {
+        init(onInteractiveDismiss: @escaping () -> Void) {
             self.itemStorage = ItemStorage()
-            self.presentationControllerDismissalDelegate = PresentationControllerDismissalDelegate(onDismissed: onDismissed)
+            self.interactiveDismissalDelegate = InteractiveDismissalDelegate(onInteractiveDismiss: onInteractiveDismiss)
         }
         
         struct ItemStorage {
@@ -138,16 +138,16 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
             }
         }
         
-        class PresentationControllerDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
+        class InteractiveDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
             
-            private let onDismissed: () -> Void
+            private let onInteractiveDismiss: () -> Void
             
-            init(onDismissed: @escaping () -> Void) {
-                self.onDismissed = onDismissed
+            init(onInteractiveDismiss: @escaping () -> Void) {
+                self.onInteractiveDismiss = onInteractiveDismiss
             }
             
             func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-                onDismissed()
+                onInteractiveDismiss()
             }
         }
     }
@@ -156,7 +156,6 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
 struct WebAuthenticationSessionPresentationModifier: ViewModifier {
     
     @Binding var isPresented: Bool
-    var onDismiss: (() -> Void)? = nil
     var representationBuilder: () -> WebAuthenticationSession
     
     private var item: Binding<Bool?> {
@@ -183,7 +182,6 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
 struct ItemWebAuthenticationSessionPresentationModifier<Item: Identifiable>: ViewModifier {
     
     @Binding var item: Item?
-    var onDismiss: (() -> Void)? = nil
     var representationBuilder: (Item) -> WebAuthenticationSession
     
     func body(content: Content) -> some View {
@@ -205,7 +203,6 @@ public extension View {
     ///   - content: A closure returning the `WebAuthenticationSession` to start.
     func webAuthenticationSession(
         isPresented: Binding<Bool>,
-        onDismiss: (() -> Void)? = nil,
         content representationBuilder: @escaping () -> WebAuthenticationSession
     ) -> some View {
         self.modifier(
