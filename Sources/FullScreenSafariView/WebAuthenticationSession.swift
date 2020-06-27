@@ -74,6 +74,8 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         // SFAuthenticationViewController는 SFSafariViewController의 비공개 서브클래스이다.
         setInteractiveDismissalDelegateToSafariViewController(presentedBy: uiViewController, in: context)
         
+        // Ensure the following statements are executed once only after the item is changed
+        // by comparing current item to old one during frequent view updates.
         let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
         
         switch itemUpdateChange { // (oldItem, newItem)
