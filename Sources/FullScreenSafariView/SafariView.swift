@@ -5,17 +5,21 @@ public struct SafariView {
     
     public typealias Configuration = SFSafariViewController.Configuration
     
+    // MARK: Representation Properties
+    
     let url: URL
     let configuration: Configuration
-    
-    var preferredBarTintColor: UIColor?
-    var preferredControlTintColor: UIColor?
-    var dismissButtonStyle: SFSafariViewController.DismissButtonStyle = .done
     
     public init(url: URL, configuration: SFSafariViewController.Configuration = .init()) {
         self.url = url
         self.configuration = configuration
     }
+    
+    // MARK: Modifiers
+    
+    var preferredBarTintColor: UIColor?
+    var preferredControlTintColor: UIColor?
+    var dismissButtonStyle: SFSafariViewController.DismissButtonStyle = .done
     
     public func preferredBarTintColor(_ color: UIColor?) -> Self {
         var modified = self
@@ -35,6 +39,8 @@ public struct SafariView {
         return modified
     }
     
+    // MARK: Modification Applier
+    
     func applyModification(to safariViewController: SFSafariViewController) {
         safariViewController.preferredBarTintColor = self.preferredBarTintColor
         safariViewController.preferredControlTintColor = self.preferredControlTintColor
@@ -52,9 +58,13 @@ public extension SafariView.Configuration {
 
 struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     
+    // MARK: Representation
+    
     @Binding var item: Item?
     var onDismiss: (() -> Void)? = nil
     var representationBuilder: (Item) -> SafariView
+    
+    // MARK: UIViewControllerRepresentable
     
     func makeUIViewController(context: Context) -> UIViewController {
         return UIViewController()
@@ -75,9 +85,7 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(onFinished: resetItemBindingAndExecuteDismissalHandler)
-    }
+    // MARK: Update Handlers
     
     private func presentSafariViewController(from uiViewController: UIViewController, in context: Context, using item: Item) {
         let representation = representationBuilder(item)
@@ -108,6 +116,12 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     private func resetItemBindingAndExecuteDismissalHandler() {
         self.item = nil
         self.onDismiss?()
+    }
+    
+    // MARK: Coordinator
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(onFinished: resetItemBindingAndExecuteDismissalHandler)
     }
     
     class Coordinator {
@@ -148,6 +162,7 @@ struct SafariViewPresentationModifier: ViewModifier {
         )
     }
     
+    // Converts `() -> Void` closure to `(Bool) -> Void`
     private func itemRepresentationBuilder(bool: Bool) -> SafariView {
         return representationBuilder()
     }

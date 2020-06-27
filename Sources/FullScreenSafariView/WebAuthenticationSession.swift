@@ -6,21 +6,27 @@ import AuthenticationServices
 // ASWebAuthenticationSession 인스턴스는 퍼블릭 게터 / 세터가 없어 완료 핸들러에 접근할 수 없다.
 public struct WebAuthenticationSession {
     
+    public typealias CompletionHandler = ASWebAuthenticationSession.CompletionHandler
+    
+    // MARK: Representation Properties
+    
     let url: URL
     let callbackURLScheme: String?
-    let completionHandler: ASWebAuthenticationSession.CompletionHandler
-    
-    var prefersEphemeralWebBrowserSession: Bool = false
+    let completionHandler: CompletionHandler
     
     public init(
         url: URL,
         callbackURLScheme: String?,
-        completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler
+        completionHandler: @escaping CompletionHandler
     ) {
         self.url = url
         self.callbackURLScheme = callbackURLScheme
         self.completionHandler = completionHandler
     }
+    
+    // MARK: Modifiers
+    
+    var prefersEphemeralWebBrowserSession: Bool = false
     
     public func prefersEphemeralWebBrowserSession(_ prefersEphemeralWebBrowserSession: Bool) -> Self {
         var modified = self
@@ -43,8 +49,12 @@ class WebAuthenticationSessionViewController: UIViewController, ASWebAuthenticat
 
 struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepresentable {
     
+    // MARK: Representation
+    
     @Binding var item: Item?
     var representationBuilder: (Item) -> WebAuthenticationSession
+    
+    // MARK: UIViewControllerRepresentable
     
     func makeUIViewController(context: Context) -> WebAuthenticationSessionViewController {
         return WebAuthenticationSessionViewController()
@@ -72,9 +82,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         }
     }
     
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(onInteractiveDismiss: resetItemBinding)
-    }
+    // MARK: Update Handlers
     
     // 모달 시트를 풀 다운으로 내렸을 때 완료 핸들러가 실행되지 않아 item이 nil로 재설정되지 않는 문제가 있다.
     // SFAuthenticationViewController의 프레젠테이션 컨트롤러 델리게이트로 Coordinator의 PresentationControllerDismissalDelegate를 설정하여
@@ -116,6 +124,12 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         self.item = nil
     }
     
+    // MARK: Coordinator
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(onInteractiveDismiss: resetItemBinding)
+    }
+    
     class Coordinator {
         
         var session: ASWebAuthenticationSession?
@@ -154,6 +168,7 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
         )
     }
     
+    // Converts `() -> Void` closure to `(Bool) -> Void`
     private func itemRepresentationBuilder(bool: Bool) -> WebAuthenticationSession {
         return representationBuilder()
     }
