@@ -126,18 +126,18 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
             self.itemStorage = ItemStorage()
             self.interactiveDismissalDelegate = InteractiveDismissalDelegate(onInteractiveDismiss: onInteractiveDismiss)
         }
+    }
+    
+    class InteractiveDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
         
-        class InteractiveDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
-            
-            private let onInteractiveDismiss: () -> Void
-            
-            init(onInteractiveDismiss: @escaping () -> Void) {
-                self.onInteractiveDismiss = onInteractiveDismiss
-            }
-            
-            func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-                onInteractiveDismiss()
-            }
+        private let onInteractiveDismiss: () -> Void
+        
+        init(onInteractiveDismiss: @escaping () -> Void) {
+            self.onInteractiveDismiss = onInteractiveDismiss
+        }
+        
+        func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+            onInteractiveDismiss()
         }
     }
 }

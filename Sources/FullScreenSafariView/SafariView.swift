@@ -119,18 +119,18 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
             self.itemStorage = ItemStorage()
             self.safariViewControllerFinishDelegate = SafariViewControllerFinishDelegate(onFinished: onFinished)
         }
+    }
+    
+    class SafariViewControllerFinishDelegate: NSObject, SFSafariViewControllerDelegate {
         
-        class SafariViewControllerFinishDelegate: NSObject, SFSafariViewControllerDelegate {
-            
-            private let onFinished: () -> Void
-            
-            init(onFinished: @escaping () -> Void) {
-                self.onFinished = onFinished
-            }
-            
-            func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-                onFinished()
-            }
+        private let onFinished: () -> Void
+        
+        init(onFinished: @escaping () -> Void) {
+            self.onFinished = onFinished
+        }
+        
+        func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+            onFinished()
         }
     }
 }
