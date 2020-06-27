@@ -122,6 +122,8 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
         context.coordinator.session = nil
     }
     
+    // MARK: Dismissal Handlers
+    
     private func resetItemBinding() {
         self.item = nil
     }

@@ -114,10 +114,21 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         guard uiViewController.presentedViewController is SFSafariViewController else {
             return
         }
-        uiViewController.dismiss(animated: true, completion: completion)
+        uiViewController.dismiss(animated: true) {
+            self.handleDismissalWithoutResettingItemBinding()
+            completion?()
+        }
     }
     
-    private func resetItemBindingAndExecuteDismissalHandler() {
+    // MARK: Dismissal Handlers
+    
+    // Used when the Safari view controller is finished by an item change during view update.
+    private func handleDismissalWithoutResettingItemBinding() {
+        self.onDismiss?()
+    }
+    
+    // Used when the Safari view controller is finished by a user interaction.
+    private func resetItemBindingAndHandleDismissal() {
         self.item = nil
         self.onDismiss?()
     }
@@ -125,7 +136,7 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     // MARK: Coordinator
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(onFinished: resetItemBindingAndExecuteDismissalHandler)
+        return Coordinator(onFinished: resetItemBindingAndHandleDismissal)
     }
     
     class Coordinator {
