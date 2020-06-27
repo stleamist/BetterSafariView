@@ -34,6 +34,12 @@ public struct SafariView {
         modified.dismissButtonStyle = style
         return modified
     }
+    
+    func applyModification(to safariViewController: SFSafariViewController) {
+        safariViewController.preferredBarTintColor = self.preferredBarTintColor
+        safariViewController.preferredControlTintColor = self.preferredControlTintColor
+        safariViewController.dismissButtonStyle = self.dismissButtonStyle
+    }
 }
 
 public extension SafariView.Configuration {
@@ -77,7 +83,7 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         let representation = representationBuilder(item)
         let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
         safariViewController.delegate = context.coordinator.safariViewControllerFinishDelegate
-        applyRepresentation(representation, to: safariViewController)
+        representation.applyModification(to: safariViewController)
         uiViewController.present(safariViewController, animated: true)
     }
     
@@ -86,7 +92,7 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
             return
         }
         let representation = representationBuilder(item)
-        applyRepresentation(representation, to: safariViewController)
+        representation.applyModification(to: safariViewController)
     }
     
     private func dismissSafariViewController(from uiViewController: UIViewController) {
@@ -97,12 +103,6 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
             return
         }
         uiViewController.dismiss(animated: true)
-    }
-    
-    private func applyRepresentation(_ representation: SafariView, to safariViewController: SFSafariViewController) {
-        safariViewController.preferredBarTintColor = representation.preferredBarTintColor
-        safariViewController.preferredControlTintColor = representation.preferredControlTintColor
-        safariViewController.dismissButtonStyle = representation.dismissButtonStyle
     }
     
     private func resetItemBindingAndExecuteDismissalHandler() {
