@@ -112,23 +112,12 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     
     class Coordinator {
         
-        var itemStorage: ItemStorage
+        var itemStorage: ItemStorage<Item>
         let safariViewControllerFinishDelegate: SafariViewControllerFinishDelegate
         
         init(onFinished: @escaping () -> Void) {
             self.itemStorage = ItemStorage()
             self.safariViewControllerFinishDelegate = SafariViewControllerFinishDelegate(onFinished: onFinished)
-        }
-        
-        struct ItemStorage {
-            
-            private var item: Item?
-            
-            mutating func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
-                let oldItem = self.item
-                self.item = newItem
-                return (oldItem: oldItem, newItem: newItem)
-            }
         }
         
         class SafariViewControllerFinishDelegate: NSObject, SFSafariViewControllerDelegate {

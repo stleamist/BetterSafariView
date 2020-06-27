@@ -119,23 +119,12 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     class Coordinator {
         
         var session: ASWebAuthenticationSession?
-        var itemStorage: ItemStorage
+        var itemStorage: ItemStorage<Item>
         let interactiveDismissalDelegate: InteractiveDismissalDelegate
         
         init(onInteractiveDismiss: @escaping () -> Void) {
             self.itemStorage = ItemStorage()
             self.interactiveDismissalDelegate = InteractiveDismissalDelegate(onInteractiveDismiss: onInteractiveDismiss)
-        }
-        
-        struct ItemStorage {
-            
-            private var item: Item?
-            
-            mutating func updateItem(_ newItem: Item?) -> (oldItem: Item?, newItem: Item?) {
-                let oldItem = self.item
-                self.item = newItem
-                return (oldItem: oldItem, newItem: newItem)
-            }
         }
         
         class InteractiveDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
