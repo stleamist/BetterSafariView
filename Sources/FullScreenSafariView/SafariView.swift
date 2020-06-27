@@ -78,6 +78,10 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
             ()
         case let (.none, .some(newItem)):
             presentSafariViewController(from: uiViewController, in: context, using: newItem)
+        case let (.some(oldItem), .some(newItem)) where oldItem.id != newItem.id:
+            dismissSafariViewController(from: uiViewController) {
+                self.presentSafariViewController(from: uiViewController, in: context, using: newItem)
+            }
         case let (.some, .some(newItem)):
             updateSafariViewController(presentedBy: uiViewController, using: newItem)
         case (.some, .none):
@@ -103,14 +107,14 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
         representation.applyModification(to: safariViewController)
     }
     
-    private func dismissSafariViewController(from uiViewController: UIViewController) {
+    private func dismissSafariViewController(from uiViewController: UIViewController, completion: (() -> Void)? = nil) {
         
         // Check if the `uiViewController` is a instance of the `SFSafariViewController`
         // to prevent other controllers presented by the container view from being dismissed unintentionally.
         guard uiViewController.presentedViewController is SFSafariViewController else {
             return
         }
-        uiViewController.dismiss(animated: true)
+        uiViewController.dismiss(animated: true, completion: completion)
     }
     
     private func resetItemBindingAndExecuteDismissalHandler() {
@@ -216,8 +220,6 @@ public extension View {
             )
         )
     }
-    
-    // FIXME: Dismiss and replace the view if the identity changes
     
     /// Presents a Safari view using the given item as a data source
     /// for the `SafariView` to present.
