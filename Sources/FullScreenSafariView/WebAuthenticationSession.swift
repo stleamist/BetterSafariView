@@ -100,7 +100,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
             url: representation.url,
             callbackURLScheme: representation.callbackURLScheme,
             completionHandler: { (callbackURL, error) in
-                resetItemBinding()
+                self.resetItemBinding()
                 representation.completionHandler(callbackURL, error)
             }
         )
