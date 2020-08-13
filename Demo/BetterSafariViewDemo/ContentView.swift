@@ -1,21 +1,21 @@
 //
 //  ContentView.swift
-//  FullScreenSafariViewDemo
+//  BetterSafariViewDemo
 //
 //  Created by 김동규 on 2020/05/15.
 //  Copyright © 2020 Stleam. All rights reserved.
 //
 
 import SwiftUI
-import FullScreenSafariView
+import BetterSafariView
 
-let repositoryURLString = "https://github.com/stleamist/FullScreenSafariView"
+let repositoryURLString = "https://github.com/stleamist/BetterSafariView"
 let sheetDocumentURLString = "https://developer.apple.com/documentation/swiftui/view/3352791-sheet"
 let navigationLinkDocumentURLString = "https://developer.apple.com/documentation/swiftui/navigationlink"
 
 struct ContentView: View {
     
-    @State private var showingFullScreenSafariView = false
+    @State private var showingBetterSafariView = false
     @State private var showingNaiveSafariViewSheet = false
     
     var body: some View {
@@ -25,12 +25,12 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: {
-                    self.showingFullScreenSafariView = true
+                    self.showingBetterSafariView = true
                 }) {
-                    Text("FullScreenSafariView with .safariView()")
+                    Text("BetterSafariView with .safariView()")
                 }
                 .buttonStyle(RoundedButtonStyle(.primary))
-                .safariView(isPresented: $showingFullScreenSafariView) {
+                .safariView(isPresented: $showingBetterSafariView) {
                     SafariView(url: URL(string: repositoryURLString)!)
                 }
                 
@@ -55,7 +55,7 @@ struct ContentView: View {
                 .buttonStyle(RoundedButtonStyle(.secondary))
             }
             .padding(16)
-            .navigationBarTitle("FullScreenSafariViewDemo", displayMode: .inline)
+            .navigationBarTitle("BetterSafariViewDemo", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

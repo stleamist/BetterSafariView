@@ -1,6 +1,6 @@
 //
 //  NaiveSafariView.swift
-//  FullScreenSafariViewDemo
+//  BetterSafariViewDemo
 //
 //  Created by 김동규 on 2020/05/15.
 //  Copyright © 2020 Stleam. All rights reserved.

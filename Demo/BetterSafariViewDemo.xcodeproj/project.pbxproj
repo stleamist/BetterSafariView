@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C71B8DD324E595F700EC9D98 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71B8DD224E595F700EC9D98 /* BetterSafariView */; };
 		C75727EA246E3CBE0061A843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75727E9246E3CBE0061A843 /* AppDelegate.swift */; };
 		C75727EC246E3CBE0061A843 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75727EB246E3CBE0061A843 /* SceneDelegate.swift */; };
 		C75727EE246E3CBE0061A843 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75727ED246E3CBE0061A843 /* ContentView.swift */; };
 		C75727F0246E3CC00061A843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75727EF246E3CC00061A843 /* Assets.xcassets */; };
 		C75727F3246E3CC00061A843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C75727F2246E3CC00061A843 /* Preview Assets.xcassets */; };
 		C75727F6246E3CC00061A843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75727F4246E3CC00061A843 /* LaunchScreen.storyboard */; };
-		C75727FF246E3E650061A843 /* FullScreenSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C75727FE246E3E650061A843 /* FullScreenSafariView */; };
 		C79E19CE246E4560008D6D92 /* NaiveSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79E19CD246E4560008D6D92 /* NaiveSafariView.swift */; };
 		C79E19D4246E6C61008D6D92 /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79E19D3246E6C61008D6D92 /* RoundedButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C75727E6246E3CBE0061A843 /* FullScreenSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullScreenSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C75727E6246E3CBE0061A843 /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C75727E9246E3CBE0061A843 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C75727EB246E3CBE0061A843 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C75727ED246E3CBE0061A843 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75727FF246E3E650061A843 /* FullScreenSafariView in Frameworks */,
+				C71B8DD324E595F700EC9D98 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,7 +46,7 @@
 		C75727DD246E3CBE0061A843 = {
 			isa = PBXGroup;
 			children = (
-				C75727E8246E3CBE0061A843 /* FullScreenSafariViewDemo */,
+				C75727E8246E3CBE0061A843 /* BetterSafariViewDemo */,
 				C75727E7246E3CBE0061A843 /* Products */,
 				C75727FD246E3E650061A843 /* Frameworks */,
 			);
@@ -55,12 +55,12 @@
 		C75727E7246E3CBE0061A843 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C75727E6246E3CBE0061A843 /* FullScreenSafariViewDemo.app */,
+				C75727E6246E3CBE0061A843 /* BetterSafariViewDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C75727E8246E3CBE0061A843 /* FullScreenSafariViewDemo */ = {
+		C75727E8246E3CBE0061A843 /* BetterSafariViewDemo */ = {
 			isa = PBXGroup;
 			children = (
 				C75727E9246E3CBE0061A843 /* AppDelegate.swift */,
@@ -73,7 +73,7 @@
 				C75727F7246E3CC00061A843 /* Info.plist */,
 				C75727F1246E3CC00061A843 /* Preview Content */,
 			);
-			path = FullScreenSafariViewDemo;
+			path = BetterSafariViewDemo;
 			sourceTree = "<group>";
 		};
 		C75727F1246E3CC00061A843 /* Preview Content */ = {
@@ -94,9 +94,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C75727E5246E3CBE0061A843 /* FullScreenSafariViewDemo */ = {
+		C75727E5246E3CBE0061A843 /* BetterSafariViewDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C75727FA246E3CC00061A843 /* Build configuration list for PBXNativeTarget "FullScreenSafariViewDemo" */;
+			buildConfigurationList = C75727FA246E3CC00061A843 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo" */;
 			buildPhases = (
 				C75727E2246E3CBE0061A843 /* Sources */,
 				C75727E3246E3CBE0061A843 /* Frameworks */,
@@ -106,12 +106,12 @@
 			);
 			dependencies = (
 			);
-			name = FullScreenSafariViewDemo;
+			name = BetterSafariViewDemo;
 			packageProductDependencies = (
-				C75727FE246E3E650061A843 /* FullScreenSafariView */,
+				C71B8DD224E595F700EC9D98 /* BetterSafariView */,
 			);
 			productName = FullScreenSafariViewDemo;
-			productReference = C75727E6246E3CBE0061A843 /* FullScreenSafariViewDemo.app */;
+			productReference = C75727E6246E3CBE0061A843 /* BetterSafariViewDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C75727E1246E3CBE0061A843 /* Build configuration list for PBXProject "FullScreenSafariViewDemo" */;
+			buildConfigurationList = C75727E1246E3CBE0061A843 /* Build configuration list for PBXProject "BetterSafariViewDemo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C75727E5246E3CBE0061A843 /* FullScreenSafariViewDemo */,
+				C75727E5246E3CBE0061A843 /* BetterSafariViewDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -306,14 +306,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FullScreenSafariViewDemo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FullScreenSafariViewDemo/Info.plist;
+				INFOPLIST_FILE = BetterSafariViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.FullScreenSafariViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,14 +325,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"FullScreenSafariViewDemo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = FullScreenSafariViewDemo/Info.plist;
+				INFOPLIST_FILE = BetterSafariViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.FullScreenSafariViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -342,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C75727E1246E3CBE0061A843 /* Build configuration list for PBXProject "FullScreenSafariViewDemo" */ = {
+		C75727E1246E3CBE0061A843 /* Build configuration list for PBXProject "BetterSafariViewDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C75727F8246E3CC00061A843 /* Debug */,
@@ -351,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C75727FA246E3CC00061A843 /* Build configuration list for PBXNativeTarget "FullScreenSafariViewDemo" */ = {
+		C75727FA246E3CC00061A843 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C75727FB246E3CC00061A843 /* Debug */,
@@ -363,9 +363,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C75727FE246E3E650061A843 /* FullScreenSafariView */ = {
+		C71B8DD224E595F700EC9D98 /* BetterSafariView */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = FullScreenSafariView;
+			productName = BetterSafariView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

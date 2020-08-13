@@ -7,22 +7,22 @@
     <a href="https://swift.org/">
         <img src="https://img.shields.io/badge/Swift-5.1-f05138" alt="Swift: 5.1">
     </a>
-    <a href="https://github.com/stleamist/FullScreenSafariView/releases/latest">
-        <img src="https://img.shields.io/github/v/release/stleamist/FullScreenSafariView?label=version" alt="version">
+    <a href="https://github.com/stleamist/BetterSafariView/releases/latest">
+        <img src="https://img.shields.io/github/v/release/stleamist/BetterSafariView?label=version" alt="version">
     </a>
     <a href="https://swift.org/package-manager/">
         <img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen" alt="SwiftPM: compatible">
     </a>
     <a href="/LICENSE">
-        <img src="https://img.shields.io/github/license/stleamist/FullScreenSafariView" alt="license">
+        <img src="https://img.shields.io/github/license/stleamist/BetterSafariView" alt="license">
     </a>
     <a href="https://twitter.com/stleamist">
         <img src="https://img.shields.io/badge/contact-@stleamist-1da1f2" alt="contact: @stleamist">
     </a>
 </p>
 
-# FullScreenSafariView
-FullScreenSafariView is a clean way to present a full-screen SFSafariViewController with a push transition in SwiftUI.
+# BetterSafariView
+BetterSafariView is a clean way to present a full-screen SFSafariViewController with a push transition in SwiftUI.
 
 <img src="/Docs/Images/FullScreenSafariView-Cover.png" width="375">
 
@@ -30,11 +30,11 @@ FullScreenSafariView is a clean way to present a full-screen SFSafariViewControl
 ![](/Docs/Images/FullScreenSafariView-Comparison.svg)
 SwiftUI is a strong, intuitive way to build user interfaces, but was released with some part of existing elements missing. One example of those missing elements is the [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller).
 
-Fortunately, Apple provides a way to wrap UIKit elements into SwiftUI views. A common approach to place the `SFSafariViewController` inside SwiftUI is to create [a simple view representing an `SFSafariViewController`](/Demo/FullScreenSafariViewDemo/NaiveSafariView.swift), then present it with a [`sheet(isPresented:onDismiss:content:)`](https://developer.apple.com/documentation/swiftui/view/3352791-sheet) modifier or a [`NavigationLink`](https://developer.apple.com/documentation/swiftui/navigationlink) button (See [`ContentView.swift`](/Demo/FullScreenSafariViewDemo/ContentView.swift) in the demo project).
+Fortunately, Apple provides a way to wrap UIKit elements into SwiftUI views. A common approach to place the `SFSafariViewController` inside SwiftUI is to create [a simple view representing an `SFSafariViewController`](/Demo/BetterSafariViewDemo/NaiveSafariView.swift), then present it with a [`sheet(isPresented:onDismiss:content:)`](https://developer.apple.com/documentation/swiftui/view/3352791-sheet) modifier or a [`NavigationLink`](https://developer.apple.com/documentation/swiftui/navigationlink) button (See [`ContentView.swift`](/Demo/BetterSafariViewDemo/ContentView.swift) in the demo project).
 
 However, there’s a problem in this approach: it can’t present the `SFSafariViewController` with its default presentation style — a push transition covers full screen. A sheet modifier can present the view only in a modal sheet, and a navigation link shows the two navigation bars at the top so we have to deal with them. This comes down to the conclusion that there’s no option to present it the right way except for using [`present(_:animated:completion:)`](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621380-present) method of an [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) instance, but it is prohibited and not a good design to access the [`UIHostingController`](https://developer.apple.com/documentation/swiftui/uihostingcontroller) directly from the SwiftUI view.
 
-`FullScreenSafariView` clearly achieves this goal by hosting a simple `UIViewController` to present an `SFSafariViewController` as a view’s background.
+`BetterSafariView` clearly achieves this goal by hosting a simple `UIViewController` to present an `SFSafariViewController` as a view’s background.
 
 ## Usage
 You can use it easily with a `safariView(isPresented:content:)` modifier in a similar way to presenting a sheet.
@@ -47,7 +47,7 @@ A closure returning the `URL` to load.
 
 ```swift
 import SwiftUI
-import FullScreenSafariView
+import BetterSafariView
 
 struct ContentView: View {
     
@@ -78,7 +78,7 @@ import PackageDescription
 let package = Package(
     ...,
     dependencies: [
-        .package(url: "https://github.com/stleamist/FullScreenSafariView.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "1.0.0"))
     ],
     ...
 )
@@ -88,7 +88,7 @@ let package = Package(
 Select File \> Swift Packages \> Add Package Dependency, then enter the following URL:
 
 ```
-https://github.com/stleamist/FullScreenSafariView.git
+https://github.com/stleamist/BetterSafariView.git
 ```
 
 For more details, see [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
@@ -96,7 +96,7 @@ For more details, see [Adding Package Dependencies to Your App](https://develope
 ## Demo
 <img src="/Docs/Images/FullScreenSafariViewDemo-ContentView.png" width="375">
 
-You can compare the behavior of FullScreenSafariView with the other two ways above in the demo project. Check out the demo app by opening FullScreenSafariView.xcworkspace.
+You can compare the behavior of BetterSafariView with the other two ways above in the demo project. Check out the demo app by opening BetterSafariView.xcworkspace.
 
 ## License
-FullScreenSafariView is released under the MIT license. See [LICENSE](/LICENSE) for details.
+BetterSafariView is released under the MIT license. See [LICENSE](/LICENSE) for details.

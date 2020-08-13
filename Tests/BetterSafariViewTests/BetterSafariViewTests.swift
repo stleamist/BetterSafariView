@@ -1,11 +1,11 @@
 import XCTest
-@testable import FullScreenSafariView
+@testable import BetterSafariView
 
-final class FullScreenSafariViewTests: XCTestCase {
+final class BetterSafariViewTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        // XCTAssertEqual(FullScreenSafariView().text, "Hello, World!")
+        // XCTAssertEqual(BetterSafariView().text, "Hello, World!")
     }
 }
