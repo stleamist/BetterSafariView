@@ -1,12 +1,12 @@
 import SwiftUI
 import SafariServices
 
-// TODO: Decide whether to add a UIViewControllerRepresentable conformance or not
+// TODO: Decide whether to add a `UIViewControllerRepresentable` conformance or not
 
 // NOTE:
-// A UIViewControllerRepresentable conformance for an advanced usage.
+// A `UIViewControllerRepresentable` conformance for an advanced usage.
 // However, using this directly as a View is NOT RECOMMENDED; sometimes its interface and interactions can look broken.
-// Please use this just for a representation to present with .safariView(isPresented:onDismiss:content:) modifier.
+// Please use this just for a representation to present with `.safariView(isPresented:onDismiss:content:)` modifier.
 
 extension SafariView: UIViewControllerRepresentable {
     

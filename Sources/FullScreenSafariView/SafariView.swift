@@ -71,7 +71,7 @@ struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Ensure the following statements are executed once only after the item is changed
+        // Ensure the following statements are executed once only after the `item` is changed
         // by comparing current item to old one during frequent view updates.
         let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
         
