@@ -55,6 +55,45 @@ public struct SafariView {
     var preferredControlTintColor: UIColor?
     var dismissButtonStyle: SFSafariViewController.DismissButtonStyle = .done
     
+    /// Sets the accent color for the background of the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Parameters:
+    ///     - color: The color to use as a bar accent color. If `nil`, the tint color continues to be inherited.
+    ///
+    @available(iOS 14.0, *)
+    public func preferredBarAccentColor(_ color: Color?) -> Self {
+        var modified = self
+        if let color = color {
+            modified.preferredBarTintColor = UIColor(color)
+        } else {
+            modified.preferredBarTintColor = nil
+        }
+        return modified
+    }
+    
+    /// Sets the accent color for the control buttons on the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    /// Use `preferredControlAccentColor(_:)` instead of using the view’s [accentColor(_:)](apple-reference-documentation://ls%2Fdocumentation%2Fswiftui%2Fview%2Faccentcolor(_%3A)) method.
+    ///
+    /// - Parameters:
+    ///     - color: The color to use as a control accent tint color. If `nil`, the tint color continues to be inherited.
+    ///
+    @available(iOS 14.0, *)
+    public func preferredControlAccentColor(_ color: Color?) -> Self {
+        var modified = self
+        if let color = color {
+            modified.preferredControlTintColor = UIColor(color)
+        } else {
+            modified.preferredControlTintColor = nil
+        }
+        return modified
+    }
+    
     /// Sets the color to tint the background of the navigation bar and the toolbar.
     ///
     /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
@@ -63,6 +102,7 @@ public struct SafariView {
     /// - Parameters:
     ///     - color: The color to use as a bar tint color. If `nil`, the tint color continues to be inherited.
     ///
+    @available(iOS, introduced: 13.0, deprecated: 14.0, renamed: "preferredBarAccentColor(_:)")
     public func preferredBarTintColor(_ color: UIColor?) -> Self {
         var modified = self
         modified.preferredBarTintColor = color
@@ -78,6 +118,7 @@ public struct SafariView {
     /// - Parameters:
     ///     - color: The color to use as a control tint color. If `nil`, the tint color continues to be inherited.
     ///
+    @available(iOS, introduced: 13.0, deprecated: 14.0, renamed: "preferredControlAccentColor(_:)")
     public func preferredControlTintColor(_ color: UIColor?) -> Self {
         var modified = self
         modified.preferredControlTintColor = color
