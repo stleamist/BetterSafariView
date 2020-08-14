@@ -1,6 +1,30 @@
 import SwiftUI
 import SafariServices
 
+/// A view that displays a visible standard interface for browsing the web.
+///
+/// The view controller includes Safari features such as Reader, AutoFill, Fraudulent Website Detection, and content blocking.
+/// In iOS 9 and 10, it shares cookies and other website data with Safari.
+/// The user's activity and interaction with `SafariView` are not visible to your app,
+/// which cannot access AutoFill data, browsing history, or website data.
+/// You do not need to secure data between your app and Safari.
+/// If you would like to share data between your app and Safari in iOS 11 and later,
+/// so it is easier for a user to log in only one time, use `WebAuthenticationSession` instead.
+///
+/// - Important:
+///     In accordance with [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/), this view controller must be used to visibly present information to users; the controller may not be hidden or obscured by other views or layers. Additionally, an app may not use `SafariView` to track users without their knowledge and consent.
+///
+///     UI features include the following:
+///     - A read-only address field with a security indicator and a Reader button
+///     - An Action button that invokes an activity view controller offering custom services from your app, and activities, such as messaging, from the system and other extensions
+///     - A Done button, back and forward navigation buttons, and a button to open the page directly in Safari
+///     - On devices that support 3D Touch, automatic Peek and Pop for links and detected data
+///
+///     To learn about 3D Touch, see [3D Touch](https://developer.apple.com/ios/human-interface-guidelines/interaction/3d-touch/) in [iOS Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/) and [Adopting 3D Touch on iPhone](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543).
+///
+/// - Note:
+///     In Mac apps built with Mac Catalyst, `SafariView` launches the default web browser instead of displaying a modal window.
+///
 public struct SafariView {
     
     public typealias Configuration = SFSafariViewController.Configuration
@@ -10,6 +34,16 @@ public struct SafariView {
     let url: URL
     let configuration: Configuration
     
+    /// Creates and configures a Safari view that loads the specified URL.
+    ///
+    /// Use `init(url:)` to initialize an instance with the default configuration.
+    /// The initializer copies the specified [SFSafariViewController.Configuration](apple-reference-documentation://ls%2Fdocumentation%2Fsafariservices%2Fsfsafariviewcontroller%2Fconfiguration) object,
+    /// so mutating the configuration after invoking the initializer has no effect on the view controller.
+    ///
+    /// - Parameters:
+    ///     - url: The URL to navigate to. The URL must use the http or https scheme.
+    ///     - configuration: The configuration for the new view controller.
+    ///
     public init(url: URL, configuration: SFSafariViewController.Configuration = .init()) {
         self.url = url
         self.configuration = configuration
@@ -21,18 +55,45 @@ public struct SafariView {
     var preferredControlTintColor: UIColor?
     var dismissButtonStyle: SFSafariViewController.DismissButtonStyle = .done
     
+    /// Sets the color to tint the background of the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Parameters:
+    ///     - color: The color to use as a bar tint color. If `nil`, the tint color continues to be inherited.
+    ///
     public func preferredBarTintColor(_ color: UIColor?) -> Self {
         var modified = self
         modified.preferredBarTintColor = color
         return modified
     }
     
+    /// Sets the color to tint the control buttons on the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    /// Use `preferredControlTintColor(_:)` instead of using the view’s [accentColor(_:)](apple-reference-documentation://ls%2Fdocumentation%2Fswiftui%2Fview%2Faccentcolor(_%3A)) method.
+    ///
+    /// - Parameters:
+    ///     - color: The color to use as a control tint color. If `nil`, the tint color continues to be inherited.
+    ///
     public func preferredControlTintColor(_ color: UIColor?) -> Self {
         var modified = self
         modified.preferredControlTintColor = color
         return modified
     }
     
+    /// Sets the style of dismiss button to use in the navigation bar to close `SafariView`.
+    ///
+    /// The default value is `.done`, which makes the button title the localized
+    /// string "Done". You can use other values such as "Close" to provide consistency with your app. "Cancel" is
+    /// ideal when using `SafariView` to log in to an external service. All values will show a string localized
+    /// to the user's locale. Changing this property after `SafariView` is presented will animate the change.
+    ///
+    /// - Parameters:
+    ///     - style: The style of dismiss button to use in the navigation bar.
+    ///
     public func dismissButtonStyle(_ style: SFSafariViewController.DismissButtonStyle) -> Self {
         var modified = self
         modified.dismissButtonStyle = style
@@ -220,6 +281,7 @@ public extension View {
     ///   - isPresented: A binding to whether the Safari view is presented.
     ///   - onDismiss: A closure executed when the Safari view dismisses.
     ///   - content: A closure returning the `SafariView` to present.
+    ///
     func safariView(
         isPresented: Binding<Bool>,
         onDismiss: (() -> Void)? = nil,
@@ -245,6 +307,7 @@ public extension View {
     ///     currently-presented Safari view and replace it by a new Safari view.
     ///   - onDismiss: A closure executed when the Safari view dismisses.
     ///   - content: A closure returning the `SafariView` to present.
+    ///
     func safariView<Item: Identifiable>(
         item: Binding<Item?>,
         onDismiss: (() -> Void)? = nil,
