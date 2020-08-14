@@ -28,6 +28,7 @@ import SafariServices
 public struct SafariView {
     
     public typealias Configuration = SFSafariViewController.Configuration
+    public typealias DismissButtonStyle = SFSafariViewController.DismissButtonStyle
     
     // MARK: Representation Properties
     
@@ -53,7 +54,7 @@ public struct SafariView {
     
     var preferredBarTintColor: UIColor?
     var preferredControlTintColor: UIColor?
-    var dismissButtonStyle: SFSafariViewController.DismissButtonStyle = .done
+    var dismissButtonStyle: DismissButtonStyle = .done
     
     /// Sets the accent color for the background of the navigation bar and the toolbar.
     ///
@@ -135,7 +136,7 @@ public struct SafariView {
     /// - Parameters:
     ///     - style: The style of dismiss button to use in the navigation bar.
     ///
-    public func dismissButtonStyle(_ style: SFSafariViewController.DismissButtonStyle) -> Self {
+    public func dismissButtonStyle(_ style: DismissButtonStyle) -> Self {
         var modified = self
         modified.dismissButtonStyle = style
         return modified
