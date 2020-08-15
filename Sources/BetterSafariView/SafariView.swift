@@ -56,6 +56,8 @@ public struct SafariView {
     var preferredControlTintColor: UIColor?
     var dismissButtonStyle: DismissButtonStyle = .done
     
+    #if compiler(>=5.3)
+    
     /// Sets the accent color for the background of the navigation bar and the toolbar.
     ///
     /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
@@ -94,6 +96,8 @@ public struct SafariView {
         }
         return modified
     }
+    
+    #endif
     
     /// Sets the color to tint the background of the navigation bar and the toolbar.
     ///
