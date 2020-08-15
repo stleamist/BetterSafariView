@@ -2,6 +2,8 @@ import SwiftUI
 import SafariServices
 import AuthenticationServices
 
+public typealias WebAuthenticationSessionError = ASWebAuthenticationSessionError
+
 // Used for getting a public completion handler to inject an assignment that sets `item` to `nil`.
 // INFO: It's not possible to access a completion handler from an `ASWebAuthenticationSession` instance
 // because it has no public getter and setter for that.
