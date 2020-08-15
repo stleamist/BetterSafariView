@@ -118,7 +118,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     
     // MARK: Update Handlers
     
-    // There was a problem that `item` is not set to `nil` after the sheet is dismissed with pulling down
+    // There is a problem that `item` is not set to `nil` after the sheet is dismissed with pulling down
     // because the completion handler is not called on this case due to a system bug.
     // To resolve this issue, it sets `PresentationControllerDismissalDelegate` of `Coordinator`
     // as a presentation controller delegate of `SFAuthenticationViewController`
