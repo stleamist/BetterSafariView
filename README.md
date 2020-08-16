@@ -29,6 +29,19 @@ A better way to present a SFSafariViewController or start a ASWebAuthenticationS
 
 <img src="/Docs/Images/BetterSafariView-Cover.png" width="375">
 
+## Navigate
+- [Motivation](#motivation)
+- [Usage](#usage)
+    - [SafariView](#safariview)
+    - [WebAuthenticationSession](#webauthenticationsession)
+- [Known Issues](#known-issues)
+- [Requirements](#requirements)
+- [Installation](#installation)
+    - [Swift Package Manager](#swift-package-manager)
+    - [Xcode](#xcode)
+- [Demo](#demo)
+- [License](#license)
+
 ## Motivation
 <img src="/Docs/Images/BetterSafariView-Comparison.svg">
 
@@ -125,6 +138,10 @@ struct ContentView: View {
 ## Known Issues
 - In `.webAuthenticationSession(item:content:)` modifier, the functionality that replaces a session on the `item`'s identity change is not implemented, as there is no non-hacky way to be notified when the session's dismissal animation is completed.
 
+## Requirements
+- Swift 5.1+
+- iOS 13.0+
+
 ## Installation
 ### Swift Package Manager
 Add the following line to the `dependencies` in your [`Package.swift`](https://developer.apple.com/documentation/swift_packages/package) file:
@@ -171,6 +188,8 @@ For more details, see [Adding Package Dependencies to Your App](https://develope
 <img src="/Docs/Images/BetterSafariViewDemo-RootView.png" width="375">
 
 You can compare the behavior of BetterSafariView with the other ways above in the demo project. Check out the demo app by opening BetterSafariView.xcworkspace.
+
+**NOTE:** This demo project is designed for iOS 14.0+, though the package is compatible with iOS 13.0+.
 
 ## License
 BetterSafariView is released under the MIT license. See [LICENSE](/LICENSE) for details.
