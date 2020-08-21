@@ -29,7 +29,7 @@ A better way to present a SFSafariViewController or start a ASWebAuthenticationS
 
 <img src="/Docs/Images/BetterSafariView-Cover.png" width="375">
 
-## Navigate
+## Contents
 - [Motivation](#motivation)
 - [Usage](#usage)
     - [SafariView](#safariview)
