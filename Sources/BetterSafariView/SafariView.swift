@@ -64,7 +64,7 @@ public struct SafariView {
     /// After the view controller is presented, changes made are not reflected.
     ///
     /// - Parameters:
-    ///     - color: The color to use as a bar accent color. If `nil`, the tint color continues to be inherited.
+    ///     - color: The color to use as a bar accent color. If `nil`, the accent color continues to be inherited.
     ///
     @available(iOS 14.0, *)
     public func preferredBarAccentColor(_ color: Color?) -> Self {
@@ -84,7 +84,7 @@ public struct SafariView {
     /// Use `preferredControlAccentColor(_:)` instead of using the view’s [accentColor(_:)](apple-reference-documentation://ls%2Fdocumentation%2Fswiftui%2Fview%2Faccentcolor(_%3A)) method.
     ///
     /// - Parameters:
-    ///     - color: The color to use as a control accent tint color. If `nil`, the tint color continues to be inherited.
+    ///     - color: The color to use as a control accent color. If `nil`, the accent color continues to be inherited.
     ///
     @available(iOS 14.0, *)
     public func preferredControlAccentColor(_ color: Color?) -> Self {

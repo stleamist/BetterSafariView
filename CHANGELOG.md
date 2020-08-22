@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.0.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.0.1) (2020-08-22)
+### Fixed
+- Fixed typos on markup
+
 ## [v2.0.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.0.0) (2020-08-16)
 ### Added
 - You can now authenticate a user through a web authentication session by using `WebAuthenticationSession`.
