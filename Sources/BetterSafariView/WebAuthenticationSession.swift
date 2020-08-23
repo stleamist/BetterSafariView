@@ -71,7 +71,7 @@ public struct WebAuthenticationSession {
 // INFO: `ASWebAuthenticationPresentationContextProviding` provides an window
 // to present an `SFAuthenticationViewController`, and usually presents the `SFAuthenticationViewController`
 // by calling `present(_:animated:completion:)` method from a root view controller of the window.
-class WebAuthenticationSessionViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
+class WebAuthenticationPresentingViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
     
     // MARK: ASWebAuthenticationPresentationContextProviding
     
@@ -80,7 +80,7 @@ class WebAuthenticationSessionViewController: UIViewController, ASWebAuthenticat
     }
 }
 
-struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepresentable {
+struct WebAuthenticationPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     
     // MARK: Representation
     
@@ -89,11 +89,11 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     
     // MARK: UIViewControllerRepresentable
     
-    func makeUIViewController(context: Context) -> WebAuthenticationSessionViewController {
-        return WebAuthenticationSessionViewController()
+    func makeUIViewController(context: Context) -> WebAuthenticationPresentingViewController {
+        return WebAuthenticationPresentingViewController()
     }
     
-    func updateUIViewController(_ uiViewController: WebAuthenticationSessionViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: WebAuthenticationPresentingViewController, context: Context) {
         
         // To set a delegate for the presentation controller of an `SFAuthenticationViewController` as soon as possible,
         // check the view controller presented by `uiViewController` then set it as a delegate on every view updates.
@@ -190,7 +190,7 @@ struct WebAuthenticationSessionHosting<Item: Identifiable>: UIViewControllerRepr
     }
 }
 
-struct WebAuthenticationSessionPresentationModifier: ViewModifier {
+struct WebAuthenticationPresentationModifier: ViewModifier {
     
     @Binding var isPresented: Bool
     var representationBuilder: () -> WebAuthenticationSession
@@ -209,7 +209,7 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content.background(
-            WebAuthenticationSessionHosting(
+            WebAuthenticationPresenter(
                 item: item,
                 representationBuilder: itemRepresentationBuilder
             )
@@ -217,14 +217,14 @@ struct WebAuthenticationSessionPresentationModifier: ViewModifier {
     }
 }
 
-struct ItemWebAuthenticationSessionPresentationModifier<Item: Identifiable>: ViewModifier {
+struct ItemWebAuthenticationPresentationModifier<Item: Identifiable>: ViewModifier {
     
     @Binding var item: Item?
     var representationBuilder: (Item) -> WebAuthenticationSession
     
     func body(content: Content) -> some View {
         content.background(
-            WebAuthenticationSessionHosting(
+            WebAuthenticationPresenter(
                 item: $item,
                 representationBuilder: representationBuilder
             )
@@ -245,7 +245,7 @@ public extension View {
         content representationBuilder: @escaping () -> WebAuthenticationSession
     ) -> some View {
         self.modifier(
-            WebAuthenticationSessionPresentationModifier(
+            WebAuthenticationPresentationModifier(
                 isPresented: isPresented,
                 representationBuilder: representationBuilder
             )
@@ -274,7 +274,7 @@ public extension View {
         content representationBuilder: @escaping (Item) -> WebAuthenticationSession
     ) -> some View {
         self.modifier(
-            ItemWebAuthenticationSessionPresentationModifier(
+            ItemWebAuthenticationPresentationModifier(
                 item: item,
                 representationBuilder: representationBuilder
             )

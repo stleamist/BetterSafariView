@@ -163,7 +163,7 @@ public extension SafariView.Configuration {
     }
 }
 
-struct SafariViewHosting<Item: Identifiable>: UIViewControllerRepresentable {
+struct SafariViewPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     
     // MARK: Representation
     
@@ -298,7 +298,7 @@ struct SafariViewPresentationModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content.background(
-            SafariViewHosting(
+            SafariViewPresenter(
                 item: item,
                 onDismiss: onDismiss,
                 representationBuilder: itemRepresentationBuilder
@@ -315,7 +315,7 @@ struct ItemSafariViewPresentationModifier<Item: Identifiable>: ViewModifier {
     
     func body(content: Content) -> some View {
         content.background(
-            SafariViewHosting(
+            SafariViewPresenter(
                 item: $item,
                 onDismiss: onDismiss,
                 representationBuilder: representationBuilder
