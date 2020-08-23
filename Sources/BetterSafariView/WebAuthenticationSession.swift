@@ -67,19 +67,6 @@ public struct WebAuthenticationSession {
     }
 }
 
-// Used for providing `presentationContextProvider`, which is needed for `ASWebAuthenticationSession` to start its session.
-// INFO: `ASWebAuthenticationPresentationContextProviding` provides an window
-// to present an `SFAuthenticationViewController`, and usually presents the `SFAuthenticationViewController`
-// by calling `present(_:animated:completion:)` method from a root view controller of the window.
-class WebAuthenticationPresentingViewController: UIViewController, ASWebAuthenticationPresentationContextProviding {
-    
-    // MARK: ASWebAuthenticationPresentationContextProviding
-    
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return view.window!
-    }
-}
-
 struct WebAuthenticationPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     
     // MARK: Representation
@@ -89,103 +76,120 @@ struct WebAuthenticationPresenter<Item: Identifiable>: UIViewControllerRepresent
     
     // MARK: UIViewControllerRepresentable
     
-    func makeUIViewController(context: Context) -> WebAuthenticationPresentingViewController {
-        return WebAuthenticationPresentingViewController()
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
     }
     
-    func updateUIViewController(_ uiViewController: WebAuthenticationPresentingViewController, context: Context) {
+    func makeUIViewController(context: Context) -> UIViewController {
+        return context.coordinator.uiViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
         // To set a delegate for the presentation controller of an `SFAuthenticationViewController` as soon as possible,
         // check the view controller presented by `uiViewController` then set it as a delegate on every view updates.
         // INFO: `SFAuthenticationViewController` is a private subclass of `SFSafariViewController`.
-        setInteractiveDismissalDelegateToSafariViewController(presentedBy: uiViewController, in: context)
+        context.coordinator.setInteractiveDismissalDelegateIfPossible()
         
-        // Ensure the following statements are executed once only after the item is changed
-        // by comparing current item to old one during frequent view updates.
-        let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
-        
-        switch itemUpdateChange { // (oldItem, newItem)
-        case (.none, .none):
-            ()
-        case let (.none, .some(newItem)):
-            startWebAuthenticationSession(on: uiViewController, in: context, using: newItem)
-        case (.some, .some):
-            ()
-        case (.some, .none):
-            cancelWebAuthenticationSession(in: context)
-        }
-    }
-    
-    // MARK: Update Handlers
-    
-    // There is a problem that `item` is not set to `nil` after the sheet is dismissed with pulling down
-    // because the completion handler is not called on this case due to a system bug.
-    // To resolve this issue, it sets `PresentationControllerDismissalDelegate` of `Coordinator`
-    // as a presentation controller delegate of `SFAuthenticationViewController`
-    // so that ensures the completion handler is always called.
-    private func setInteractiveDismissalDelegateToSafariViewController(presentedBy uiViewController: UIViewController, in context: Context) {
-        guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
-            return
-        }
-        safariViewController.presentationController?.delegate = context.coordinator.interactiveDismissalDelegate
-    }
-    
-    private func startWebAuthenticationSession(on presentationContextProvider: ASWebAuthenticationPresentationContextProviding, in context: Context, using item: Item) {
-        let representation = representationBuilder(item)
-        let session = ASWebAuthenticationSession(
-            url: representation.url,
-            callbackURLScheme: representation.callbackURLScheme,
-            completionHandler: { (callbackURL, error) in
-                self.resetItemBinding()
-                representation.completionHandler(callbackURL, error)
-            }
-        )
-        representation.applyModification(to: session)
-        session.presentationContextProvider = presentationContextProvider
-        
-        context.coordinator.session = session
-        session.start()
-    }
-    
-    private func cancelWebAuthenticationSession(in context: Context) {
-        context.coordinator.session?.cancel()
-        context.coordinator.session = nil
-    }
-    
-    // MARK: Dismissal Handlers
-    
-    private func resetItemBinding() {
-        self.item = nil
+        context.coordinator.item = item
     }
     
     // MARK: Coordinator
     
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(onInteractiveDismiss: resetItemBinding)
-    }
-    
-    class Coordinator {
+    class Coordinator: NSObject, ASWebAuthenticationPresentationContextProviding, UIAdaptivePresentationControllerDelegate {
         
-        var session: ASWebAuthenticationSession?
-        var itemStorage: ItemStorage<Item>
-        let interactiveDismissalDelegate: InteractiveDismissalDelegate
+        // MARK: Parent Copying
         
-        init(onInteractiveDismiss: @escaping () -> Void) {
-            self.itemStorage = ItemStorage()
-            self.interactiveDismissalDelegate = InteractiveDismissalDelegate(onInteractiveDismiss: onInteractiveDismiss)
+        private var parent: WebAuthenticationPresenter
+        
+        init(parent: WebAuthenticationPresenter) {
+            self.parent = parent
         }
-    }
-    
-    class InteractiveDismissalDelegate: NSObject, UIAdaptivePresentationControllerDelegate {
         
-        private let onInteractiveDismiss: () -> Void
+        // MARK: View Controller Holding
         
-        init(onInteractiveDismiss: @escaping () -> Void) {
-            self.onInteractiveDismiss = onInteractiveDismiss
+        let uiViewController = UIViewController()
+        private var session: ASWebAuthenticationSession?
+        
+        // MARK: Item Handling
+        
+        var item: Item? {
+            didSet(oldItem) {
+                handleItemChange(from: oldItem, to: item)
+            }
+        }
+        
+        // Ensure the proper presentation handler is executed only once
+        // during a one SwiftUI view update life cycle.
+        private func handleItemChange(from oldItem: Item?, to newItem: Item?) {
+            switch (oldItem, newItem) {
+            case (.none, .none):
+                ()
+            case let (.none, .some(newItem)):
+                startWebAuthenticationSession(with: newItem)
+            case (.some, .some):
+                ()
+            case (.some, .none):
+                cancelWebAuthenticationSession()
+            }
+        }
+        
+        // MARK: Presentation Handlers
+        
+        private func startWebAuthenticationSession(with item: Item) {
+            let representation = parent.representationBuilder(item)
+            let session = ASWebAuthenticationSession(
+                url: representation.url,
+                callbackURLScheme: representation.callbackURLScheme,
+                completionHandler: { (callbackURL, error) in
+                    self.resetItemBinding()
+                    representation.completionHandler(callbackURL, error)
+                }
+            )
+            session.presentationContextProvider = self
+            representation.applyModification(to: session)
+            
+            self.session = session
+            session.start()
+        }
+        
+        private func cancelWebAuthenticationSession() {
+            session?.cancel()
+            session = nil
+        }
+        
+        // MARK: Dismissal Handlers
+        
+        private func resetItemBinding() {
+            parent.item = nil
+        }
+        
+        // MARK: ASWebAuthenticationPresentationContextProviding
+        
+        // INFO: `ASWebAuthenticationPresentationContextProviding` provides an window
+        // to present an `SFAuthenticationViewController`, and usually presents the `SFAuthenticationViewController`
+        // by calling `present(_:animated:completion:)` method from a root view controller of the window.
+        
+        func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+            return uiViewController.view.window!
+        }
+        
+        // MARK: UIAdaptivePresentationControllerDelegate
+        
+        // There is a problem that `item` is not set to `nil` after the sheet is dismissed with pulling down
+        // because the completion handler is not called on this case due to a system bug.
+        // To resolve this issue, set `Coordinator` as a presentation controller delegate of `SFAuthenticationViewController`
+        // so that ensures the completion handler is always called.
+        
+        func setInteractiveDismissalDelegateIfPossible() {
+            guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
+                return
+            }
+            safariViewController.presentationController?.delegate = self
         }
         
         func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-            onInteractiveDismiss()
+            resetItemBinding()
         }
     }
 }

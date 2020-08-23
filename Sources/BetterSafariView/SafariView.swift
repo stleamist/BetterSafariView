@@ -173,107 +173,114 @@ struct SafariViewPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     
     // MARK: UIViewControllerRepresentable
     
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+    
     func makeUIViewController(context: Context) -> UIViewController {
-        return UIViewController()
+        return context.coordinator.uiViewController
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Ensure the following statements are executed once only after the `item` is changed
-        // by comparing current item to old one during frequent view updates.
-        let itemUpdateChange = context.coordinator.itemStorage.updateItem(item)
-        
-        switch itemUpdateChange { // (oldItem, newItem)
-        case (.none, .none):
-            ()
-        case let (.none, .some(newItem)):
-            presentSafariViewController(from: uiViewController, in: context, using: newItem)
-        case let (.some(oldItem), .some(newItem)) where oldItem.id != newItem.id:
-            dismissSafariViewController(from: uiViewController) {
-                self.presentSafariViewController(from: uiViewController, in: context, using: newItem)
-            }
-        case let (.some, .some(newItem)):
-            updateSafariViewController(presentedBy: uiViewController, using: newItem)
-        case (.some, .none):
-            dismissSafariViewController(from: uiViewController)
-        }
-    }
-    
-    // MARK: Update Handlers
-    
-    private func presentSafariViewController(from uiViewController: UIViewController, in context: Context, using item: Item) {
-        let representation = representationBuilder(item)
-        let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
-        safariViewController.delegate = context.coordinator.safariViewControllerFinishDelegate
-        representation.applyModification(to: safariViewController)
-        
-        // There is a problem that page loading and parallel push animation are not working when a modifier is attached to the view in a `List`.
-        // As a workaround, use a `rootViewController` of the `window` for presenting.
-        // (Unlike the other view controllers, a view controller hosted by a cell doesn't have a parent, but has the same window.)
-        let presentingViewController = uiViewController.view.window?.rootViewController ?? uiViewController
-        presentingViewController.present(safariViewController, animated: true)
-    }
-    
-    private func updateSafariViewController(presentedBy uiViewController: UIViewController, using item: Item) {
-        guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
-            return
-        }
-        let representation = representationBuilder(item)
-        representation.applyModification(to: safariViewController)
-    }
-    
-    private func dismissSafariViewController(from uiViewController: UIViewController, completion: (() -> Void)? = nil) {
-        
-        // Check if the `uiViewController` is a instance of the `SFSafariViewController`
-        // to prevent other controllers presented by the container view from being dismissed unintentionally.
-        guard uiViewController.presentedViewController is SFSafariViewController else {
-            return
-        }
-        uiViewController.dismiss(animated: true) {
-            self.handleDismissalWithoutResettingItemBinding()
-            completion?()
-        }
-    }
-    
-    // MARK: Dismissal Handlers
-    
-    // Used when the Safari view controller is finished by an item change during view update.
-    private func handleDismissalWithoutResettingItemBinding() {
-        self.onDismiss?()
-    }
-    
-    // Used when the Safari view controller is finished by a user interaction.
-    private func resetItemBindingAndHandleDismissal() {
-        self.item = nil
-        self.onDismiss?()
+        context.coordinator.item = item
     }
     
     // MARK: Coordinator
     
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(onFinished: resetItemBindingAndHandleDismissal)
-    }
-    
-    class Coordinator {
+    class Coordinator: NSObject, SFSafariViewControllerDelegate {
         
-        var itemStorage: ItemStorage<Item>
-        let safariViewControllerFinishDelegate: SafariViewControllerFinishDelegate
+        // MARK: Parent Copying
         
-        init(onFinished: @escaping () -> Void) {
-            self.itemStorage = ItemStorage()
-            self.safariViewControllerFinishDelegate = SafariViewControllerFinishDelegate(onFinished: onFinished)
+        private var parent: SafariViewPresenter
+        
+        init(parent: SafariViewPresenter) {
+            self.parent = parent
         }
-    }
-    
-    class SafariViewControllerFinishDelegate: NSObject, SFSafariViewControllerDelegate {
         
-        private let onFinished: () -> Void
+        // MARK: View Controller Holding
         
-        init(onFinished: @escaping () -> Void) {
-            self.onFinished = onFinished
+        let uiViewController = UIViewController()
+        
+        // MARK: Item Handling
+        
+        var item: Item? {
+            didSet(oldItem) {
+                handleItemChange(from: oldItem, to: item)
+            }
         }
+        
+        // Ensure the proper presentation handler is executed only once
+        // during a one SwiftUI view update life cycle.
+        private func handleItemChange(from oldItem: Item?, to newItem: Item?) {
+            switch (oldItem, newItem) {
+            case (.none, .none):
+                ()
+            case let (.none, .some(newItem)):
+                presentSafariViewController(with: newItem)
+            case let (.some(oldItem), .some(newItem)) where oldItem.id != newItem.id:
+                dismissSafariViewController(completion: {
+                    self.presentSafariViewController(with: newItem)
+                })
+            case let (.some, .some(newItem)):
+                updateSafariViewController(with: newItem)
+            case (.some, .none):
+                dismissSafariViewController()
+            }
+        }
+        
+        // MARK: Presentation Handlers
+        
+        private func presentSafariViewController(with item: Item) {
+            let representation = parent.representationBuilder(item)
+            let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
+            safariViewController.delegate = self
+            representation.applyModification(to: safariViewController)
+            
+            // There is a problem that page loading and parallel push animation are not working when a modifier is attached to the view in a `List`.
+            // As a workaround, use a `rootViewController` of the `window` for presenting.
+            // (Unlike the other view controllers, a view controller hosted by a cell doesn't have a parent, but has the same window.)
+            let presentingViewController = uiViewController.view.window?.rootViewController ?? uiViewController
+            presentingViewController.present(safariViewController, animated: true)
+        }
+        
+        private func updateSafariViewController(with item: Item) {
+            guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
+                return
+            }
+            let representation = parent.representationBuilder(item)
+            representation.applyModification(to: safariViewController)
+        }
+        
+        private func dismissSafariViewController(completion: (() -> Void)? = nil) {
+            
+            // Check if the `uiViewController` is a instance of the `SFSafariViewController`
+            // to prevent other controllers presented by the container view from being dismissed unintentionally.
+            guard uiViewController.presentedViewController is SFSafariViewController else {
+                return
+            }
+            uiViewController.dismiss(animated: true) {
+                self.handleDismissalWithoutResettingItemBinding()
+                completion?()
+            }
+        }
+        
+        // MARK: Dismissal Handlers
+        
+        // Used when the Safari view controller is finished by an item change during view update.
+        private func handleDismissalWithoutResettingItemBinding() {
+            parent.onDismiss?()
+        }
+        
+        // Used when the Safari view controller is finished by a user interaction.
+        private func resetItemBindingAndHandleDismissal() {
+            parent.item = nil
+            parent.onDismiss?()
+        }
+        
+        // MARK: SFSafariViewControllerDelegate
         
         func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-            onFinished()
+            resetItemBindingAndHandleDismissal()
         }
     }
 }
