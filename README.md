@@ -47,14 +47,14 @@ A better way to present a SFSafariViewController or start a ASWebAuthenticationS
 
 SwiftUI is a strong, intuitive way to build user interfaces, but was released with some part of existing elements missing. One example of those missing elements is the [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller).
 
-Fortunately, Apple provides a way to wrap UIKit elements into SwiftUI views. A common approach to place the `SFSafariViewController` inside SwiftUI is to create [a simple view representing a `SFSafariViewController`](/Demo/BetterSafariViewDemo/NaiveSafariView.swift), then present it with a [`sheet(isPresented:onDismiss:content:)`](https://developer.apple.com/documentation/swiftui/view/3352791-sheet) modifier or a [`NavigationLink`](https://developer.apple.com/documentation/swiftui/navigationlink) button (See [`ContentView.swift`](/Demo/BetterSafariViewDemo/ContentView.swift) in the demo project).
+Fortunately, Apple provides a way to wrap UIKit elements into SwiftUI views. A common approach to place the `SFSafariViewController` inside SwiftUI is to create [a simple view representing a `SFSafariViewController`](/Demo/BetterSafariViewDemo/NaiveSafariView.swift), then present it with a [`sheet(isPresented:onDismiss:content:)`](https://developer.apple.com/documentation/swiftui/view/3352791-sheet) modifier or a [`NavigationLink`](https://developer.apple.com/documentation/swiftui/navigationlink) button (See [`RootView.swift`](/Demo/BetterSafariViewDemo/RootView.swift) in the demo project).
 
 However, there’s a problem in this approach: it can’t present the `SFSafariViewController` with its default presentation style — a push transition covers full screen. A sheet modifier can present the view only in a modal sheet, and a navigation link shows the two navigation bars at the top so we have to deal with them. This comes down to the conclusion that there’s no option to present it the right way except for using [`present(_:animated:completion:)`](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621380-present) method of a [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) instance, but it is prohibited and not a good design to access the [`UIHostingController`](https://developer.apple.com/documentation/swiftui/uihostingcontroller) directly from the SwiftUI view.
 
 `BetterSafariView` clearly achieves this goal by hosting a simple `UIViewController` to present a `SFSafariViewController` as a view’s background. In this way, a [`ASWebAuthenticationSession`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession) is also able to be started without any issue in SwiftUI.
 
 ## Usage
-You can use it easily with the following modifiers in a similar way to presenting a sheet.
+With the following modifiers, you can use it in a similar way to present a sheet.
 
 ### SafariView
 #### Modifiers
