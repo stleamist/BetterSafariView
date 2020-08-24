@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.1.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.1.0) (2020-08-24)
+### Changed
+- Coordinators are now in charge of view controller presentations, following the structure of [VisualEffects](https://github.com/twostraws/VisualEffects).
+
 ## [v2.0.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.0.1) (2020-08-22)
 ### Fixed
 - Fixed typos on markup
