@@ -15,6 +15,22 @@ extension SafariView: View {
                 .edgesIgnoringSafeArea(.all)
         }
     }
+    
+    /// Sets the accent color for the control buttons on the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Note:
+    ///     This modifier is a convenience method of `preferredControlAccentColor(_:)`.
+    ///
+    /// - Parameters:
+    ///     - accentColor: The color to use as a control accent color. If `nil`, the accent color continues to be inherited.
+    ///
+    @available(iOS 14.0, *)
+    public func accentColor(_ accentColor: Color?) -> Self {
+        return self.preferredControlAccentColor(accentColor)
+    }
 }
 
 extension SafariView {
