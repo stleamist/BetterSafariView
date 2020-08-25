@@ -1,8 +1,11 @@
 import SwiftUI
 import SafariServices
 
+// A `View` conformance for the advanced usage.
 extension SafariView: View {
     
+    // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
+    // define nested `Representable` struct and wrap it with `View`.
     public var body: some View {
         if #available(iOS 14.0, *) {
             Representable(parent: self)
@@ -33,6 +36,7 @@ extension SafariView {
                 url: parent.url,
                 configuration: parent.configuration
             )
+            // Disable interactive pop gesture recognizer
             safariViewController.modalPresentationStyle = .none
             parent.applyModification(to: safariViewController)
             return safariViewController
