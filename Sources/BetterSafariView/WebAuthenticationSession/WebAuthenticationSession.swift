@@ -16,7 +16,11 @@ import AuthenticationServices
 ///
 public struct WebAuthenticationSession {
     
+    /// A completion handler for the web authentication session.
     public typealias CompletionHandler = ASWebAuthenticationSession.CompletionHandler
+    
+    /// A completion handler for the web authentication session.
+    public typealias OnCompletion = (_ result: Result<URL, Error>) -> Void
     
     // MARK: Representation Properties
     
@@ -27,18 +31,46 @@ public struct WebAuthenticationSession {
     /// Creates a web authentication session instance.
     ///
     /// - Parameters:
-    ///   - URL: A URL with the `http` or `https` scheme pointing to the authentication webpage.
+    ///   - url: A URL with the `http` or `https` scheme pointing to the authentication webpage.
     ///   - callbackURLScheme: The custom URL scheme that the app expects in the callback URL.
     ///   - completionHandler: A completion handler the session calls when it completes successfully, or when the user cancels the session.
+    ///   - callbackURL: A URL using the scheme indicated by the `callbackURLScheme` parameter that indicates the outcome of the authentication attempt.
+    ///   - error: An error that indicates the reason for the cancelation.
     ///
     public init(
         url: URL,
         callbackURLScheme: String?,
-        completionHandler: @escaping CompletionHandler
+        completionHandler: @escaping (_ callbackURL: URL?, _ error: Error?) -> Void // Replaced from WebAuthenticationSession.CompletionHandler for the completion suggestion.
     ) {
         self.url = url
         self.callbackURLScheme = callbackURLScheme
         self.completionHandler = completionHandler
+    }
+    
+    /// Creates a web authentication session instance.
+    ///
+    /// - Parameters:
+    ///   - url: A URL with the `http` or `https` scheme pointing to the authentication webpage.
+    ///   - callbackURLScheme: The custom URL scheme that the app expects in the callback URL.
+    ///   - onCompletion: A completion handler the session calls when it completes successfully, or when the user cancels the session.
+    ///   - result: A `Result` indicating whether the operation succeeded or failed.
+    ///
+    public init(
+        url: URL,
+        callbackURLScheme: String?,
+        onCompletion: @escaping (_ result: Result<URL, Error>) -> Void // Replaced from WebAuthenticationSession.OnCompletion for the completion suggestion.
+    ) {
+        self.url = url
+        self.callbackURLScheme = callbackURLScheme
+        self.completionHandler = { callbackURL, error in
+            if let callbackURL = callbackURL {
+                onCompletion(.success(callbackURL))
+            } else if let error = error {
+                onCompletion(.failure(error))
+            } else {
+                assertionFailure("Both callbackURL and error are nil.")
+            }
+        }
     }
     
     // MARK: Modifiers
