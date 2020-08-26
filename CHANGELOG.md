@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.2.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.2.1) (2020-08-26)
+### Fixed
+- Fixed an issue where the package could not be compiled on Swift 5.2 or earlier.
+
 ## [v2.2.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.2.0) (2020-08-26)
 ### Added
 - `SafariView` now conforms to `View` protocol, so it can be used even in the `.sheet()` or the `.fullScreenCover()` modifiers for the advanced usage.
