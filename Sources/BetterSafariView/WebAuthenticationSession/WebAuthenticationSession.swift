@@ -98,3 +98,4 @@ public struct WebAuthenticationSession {
 }
 
 public typealias WebAuthenticationSessionError = ASWebAuthenticationSessionError
+public let WebAuthenticationSessionErrorDomain = ASWebAuthenticationSessionErrorDomain
