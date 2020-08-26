@@ -24,6 +24,10 @@
     </a>
 </p>
 
+**⚠️ NOTE**
+<br>
+A new system bug was introduced on **iOS 14 beta 6**, where the interactive pop gesture of `SFSafariViewController` is not working. Before the new beta is released, the gesture of `BetterSafariView` also may not work as expected on iOS 14.
+
 # BetterSafariView
 A better way to present a SFSafariViewController or start a ASWebAuthenticationSession in SwiftUI.
 
