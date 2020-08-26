@@ -4,6 +4,8 @@ import SafariServices
 // A `View` conformance for the advanced usage.
 extension SafariView: View {
     
+    #if compiler(>=5.3)
+    
     // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
     // define nested `Representable` struct and wrap it with `View`.
     public var body: some View {
@@ -31,6 +33,17 @@ extension SafariView: View {
     public func accentColor(_ accentColor: Color?) -> Self {
         return self.preferredControlAccentColor(accentColor)
     }
+    
+    #else
+    
+    // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
+    // define nested `Representable` struct and wrap it with `View`.
+    public var body: some View {
+        Representable(parent: self)
+            .edgesIgnoringSafeArea(.all)
+    }
+    
+    #endif
 }
 
 extension SafariView {
