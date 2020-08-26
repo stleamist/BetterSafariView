@@ -57,9 +57,9 @@ extension SafariViewPresenter {
             case let (.none, .some(newItem)):
                 presentSafariViewController(with: newItem)
             case let (.some(oldItem), .some(newItem)) where oldItem.id != newItem.id:
-                dismissSafariViewController(completion: {
+                dismissSafariViewController() {
                     self.presentSafariViewController(with: newItem)
-                })
+                }
             case let (.some, .some(newItem)):
                 updateSafariViewController(with: newItem)
             case (.some, .none):

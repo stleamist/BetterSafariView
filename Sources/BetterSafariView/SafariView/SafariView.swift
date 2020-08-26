@@ -81,7 +81,6 @@ public struct SafariView {
     ///
     /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
     /// After the view controller is presented, changes made are not reflected.
-    /// Use `preferredControlAccentColor(_:)` instead of using the view’s [accentColor(_:)](apple-reference-documentation://ls%2Fdocumentation%2Fswiftui%2Fview%2Faccentcolor(_%3A)) method.
     ///
     /// - Parameters:
     ///     - color: The color to use as a control accent color. If `nil`, the accent color continues to be inherited.
