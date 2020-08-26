@@ -1,5 +1,14 @@
 # Changelog
 
+## [v2.2.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.2.0) (2020-08-26)
+### Added
+- `SafariView` now conforms to `View` protocol, so it can be used even in the `.sheet()` or the `.fullScreenCover()` modifiers for the advanced usage.
+- Added `accentColor(_:)` modifier to `SafariView` as a convenience method of `preferredControlAccentColor(_:)`.
+- Added a new initializer of `WebAuthenticationSession` where the `onCompletion` closure receives a `Result` instance, which contains either a `URL` or an `Error`.
+
+### Fixed
+- Fixed typos on the markup.
+
 ## [v2.1.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.1.0) (2020-08-24)
 ### Changed
 - Coordinators are now in charge of view controller presentations, following the structure of [VisualEffects](https://github.com/twostraws/VisualEffects).
