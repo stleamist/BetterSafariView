@@ -26,6 +26,8 @@ struct WebAuthenticationPresenter<Item: Identifiable>: UIViewControllerRepresent
         // INFO: `SFAuthenticationViewController` is a private subclass of `SFSafariViewController`.
         context.coordinator.setInteractiveDismissalDelegateIfPossible()
         
+        // Keep the coordinator updated with a new presenter struct.
+        context.coordinator.parent = self
         context.coordinator.item = item
     }
 }
@@ -36,7 +38,7 @@ extension WebAuthenticationPresenter {
         
         // MARK: Parent Copying
         
-        private var parent: WebAuthenticationPresenter
+        var parent: WebAuthenticationPresenter
         
         init(parent: WebAuthenticationPresenter) {
             self.parent = parent
