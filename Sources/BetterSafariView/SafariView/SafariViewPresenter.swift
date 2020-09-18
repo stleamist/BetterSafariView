@@ -20,6 +20,9 @@ struct SafariViewPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        
+        // Keep the coordinator updated with a new presenter struct.
+        context.coordinator.parent = self
         context.coordinator.item = item
     }
 }
@@ -30,7 +33,7 @@ extension SafariViewPresenter {
         
         // MARK: Parent Copying
         
-        private var parent: SafariViewPresenter
+        var parent: SafariViewPresenter
         
         init(parent: SafariViewPresenter) {
             self.parent = parent

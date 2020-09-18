@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.2.2](https://github.com/stleamist/BetterSafariView/releases/tag/v2.2.2) (2020-09-19)
+### Fixed
+- Fixed an issue where the changes of `SafariView` and `WebAuthenticationSession` is not applied after an initialization.
+
 ## [v2.2.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.2.1) (2020-08-26)
 ### Fixed
 - Fixed an issue where the package could not be compiled on Swift 5.2 or earlier.
