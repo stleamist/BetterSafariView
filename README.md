@@ -59,11 +59,11 @@ With the following modifiers, you can use it in a similar way to present a sheet
 ### SafariView
 #### Modifiers
 ```swift
-.safariView(isPresented:onDismiss:content)
+.safariView(isPresented:onDismiss:content:)
 ```
 
 ```swift
-.safariView(item:onDismiss:content)
+.safariView(item:onDismiss:content:)
 ```
 
 #### Example
@@ -100,11 +100,11 @@ struct ContentView: View {
 ### WebAuthenticationSession
 #### Modifiers
 ```swift
-.webAuthenticationSession(isPresented:content)
+.webAuthenticationSession(isPresented:content:)
 ```
 
 ```swift
-.webAuthenticationSession(item:content)
+.webAuthenticationSession(item:content:)
 ```
 
 #### Example
