@@ -1,3 +1,5 @@
+#if os(iOS)
+
 import SwiftUI
 import SafariServices
 
@@ -161,3 +163,5 @@ public extension SafariView.Configuration {
         self.barCollapsingEnabled = barCollapsingEnabled
     }
 }
+
+#endif

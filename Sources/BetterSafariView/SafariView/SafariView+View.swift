@@ -1,3 +1,5 @@
+#if os(iOS)
+
 import SwiftUI
 import SafariServices
 
@@ -76,3 +78,5 @@ extension SafariView {
         }
     }
 }
+
+#endif

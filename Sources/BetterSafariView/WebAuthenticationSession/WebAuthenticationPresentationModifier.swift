@@ -1,3 +1,5 @@
+#if os(iOS) || os(macOS) || os(watchOS)
+
 import SwiftUI
 
 struct WebAuthenticationPresentationModifier: ViewModifier {
@@ -91,3 +93,5 @@ public extension View {
         )
     }
 }
+
+#endif

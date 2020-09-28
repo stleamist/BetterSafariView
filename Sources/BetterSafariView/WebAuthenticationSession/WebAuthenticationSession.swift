@@ -1,3 +1,5 @@
+#if os(iOS) || os(macOS) || os(watchOS)
+
 import SwiftUI
 import AuthenticationServices
 
@@ -98,3 +100,5 @@ public struct WebAuthenticationSession {
 
 public typealias WebAuthenticationSessionError = ASWebAuthenticationSessionError
 public let WebAuthenticationSessionErrorDomain = ASWebAuthenticationSessionErrorDomain
+
+#endif

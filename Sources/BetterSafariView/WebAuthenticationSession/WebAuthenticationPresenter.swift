@@ -1,3 +1,5 @@
+#if os(iOS) || os(macOS) || os(watchOS)
+
 import SwiftUI
 import SafariServices
 import AuthenticationServices
@@ -184,3 +186,5 @@ extension WebAuthenticationPresenter {
         #endif
     }
 }
+
+#endif
