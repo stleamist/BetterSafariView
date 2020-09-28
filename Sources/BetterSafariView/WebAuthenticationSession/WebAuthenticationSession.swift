@@ -1,5 +1,4 @@
 import SwiftUI
-import SafariServices
 import AuthenticationServices
 
 // Used for getting a public completion handler to inject an assignment that sets `item` to `nil`.
