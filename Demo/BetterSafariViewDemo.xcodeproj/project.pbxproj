@@ -17,10 +17,10 @@
 		C71240122524CF69001A648E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240112524CF69001A648E /* Constants.swift */; };
 		C71240132524CF69001A648E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240112524CF69001A648E /* Constants.swift */; };
 		C71240192524CF71001A648E /* SafariViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240172524CF71001A648E /* SafariViewOptions.swift */; };
-		C712401A2524CF71001A648E /* SafariViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240172524CF71001A648E /* SafariViewOptions.swift */; };
 		C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C71240232524CFAB001A648E /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71240222524CFAB001A648E /* BetterSafariView */; };
+		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5262524CED800A08BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
@@ -71,19 +71,19 @@
 			children = (
 				C71240032524CF40001A648E /* RootView.swift */,
 				C71240022524CF40001A648E /* NaiveSafariView.swift */,
-				C7123FFF2524CF40001A648E /* Form */,
+				C7123FFF2524CF40001A648E /* Options */,
 				C71240042524CF40001A648E /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C7123FFF2524CF40001A648E /* Form */ = {
+		C7123FFF2524CF40001A648E /* Options */ = {
 			isa = PBXGroup;
 			children = (
+				C71240172524CF71001A648E /* SafariViewOptions.swift */,
 				C71240002524CF40001A648E /* SafariViewOptionsForm.swift */,
-				C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */,
 			);
-			path = Form;
+			path = Options;
 			sourceTree = "<group>";
 		};
 		C71240042524CF40001A648E /* Components */ = {
@@ -96,13 +96,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		C71240162524CF71001A648E /* Models */ = {
+		C71240162524CF71001A648E /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				C71240172524CF71001A648E /* SafariViewOptions.swift */,
 				C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */,
+				C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */,
 			);
-			path = Models;
+			path = Options;
 			sourceTree = "<group>";
 		};
 		C71240212524CFAB001A648E /* Frameworks */ = {
@@ -128,7 +128,7 @@
 			children = (
 				C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */,
 				C71240112524CF69001A648E /* Constants.swift */,
-				C71240162524CF71001A648E /* Models */,
+				C71240162524CF71001A648E /* Options */,
 				C7EFD5112524CED800A08BEA /* Assets.xcassets */,
 				C7EFD5212524CED800A08BEA /* macOS.entitlements */,
 			);
@@ -280,8 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */,
-				C712401A2524CF71001A648E /* SafariViewOptions.swift in Sources */,
 				C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */,
+				C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */,
 				C71240132524CF69001A648E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
