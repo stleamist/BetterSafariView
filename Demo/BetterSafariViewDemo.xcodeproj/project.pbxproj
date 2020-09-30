@@ -38,7 +38,6 @@
 		C71240112524CF69001A648E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
 		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
-		C7C1F89C2524D37B00B693F9 /* BetterSafariViewDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterSafariViewDemo.entitlements; sourceTree = "<group>"; };
 		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +115,6 @@
 		C7EFD5092524CED600A08BEA = {
 			isa = PBXGroup;
 			children = (
-				C7C1F89C2524D37B00B693F9 /* BetterSafariViewDemo.entitlements */,
 				C7EFD50E2524CED600A08BEA /* Shared */,
 				C7EFD5182524CED800A08BEA /* iOS */,
 				C7EFD51F2524CED800A08BEA /* macOS */,
@@ -132,6 +130,7 @@
 				C71240112524CF69001A648E /* Constants.swift */,
 				C71240162524CF71001A648E /* Models */,
 				C7EFD5112524CED800A08BEA /* Assets.xcassets */,
+				C7EFD5212524CED800A08BEA /* macOS.entitlements */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -158,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				C7EFD5202524CED800A08BEA /* Info.plist */,
-				C7EFD5212524CED800A08BEA /* macOS.entitlements */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -407,7 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BetterSafariViewDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2765226H97;
@@ -433,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BetterSafariViewDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2765226H97;
@@ -460,7 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2765226H97;
@@ -484,7 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2765226H97;
