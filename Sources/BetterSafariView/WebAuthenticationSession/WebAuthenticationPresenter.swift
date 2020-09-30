@@ -1,8 +1,10 @@
 #if os(iOS) || os(macOS) || os(watchOS)
 
 import SwiftUI
-import SafariServices
 import AuthenticationServices
+#if os(iOS)
+import SafariServices
+#endif
 
 #if os(iOS)
 typealias ViewController = UIViewController
@@ -10,6 +12,9 @@ typealias ViewControllerRepresentable = UIViewControllerRepresentable
 #elseif os(macOS)
 typealias ViewController = NSViewController
 typealias ViewControllerRepresentable = NSViewControllerRepresentable
+#elseif os(watchOS)
+typealias ViewController = WKInterfaceInlineMovie
+typealias ViewControllerRepresentable = WKInterfaceObjectRepresentable
 #endif
 
 struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentable {
@@ -54,6 +59,16 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
         updateViewController(nsViewController, context: context)
     }
     
+    #elseif os(watchOS)
+    
+    func makeWKInterfaceObject(context: Context) -> WKInterfaceInlineMovie {
+        return makeViewController(context: context)
+    }
+    
+    func updateWKInterfaceObject(_ wkInterfaceObject: WKInterfaceInlineMovie, context: Context) {
+        updateViewController(wkInterfaceObject, context: context)
+    }
+    
     #endif
     
     private func makeViewController(context: Context) -> ViewController {
@@ -69,7 +84,7 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
 
 extension WebAuthenticationPresenter {
     
-    class Coordinator: NSObject, ASWebAuthenticationPresentationContextProviding {
+    class Coordinator: NSObject {
         
         // MARK: Parent Copying
         
@@ -119,7 +134,11 @@ extension WebAuthenticationPresenter {
                     representation.completionHandler(callbackURL, error)
                 }
             )
-            session.presentationContextProvider = self
+            
+            #if os(iOS) || os(macOS)
+            session.presentationContextProvider = presentationContextProvider
+            #endif
+            
             representation.applyModification(to: session)
             
             self.session = session
@@ -137,15 +156,32 @@ extension WebAuthenticationPresenter {
             parent.item = nil
         }
         
-        // MARK: ASWebAuthenticationPresentationContextProviding
+        #if os(iOS) || os(macOS)
+        
+        // MARK: PresentationContextProvider
         
         // INFO: `ASWebAuthenticationPresentationContextProviding` provides an window
         // to present an `SFAuthenticationViewController`, and usually presents the `SFAuthenticationViewController`
         // by calling `present(_:animated:completion:)` method from a root view controller of the window.
         
-        func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-            return viewController.view.window!
+        private lazy var presentationContextProvider = PresentationContextProvider(coordinator: self)
+        
+        class PresentationContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
+            
+            weak var coordinator: WebAuthenticationPresenter.Coordinator?
+            
+            init(coordinator: WebAuthenticationPresenter.Coordinator) {
+                self.coordinator = coordinator
+            }
+            
+            // MARK: ASWebAuthenticationPresentationContextProviding
+            
+            func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+                return coordinator!.viewController.view.window!
+            }
         }
+        
+        #endif
         
         #if os(iOS)
         
