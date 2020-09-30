@@ -7,175 +7,218 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7A28ED924E76DC7001FACA6 /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28ED824E76DC7001FACA6 /* BetterSafariViewDemoApp.swift */; };
-		C7A28EDD24E76DC8001FACA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A28EDC24E76DC8001FACA6 /* Assets.xcassets */; };
-		C7A28EE024E76DC8001FACA6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A28EDF24E76DC8001FACA6 /* Preview Assets.xcassets */; };
-		C7A28EE924E76E0D001FACA6 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C7A28EE824E76E0D001FACA6 /* BetterSafariView */; };
-		C7A28EEB24E76EA3001FACA6 /* SafariViewOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EEA24E76EA3001FACA6 /* SafariViewOptionsForm.swift */; };
-		C7A28EED24E76EAE001FACA6 /* NaiveSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EEC24E76EAE001FACA6 /* NaiveSafariView.swift */; };
-		C7A28EF124E7D58B001FACA6 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EF024E7D58B001FACA6 /* WebAuthenticationSessionOptionsForm.swift */; };
-		C7A28EF324E7E5BC001FACA6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EF224E7E5BC001FACA6 /* Constants.swift */; };
-		C7A28EF524E7E852001FACA6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EF424E7E852001FACA6 /* RootView.swift */; };
-		C7A28EF924E817AF001FACA6 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EF824E817AF001FACA6 /* TitleLabel.swift */; };
-		C7A28EFB24E817BB001FACA6 /* DetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EFA24E817BB001FACA6 /* DetailButton.swift */; };
-		C7A28EFD24E817C4001FACA6 /* DisclosureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28EFC24E817C4001FACA6 /* DisclosureIndicator.swift */; };
-		C7A28F0224E82633001FACA6 /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28F0124E82633001FACA6 /* WebAuthenticationSessionOptions.swift */; };
-		C7A28F0424E8263C001FACA6 /* SafariViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A28F0324E8263C001FACA6 /* SafariViewOptions.swift */; };
+		C71240082524CF40001A648E /* SafariViewOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240002524CF40001A648E /* SafariViewOptionsForm.swift */; };
+		C71240092524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
+		C712400A2524CF40001A648E /* NaiveSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240022524CF40001A648E /* NaiveSafariView.swift */; };
+		C712400B2524CF40001A648E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240032524CF40001A648E /* RootView.swift */; };
+		C712400C2524CF40001A648E /* DisclosureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240052524CF40001A648E /* DisclosureIndicator.swift */; };
+		C712400D2524CF40001A648E /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240062524CF40001A648E /* TitleLabel.swift */; };
+		C712400E2524CF40001A648E /* DetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240072524CF40001A648E /* DetailButton.swift */; };
+		C71240122524CF69001A648E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240112524CF69001A648E /* Constants.swift */; };
+		C71240132524CF69001A648E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240112524CF69001A648E /* Constants.swift */; };
+		C71240192524CF71001A648E /* SafariViewOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240172524CF71001A648E /* SafariViewOptions.swift */; };
+		C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
+		C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
+		C71240232524CFAB001A648E /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71240222524CFAB001A648E /* BetterSafariView */; };
+		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
+		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
+		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
+		C7EFD5262524CED800A08BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
+		C7EFD5272524CED800A08BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C7A28ED524E76DC7001FACA6 /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7A28ED824E76DC7001FACA6 /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
-		C7A28EDC24E76DC8001FACA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C7A28EDF24E76DC8001FACA6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C7A28EE124E76DC8001FACA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7A28EEA24E76EA3001FACA6 /* SafariViewOptionsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewOptionsForm.swift; sourceTree = "<group>"; };
-		C7A28EEC24E76EAE001FACA6 /* NaiveSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaiveSafariView.swift; sourceTree = "<group>"; };
-		C7A28EF024E7D58B001FACA6 /* WebAuthenticationSessionOptionsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptionsForm.swift; sourceTree = "<group>"; };
-		C7A28EF224E7E5BC001FACA6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C7A28EF424E7E852001FACA6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		C7A28EF824E817AF001FACA6 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
-		C7A28EFA24E817BB001FACA6 /* DetailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButton.swift; sourceTree = "<group>"; };
-		C7A28EFC24E817C4001FACA6 /* DisclosureIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureIndicator.swift; sourceTree = "<group>"; };
-		C7A28F0124E82633001FACA6 /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
-		C7A28F0324E8263C001FACA6 /* SafariViewOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
+		C71240002524CF40001A648E /* SafariViewOptionsForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptionsForm.swift; sourceTree = "<group>"; };
+		C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptionsForm.swift; sourceTree = "<group>"; };
+		C71240022524CF40001A648E /* NaiveSafariView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaiveSafariView.swift; sourceTree = "<group>"; };
+		C71240032524CF40001A648E /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		C71240052524CF40001A648E /* DisclosureIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureIndicator.swift; sourceTree = "<group>"; };
+		C71240062524CF40001A648E /* TitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		C71240072524CF40001A648E /* DetailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailButton.swift; sourceTree = "<group>"; };
+		C71240112524CF69001A648E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
+		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
+		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
+		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EFD5192524CED800A08BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7EFD51E2524CED800A08BEA /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EFD5202524CED800A08BEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7EFD5212524CED800A08BEA /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C7A28ED224E76DC7001FACA6 /* Frameworks */ = {
+		C7EFD5132524CED800A08BEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A28EE924E76E0D001FACA6 /* BetterSafariView in Frameworks */,
+				C71240232524CFAB001A648E /* BetterSafariView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7EFD51B2524CED800A08BEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C7A28ECC24E76DC7001FACA6 = {
+		C7123FFE2524CF40001A648E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28ED724E76DC7001FACA6 /* BetterSafariViewDemo */,
-				C7A28ED624E76DC7001FACA6 /* Products */,
-				C7A28EE724E76E0D001FACA6 /* Frameworks */,
+				C71240032524CF40001A648E /* RootView.swift */,
+				C71240022524CF40001A648E /* NaiveSafariView.swift */,
+				C7123FFF2524CF40001A648E /* Options */,
+				C71240042524CF40001A648E /* Components */,
 			);
+			path = Views;
 			sourceTree = "<group>";
 		};
-		C7A28ED624E76DC7001FACA6 /* Products */ = {
+		C7123FFF2524CF40001A648E /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28ED524E76DC7001FACA6 /* BetterSafariViewDemo.app */,
+				C71240172524CF71001A648E /* SafariViewOptions.swift */,
+				C71240002524CF40001A648E /* SafariViewOptionsForm.swift */,
 			);
-			name = Products;
+			path = Options;
 			sourceTree = "<group>";
 		};
-		C7A28ED724E76DC7001FACA6 /* BetterSafariViewDemo */ = {
+		C71240042524CF40001A648E /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28ED824E76DC7001FACA6 /* BetterSafariViewDemoApp.swift */,
-				C7A28F0024E81803001FACA6 /* Views */,
-				C7A28F0524E82645001FACA6 /* Models */,
-				C7A28EF224E7E5BC001FACA6 /* Constants.swift */,
-				C7A28EDC24E76DC8001FACA6 /* Assets.xcassets */,
-				C7A28EE124E76DC8001FACA6 /* Info.plist */,
-				C7A28EDE24E76DC8001FACA6 /* Preview Content */,
+				C71240062524CF40001A648E /* TitleLabel.swift */,
+				C71240072524CF40001A648E /* DetailButton.swift */,
+				C71240052524CF40001A648E /* DisclosureIndicator.swift */,
 			);
-			path = BetterSafariViewDemo;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		C7A28EDE24E76DC8001FACA6 /* Preview Content */ = {
+		C71240162524CF71001A648E /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28EDF24E76DC8001FACA6 /* Preview Assets.xcassets */,
+				C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */,
+				C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */,
 			);
-			path = "Preview Content";
+			path = Options;
 			sourceTree = "<group>";
 		};
-		C7A28EE724E76E0D001FACA6 /* Frameworks */ = {
+		C71240212524CFAB001A648E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7A28EFE24E817CE001FACA6 /* Components */ = {
+		C7EFD5092524CED600A08BEA = {
 			isa = PBXGroup;
 			children = (
-				C7A28EF824E817AF001FACA6 /* TitleLabel.swift */,
-				C7A28EFA24E817BB001FACA6 /* DetailButton.swift */,
-				C7A28EFC24E817C4001FACA6 /* DisclosureIndicator.swift */,
+				C7EFD50E2524CED600A08BEA /* Shared */,
+				C7EFD5182524CED800A08BEA /* iOS */,
+				C7EFD51F2524CED800A08BEA /* macOS */,
+				C7EFD5172524CED800A08BEA /* Products */,
+				C71240212524CFAB001A648E /* Frameworks */,
 			);
-			path = Components;
 			sourceTree = "<group>";
 		};
-		C7A28EFF24E817DD001FACA6 /* Form */ = {
+		C7EFD50E2524CED600A08BEA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28EEA24E76EA3001FACA6 /* SafariViewOptionsForm.swift */,
-				C7A28EF024E7D58B001FACA6 /* WebAuthenticationSessionOptionsForm.swift */,
+				C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */,
+				C71240112524CF69001A648E /* Constants.swift */,
+				C71240162524CF71001A648E /* Options */,
+				C7EFD5112524CED800A08BEA /* Assets.xcassets */,
+				C7EFD5212524CED800A08BEA /* macOS.entitlements */,
 			);
-			path = Form;
+			path = Shared;
 			sourceTree = "<group>";
 		};
-		C7A28F0024E81803001FACA6 /* Views */ = {
+		C7EFD5172524CED800A08BEA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28EF424E7E852001FACA6 /* RootView.swift */,
-				C7A28EEC24E76EAE001FACA6 /* NaiveSafariView.swift */,
-				C7A28EFF24E817DD001FACA6 /* Form */,
-				C7A28EFE24E817CE001FACA6 /* Components */,
+				C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */,
+				C7EFD51E2524CED800A08BEA /* BetterSafariViewDemo.app */,
 			);
-			path = Views;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		C7A28F0524E82645001FACA6 /* Models */ = {
+		C7EFD5182524CED800A08BEA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C7A28F0324E8263C001FACA6 /* SafariViewOptions.swift */,
-				C7A28F0124E82633001FACA6 /* WebAuthenticationSessionOptions.swift */,
+				C7123FFE2524CF40001A648E /* Views */,
+				C7EFD5192524CED800A08BEA /* Info.plist */,
 			);
-			path = Models;
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		C7EFD51F2524CED800A08BEA /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				C7EFD5202524CED800A08BEA /* Info.plist */,
+			);
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7A28ED424E76DC7001FACA6 /* BetterSafariViewDemo */ = {
+		C7EFD5152524CED800A08BEA /* BetterSafariViewDemo (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7A28EE424E76DC8001FACA6 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo" */;
+			buildConfigurationList = C7EFD52A2524CED800A08BEA /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (iOS)" */;
 			buildPhases = (
-				C7A28ED124E76DC7001FACA6 /* Sources */,
-				C7A28ED224E76DC7001FACA6 /* Frameworks */,
-				C7A28ED324E76DC7001FACA6 /* Resources */,
+				C7EFD5122524CED800A08BEA /* Sources */,
+				C7EFD5132524CED800A08BEA /* Frameworks */,
+				C7EFD5142524CED800A08BEA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BetterSafariViewDemo;
+			name = "BetterSafariViewDemo (iOS)";
 			packageProductDependencies = (
-				C7A28EE824E76E0D001FACA6 /* BetterSafariView */,
+				C71240222524CFAB001A648E /* BetterSafariView */,
 			);
-			productName = BetterSafariViewDemo;
-			productReference = C7A28ED524E76DC7001FACA6 /* BetterSafariViewDemo.app */;
+			productName = "BetterSafariViewDemo (iOS)";
+			productReference = C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C7EFD51D2524CED800A08BEA /* BetterSafariViewDemo (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7EFD52D2524CED800A08BEA /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (macOS)" */;
+			buildPhases = (
+				C7EFD51A2524CED800A08BEA /* Sources */,
+				C7EFD51B2524CED800A08BEA /* Frameworks */,
+				C7EFD51C2524CED800A08BEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BetterSafariViewDemo (macOS)";
+			productName = "BetterSafariViewDemo (macOS)";
+			productReference = C7EFD51E2524CED800A08BEA /* BetterSafariViewDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C7A28ECD24E76DC7001FACA6 /* Project object */ = {
+		C7EFD50A2524CED600A08BEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
-					C7A28ED424E76DC7001FACA6 = {
-						CreatedOnToolsVersion = 12.0;
+					C7EFD5152524CED800A08BEA = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					C7EFD51D2524CED800A08BEA = {
+						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
-			buildConfigurationList = C7A28ED024E76DC7001FACA6 /* Build configuration list for PBXProject "BetterSafariViewDemo" */;
+			buildConfigurationList = C7EFD50D2524CED600A08BEA /* Build configuration list for PBXProject "BetterSafariViewDemo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,51 +226,70 @@
 				en,
 				Base,
 			);
-			mainGroup = C7A28ECC24E76DC7001FACA6;
-			productRefGroup = C7A28ED624E76DC7001FACA6 /* Products */;
+			mainGroup = C7EFD5092524CED600A08BEA;
+			productRefGroup = C7EFD5172524CED800A08BEA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C7A28ED424E76DC7001FACA6 /* BetterSafariViewDemo */,
+				C7EFD5152524CED800A08BEA /* BetterSafariViewDemo (iOS) */,
+				C7EFD51D2524CED800A08BEA /* BetterSafariViewDemo (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C7A28ED324E76DC7001FACA6 /* Resources */ = {
+		C7EFD5142524CED800A08BEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A28EE024E76DC8001FACA6 /* Preview Assets.xcassets in Resources */,
-				C7A28EDD24E76DC8001FACA6 /* Assets.xcassets in Resources */,
+				C7EFD5262524CED800A08BEA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7EFD51C2524CED800A08BEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7EFD5272524CED800A08BEA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C7A28ED124E76DC7001FACA6 /* Sources */ = {
+		C7EFD5122524CED800A08BEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A28EF124E7D58B001FACA6 /* WebAuthenticationSessionOptionsForm.swift in Sources */,
-				C7A28EED24E76EAE001FACA6 /* NaiveSafariView.swift in Sources */,
-				C7A28EF324E7E5BC001FACA6 /* Constants.swift in Sources */,
-				C7A28EF524E7E852001FACA6 /* RootView.swift in Sources */,
-				C7A28F0224E82633001FACA6 /* WebAuthenticationSessionOptions.swift in Sources */,
-				C7A28EFB24E817BB001FACA6 /* DetailButton.swift in Sources */,
-				C7A28F0424E8263C001FACA6 /* SafariViewOptions.swift in Sources */,
-				C7A28EF924E817AF001FACA6 /* TitleLabel.swift in Sources */,
-				C7A28ED924E76DC7001FACA6 /* BetterSafariViewDemoApp.swift in Sources */,
-				C7A28EEB24E76EA3001FACA6 /* SafariViewOptionsForm.swift in Sources */,
-				C7A28EFD24E817C4001FACA6 /* DisclosureIndicator.swift in Sources */,
+				C712400A2524CF40001A648E /* NaiveSafariView.swift in Sources */,
+				C71240092524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift in Sources */,
+				C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */,
+				C712400C2524CF40001A648E /* DisclosureIndicator.swift in Sources */,
+				C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */,
+				C712400E2524CF40001A648E /* DetailButton.swift in Sources */,
+				C712400D2524CF40001A648E /* TitleLabel.swift in Sources */,
+				C71240082524CF40001A648E /* SafariViewOptionsForm.swift in Sources */,
+				C712400B2524CF40001A648E /* RootView.swift in Sources */,
+				C71240122524CF69001A648E /* Constants.swift in Sources */,
+				C71240192524CF71001A648E /* SafariViewOptions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7EFD51A2524CED800A08BEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */,
+				C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */,
+				C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */,
+				C71240132524CF69001A648E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C7A28EE224E76DC8001FACA6 /* Debug */ = {
+		C7EFD5282524CED800A08BEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -278,17 +340,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C7A28EE324E76DC8001FACA6 /* Release */ = {
+		C7EFD5292524CED800A08BEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -333,81 +393,140 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		C7A28EE524E76DC8001FACA6 /* Debug */ = {
+		C7EFD52B2524CED800A08BEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = BetterSafariViewDemo/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BetterSafariViewDemo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C7A28EE624E76DC8001FACA6 /* Release */ = {
+		C7EFD52C2524CED800A08BEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = BetterSafariViewDemo/Info.plist;
+				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BetterSafariViewDemo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C7EFD52E2524CED800A08BEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2765226H97;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
+				PRODUCT_NAME = BetterSafariViewDemo;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C7EFD52F2524CED800A08BEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Shared/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2765226H97;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
+				PRODUCT_NAME = BetterSafariViewDemo;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C7A28ED024E76DC7001FACA6 /* Build configuration list for PBXProject "BetterSafariViewDemo" */ = {
+		C7EFD50D2524CED600A08BEA /* Build configuration list for PBXProject "BetterSafariViewDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7A28EE224E76DC8001FACA6 /* Debug */,
-				C7A28EE324E76DC8001FACA6 /* Release */,
+				C7EFD5282524CED800A08BEA /* Debug */,
+				C7EFD5292524CED800A08BEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7A28EE424E76DC8001FACA6 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo" */ = {
+		C7EFD52A2524CED800A08BEA /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7A28EE524E76DC8001FACA6 /* Debug */,
-				C7A28EE624E76DC8001FACA6 /* Release */,
+				C7EFD52B2524CED800A08BEA /* Debug */,
+				C7EFD52C2524CED800A08BEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7EFD52D2524CED800A08BEA /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7EFD52E2524CED800A08BEA /* Debug */,
+				C7EFD52F2524CED800A08BEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -415,11 +534,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C7A28EE824E76E0D001FACA6 /* BetterSafariView */ = {
+		C71240222524CFAB001A648E /* BetterSafariView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BetterSafariView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = C7A28ECD24E76DC7001FACA6 /* Project object */;
+	rootObject = C7EFD50A2524CED600A08BEA /* Project object */;
 }
