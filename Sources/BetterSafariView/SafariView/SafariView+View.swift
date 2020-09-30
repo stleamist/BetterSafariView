@@ -6,7 +6,8 @@ import SafariServices
 // A `View` conformance for the advanced usage.
 extension SafariView: View {
     
-    #if compiler(>=5.3)
+    // There is a bug on Xcode 12.0 (Swift 5.3.0) where `ignoresSafeArea(_:edges:)` is missing for Mac Catalyst target.
+    #if compiler(>=5.3.1) || (compiler(>=5.3) && !targetEnvironment(macCatalyst))
     
     // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
     // define nested `Representable` struct and wrap it with `View`.
