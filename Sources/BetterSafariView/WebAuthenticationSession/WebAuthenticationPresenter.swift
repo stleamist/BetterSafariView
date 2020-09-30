@@ -7,13 +7,18 @@ import SafariServices
 #endif
 
 #if os(iOS)
+typealias ConcreteViewController = UIViewController
 typealias ViewController = UIViewController
 typealias ViewControllerRepresentable = UIViewControllerRepresentable
 #elseif os(macOS)
+typealias ConcreteViewController = NSViewController
 typealias ViewController = NSViewController
 typealias ViewControllerRepresentable = NSViewControllerRepresentable
 #elseif os(watchOS)
-typealias ViewController = WKInterfaceInlineMovie
+// Use `WKInterfaceInlineMovie` as a concrete interface objct type,
+// since there is no public initializer for `WKInterfaceObject`.
+typealias ConcreteViewController = WKInterfaceInlineMovie
+typealias ViewController = WKInterfaceObject
 typealias ViewControllerRepresentable = WKInterfaceObjectRepresentable
 #endif
 
@@ -32,11 +37,11 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
     
     #if os(iOS)
     
-    func makeUIViewController(context: Context) -> UIViewController {
+    func makeUIViewController(context: Context) -> ViewController {
         return makeViewController(context: context)
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
         
         updateViewController(uiViewController, context: context)
         
@@ -51,21 +56,21 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
     
     #elseif os(macOS)
     
-    func makeNSViewController(context: Context) -> NSViewController {
+    func makeNSViewController(context: Context) -> ViewController {
         return makeViewController(context: context)
     }
     
-    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
+    func updateNSViewController(_ nsViewController: ViewController, context: Context) {
         updateViewController(nsViewController, context: context)
     }
     
     #elseif os(watchOS)
     
-    func makeWKInterfaceObject(context: Context) -> WKInterfaceInlineMovie {
+    func makeWKInterfaceObject(context: Context) -> ViewController {
         return makeViewController(context: context)
     }
     
-    func updateWKInterfaceObject(_ wkInterfaceObject: WKInterfaceInlineMovie, context: Context) {
+    func updateWKInterfaceObject(_ wkInterfaceObject: ViewController, context: Context) {
         updateViewController(wkInterfaceObject, context: context)
     }
     
@@ -96,7 +101,7 @@ extension WebAuthenticationPresenter {
         
         // MARK: View Controller Holding
         
-        let viewController = ViewController()
+        let viewController = ConcreteViewController()
         private var session: ASWebAuthenticationSession?
         
         // MARK: Item Handling
