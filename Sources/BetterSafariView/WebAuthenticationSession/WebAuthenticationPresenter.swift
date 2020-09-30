@@ -194,8 +194,8 @@ extension WebAuthenticationPresenter {
         
         // There is a problem that `item` is not set to `nil` after the sheet is dismissed with pulling down
         // because the completion handler is not called on this case due to a system bug on iOS 13.
-        // To resolve this issue, set `interactiveDismissalDelegate` as a presentation controller delegate of `SFAuthenticationViewController`
-        // so that ensures the completion handler is always called.
+        // To resolve this issue, set `interactiveDismissalDelegate` as a presentation controller delegate of
+        // `SFAuthenticationViewController` so that ensures the completion handler is always called.
         
         @available(iOS, introduced: 13.0, deprecated: 14.0)
         private lazy var interactiveDismissalDelegate = InteractiveDismissalDelegate(coordinator: self)
