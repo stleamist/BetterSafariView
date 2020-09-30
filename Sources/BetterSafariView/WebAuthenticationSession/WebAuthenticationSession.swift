@@ -1,5 +1,6 @@
+#if os(iOS) || os(macOS) || os(watchOS)
+
 import SwiftUI
-import SafariServices
 import AuthenticationServices
 
 // Used for getting a public completion handler to inject an assignment that sets `item` to `nil`.
@@ -99,3 +100,5 @@ public struct WebAuthenticationSession {
 
 public typealias WebAuthenticationSessionError = ASWebAuthenticationSessionError
 public let WebAuthenticationSessionErrorDomain = ASWebAuthenticationSessionErrorDomain
+
+#endif

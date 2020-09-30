@@ -1,3 +1,5 @@
+#if os(iOS)
+
 import SwiftUI
 
 struct SafariViewPresentationModifier: ViewModifier {
@@ -95,3 +97,5 @@ public extension View {
         )
     }
 }
+
+#endif
