@@ -481,7 +481,6 @@
 		C7BA10132525D4AA002BC9F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;
@@ -504,7 +503,6 @@
 		C7BA10142525D4AA002BC9F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C7BA0FEF2525D4A7002BC9F7"
-               BuildableName = "BetterSafariViewDemo (watchOS).app"
+               BuildableName = "BetterSafariViewDemo.app"
                BlueprintName = "BetterSafariViewDemo (watchOS)"
                ReferencedContainer = "container:BetterSafariViewDemo.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C7BA0FEF2525D4A7002BC9F7"
-            BuildableName = "BetterSafariViewDemo (watchOS).app"
+            BuildableName = "BetterSafariViewDemo.app"
             BlueprintName = "BetterSafariViewDemo (watchOS)"
             ReferencedContainer = "container:BetterSafariViewDemo.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C7BA0FEF2525D4A7002BC9F7"
-            BuildableName = "BetterSafariViewDemo (watchOS).app"
+            BuildableName = "BetterSafariViewDemo.app"
             BlueprintName = "BetterSafariViewDemo (watchOS)"
             ReferencedContainer = "container:BetterSafariViewDemo.xcodeproj">
          </BuildableReference>
