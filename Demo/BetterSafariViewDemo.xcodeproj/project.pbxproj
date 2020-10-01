@@ -160,16 +160,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C7BA0FF42525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App */ = {
+		C7BA0FF42525D4A7002BC9F7 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
 				C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */,
 				C7BA0FF72525D4A8002BC9F7 /* Info.plist */,
 			);
-			path = "BetterSafariViewDemo WatchKit App";
+			path = watchOS;
 			sourceTree = "<group>";
 		};
-		C7BA10002525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension */ = {
+		C7BA10002525D4A9002BC9F7 /* watchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
 				C7BA10012525D4A9002BC9F7 /* ContentView.swift */,
@@ -179,7 +179,7 @@
 				C7BA100C2525D4A9002BC9F7 /* Info.plist */,
 				C7BA10092525D4A9002BC9F7 /* Preview Content */,
 			);
-			path = "BetterSafariViewDemo WatchKit Extension";
+			path = "watchOS Extension";
 			sourceTree = "<group>";
 		};
 		C7BA10092525D4A9002BC9F7 /* Preview Content */ = {
@@ -196,8 +196,8 @@
 				C7EFD50E2524CED600A08BEA /* Shared */,
 				C7EFD5182524CED800A08BEA /* iOS */,
 				C7EFD51F2524CED800A08BEA /* macOS */,
-				C7BA0FF42525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App */,
-				C7BA10002525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension */,
+				C7BA0FF42525D4A7002BC9F7 /* watchOS */,
+				C7BA10002525D4A9002BC9F7 /* watchOS Extension */,
 				C7EFD5172524CED800A08BEA /* Products */,
 				C71240212524CFAB001A648E /* Frameworks */,
 			);
@@ -456,8 +456,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
-				IBSC_MODULE = BetterSafariViewDemo_WatchKit_Extension;
-				INFOPLIST_FILE = "BetterSafariViewDemo WatchKit App/Info.plist";
+				IBSC_MODULE = BetterSafariViewDemo__watchOS_Extension_;
+				INFOPLIST_FILE = watchOS/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -476,8 +476,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
-				IBSC_MODULE = BetterSafariViewDemo_WatchKit_Extension;
-				INFOPLIST_FILE = "BetterSafariViewDemo WatchKit App/Info.plist";
+				IBSC_MODULE = BetterSafariViewDemo__watchOS_Extension_;
+				INFOPLIST_FILE = watchOS/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -494,10 +494,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "BetterSafariViewDemo WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "watchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,10 +517,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BetterSafariViewDemo WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 2765226H97;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "BetterSafariViewDemo WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "watchOS Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
