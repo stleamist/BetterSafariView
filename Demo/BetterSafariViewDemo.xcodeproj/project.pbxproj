@@ -20,6 +20,12 @@
 		C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C71240232524CFAB001A648E /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71240222524CFAB001A648E /* BetterSafariView */; };
+		C72B59482525E1F80052270A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
+		C72B59522525E2080052270A /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
+		C72B59532525E2080052270A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240112524CF69001A648E /* Constants.swift */; };
+		C72B59542525E2080052270A /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
+		C72B59552525E2080052270A /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
+		C72B595E2525E2140052270A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
 		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10012525D4A9002BC9F7 /* ContentView.swift */; };
 		C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */; };
@@ -349,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B59482525E1F80052270A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B595E2525E2140052270A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,8 +390,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B59542525E2080052270A /* WebAuthenticationSessionOptions.swift in Sources */,
+				C72B59552525E2080052270A /* BetterSafariViewDemoApp.swift in Sources */,
+				C72B59532525E2080052270A /* Constants.swift in Sources */,
 				C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */,
 				C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */,
+				C72B59522525E2080052270A /* WebAuthenticationSessionOptionsForm.swift in Sources */,
 				C7BA10062525D4A9002BC9F7 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
