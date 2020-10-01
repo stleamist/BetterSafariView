@@ -20,13 +20,10 @@
 		C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C71240232524CFAB001A648E /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71240222524CFAB001A648E /* BetterSafariView */; };
-		C7BA0FF62525D4A8002BC9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */; };
 		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10012525D4A9002BC9F7 /* ContentView.swift */; };
 		C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */; };
 		C7BA10062525D4A9002BC9F7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */; };
-		C7BA10082525D4A9002BC9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BA10072525D4A9002BC9F7 /* Assets.xcassets */; };
-		C7BA100B2525D4A9002BC9F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BA100A2525D4A9002BC9F7 /* Preview Assets.xcassets */; };
 		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
@@ -70,14 +67,11 @@
 		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
 		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
 		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7BA0FF72525D4A8002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA10012525D4A9002BC9F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		C7BA10072525D4A9002BC9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C7BA100A2525D4A9002BC9F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C7BA100C2525D4A9002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,7 +157,6 @@
 		C7BA0FF42525D4A7002BC9F7 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
-				C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */,
 				C7BA0FF72525D4A8002BC9F7 /* Info.plist */,
 			);
 			path = watchOS;
@@ -175,19 +168,9 @@
 				C7BA10012525D4A9002BC9F7 /* ContentView.swift */,
 				C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */,
 				C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */,
-				C7BA10072525D4A9002BC9F7 /* Assets.xcassets */,
 				C7BA100C2525D4A9002BC9F7 /* Info.plist */,
-				C7BA10092525D4A9002BC9F7 /* Preview Content */,
 			);
 			path = "watchOS Extension";
-			sourceTree = "<group>";
-		};
-		C7BA10092525D4A9002BC9F7 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C7BA100A2525D4A9002BC9F7 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C7EFD5092524CED600A08BEA = {
@@ -366,7 +349,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BA0FF62525D4A8002BC9F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,8 +356,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7BA100B2525D4A9002BC9F7 /* Preview Assets.xcassets in Resources */,
-				C7BA10082525D4A9002BC9F7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
