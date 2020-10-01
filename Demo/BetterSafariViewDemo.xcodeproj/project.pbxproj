@@ -28,7 +28,7 @@
 		C72B595E2525E2140052270A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
 		C72B59642525E2680052270A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B59632525E2680052270A /* RootView.swift */; };
 		C72B59722525E2D60052270A /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C72B59712525E2D60052270A /* BetterSafariView */; };
-		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
@@ -53,7 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */,
+				C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,9 +72,9 @@
 		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
 		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
 		C72B59632525E2680052270A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA0FF72525D4A8002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA100C2525D4A9002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -205,8 +205,8 @@
 			children = (
 				C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */,
 				C7EFD51E2524CED800A08BEA /* BetterSafariViewDemo.app */,
-				C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */,
-				C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */,
+				C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo.app */,
+				C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 			);
 			name = "BetterSafariViewDemo (watchOS)";
 			productName = "BetterSafariViewDemo WatchKit App";
-			productReference = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */;
+			productReference = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension) */ = {
@@ -265,7 +265,7 @@
 				C72B59712525E2D60052270A /* BetterSafariView */,
 			);
 			productName = "BetterSafariViewDemo WatchKit Extension";
-			productReference = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */;
+			productReference = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		C7EFD5152524CED800A08BEA /* BetterSafariViewDemo (iOS) */ = {
@@ -445,10 +445,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
-				IBSC_MODULE = BetterSafariViewDemo__watchOS_Extension_;
+				IBSC_MODULE = BetterSafariViewDemo_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BetterSafariViewDemo;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -465,10 +465,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2765226H97;
-				IBSC_MODULE = BetterSafariViewDemo__watchOS_Extension_;
+				IBSC_MODULE = BetterSafariViewDemo_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BetterSafariViewDemo;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -492,7 +492,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = "BetterSafariViewDemo Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -515,7 +515,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = "BetterSafariViewDemo Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
