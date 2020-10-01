@@ -26,10 +26,8 @@
 		C72B59542525E2080052270A /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C72B59552525E2080052270A /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C72B595E2525E2140052270A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
+		C72B59642525E2680052270A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B59632525E2680052270A /* RootView.swift */; };
 		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10012525D4A9002BC9F7 /* ContentView.swift */; };
-		C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */; };
-		C7BA10062525D4A9002BC9F7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */; };
 		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
@@ -72,12 +70,10 @@
 		C71240112524CF69001A648E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
 		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
+		C72B59632525E2680052270A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA0FF72525D4A8002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7BA10012525D4A9002BC9F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
-		C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		C7BA100C2525D4A9002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -171,9 +167,7 @@
 		C7BA10002525D4A9002BC9F7 /* watchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C7BA10012525D4A9002BC9F7 /* ContentView.swift */,
-				C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */,
-				C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */,
+				C72B59632525E2680052270A /* RootView.swift */,
 				C7BA100C2525D4A9002BC9F7 /* Info.plist */,
 			);
 			path = "watchOS Extension";
@@ -390,13 +384,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B59642525E2680052270A /* RootView.swift in Sources */,
 				C72B59542525E2080052270A /* WebAuthenticationSessionOptions.swift in Sources */,
 				C72B59552525E2080052270A /* BetterSafariViewDemoApp.swift in Sources */,
 				C72B59532525E2080052270A /* Constants.swift in Sources */,
-				C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */,
-				C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */,
 				C72B59522525E2080052270A /* WebAuthenticationSessionOptionsForm.swift in Sources */,
-				C7BA10062525D4A9002BC9F7 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
