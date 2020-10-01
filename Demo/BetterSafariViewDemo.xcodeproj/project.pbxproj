@@ -27,6 +27,7 @@
 		C72B59552525E2080052270A /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C72B595E2525E2140052270A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
 		C72B59642525E2680052270A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72B59632525E2680052270A /* RootView.swift */; };
+		C72B59722525E2D60052270A /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C72B59712525E2D60052270A /* BetterSafariView */; };
 		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
@@ -89,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72B59722525E2D60052270A /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +261,9 @@
 			dependencies = (
 			);
 			name = "BetterSafariViewDemo (watchOS Extension)";
+			packageProductDependencies = (
+				C72B59712525E2D60052270A /* BetterSafariView */,
+			);
 			productName = "BetterSafariViewDemo WatchKit Extension";
 			productReference = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -784,6 +789,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		C71240222524CFAB001A648E /* BetterSafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BetterSafariView;
+		};
+		C72B59712525E2D60052270A /* BetterSafariView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BetterSafariView;
 		};
