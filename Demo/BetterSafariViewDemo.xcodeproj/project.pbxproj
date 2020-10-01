@@ -447,7 +447,7 @@
 				DEVELOPMENT_TEAM = 2765226H97;
 				IBSC_MODULE = BetterSafariViewDemo_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
 				PRODUCT_NAME = BetterSafariViewDemo;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -467,7 +467,7 @@
 				DEVELOPMENT_TEAM = 2765226H97;
 				IBSC_MODULE = BetterSafariViewDemo_Extension;
 				INFOPLIST_FILE = watchOS/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo;
 				PRODUCT_NAME = BetterSafariViewDemo;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -490,7 +490,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.extension;
 				PRODUCT_NAME = "BetterSafariViewDemo Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -512,7 +512,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stleam.BetterSafariViewDemo.extension;
 				PRODUCT_NAME = "BetterSafariViewDemo Extension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
