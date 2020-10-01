@@ -20,9 +20,9 @@
 		C712401B2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */; };
 		C71240232524CFAB001A648E /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C71240222524CFAB001A648E /* BetterSafariView */; };
-		C7BA0FF12525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C7BA0FF12525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7BA0FF62525D4A8002BC9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */; };
-		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7BA10022525D4A9002BC9F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10012525D4A9002BC9F7 /* ContentView.swift */; };
 		C7BA10042525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */; };
 		C7BA10062525D4A9002BC9F7 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */; };
@@ -59,7 +59,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				C7BA0FF12525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app in Embed Watch Content */,
+				C7BA0FF12525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex in Embed App Extensions */,
+				C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,10 +89,10 @@
 		C71240172524CF71001A648E /* SafariViewOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariViewOptions.swift; sourceTree = "<group>"; };
 		C71240182524CF71001A648E /* WebAuthenticationSessionOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSessionOptions.swift; sourceTree = "<group>"; };
 		C7BA0FED2525D4A7002BC9F7 /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterSafariViewDemo WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA0FF52525D4A8002BC9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7BA0FF72525D4A8002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo (watchOS Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA10012525D4A9002BC9F7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C7BA10032525D4A9002BC9F7 /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7BA10052525D4A9002BC9F7 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 				C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */,
 				C7EFD51E2524CED800A08BEA /* BetterSafariViewDemo.app */,
 				C7BA0FED2525D4A7002BC9F7 /* BetterSafariViewDemo.app */,
-				C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app */,
-				C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex */,
+				C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */,
+				C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -284,9 +284,9 @@
 			productReference = C7BA0FED2525D4A7002BC9F7 /* BetterSafariViewDemo.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
-		C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App */ = {
+		C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7BA10162525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo WatchKit App" */;
+			buildConfigurationList = C7BA10162525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (watchOS)" */;
 			buildPhases = (
 				C7BA0FEE2525D4A7002BC9F7 /* Resources */,
 				C7BA10122525D4AA002BC9F7 /* Embed App Extensions */,
@@ -296,14 +296,14 @@
 			dependencies = (
 				C7BA0FFF2525D4A9002BC9F7 /* PBXTargetDependency */,
 			);
-			name = "BetterSafariViewDemo WatchKit App";
+			name = "BetterSafariViewDemo (watchOS)";
 			productName = "BetterSafariViewDemo WatchKit App";
-			productReference = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App.app */;
+			productReference = C7BA0FF02525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS).app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension */ = {
+		C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7BA10152525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo WatchKit Extension" */;
+			buildConfigurationList = C7BA10152525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (watchOS Extension)" */;
 			buildPhases = (
 				C7BA0FF82525D4A9002BC9F7 /* Sources */,
 				C7BA0FF92525D4A9002BC9F7 /* Frameworks */,
@@ -313,9 +313,9 @@
 			);
 			dependencies = (
 			);
-			name = "BetterSafariViewDemo WatchKit Extension";
+			name = "BetterSafariViewDemo (watchOS Extension)";
 			productName = "BetterSafariViewDemo WatchKit Extension";
-			productReference = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension.appex */;
+			productReference = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension).appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		C7EFD5152524CED800A08BEA /* BetterSafariViewDemo (iOS) */ = {
@@ -397,8 +397,8 @@
 				C7EFD5152524CED800A08BEA /* BetterSafariViewDemo (iOS) */,
 				C7EFD51D2524CED800A08BEA /* BetterSafariViewDemo (macOS) */,
 				C7BA0FEC2525D4A7002BC9F7 /* BetterSafariViewDemo */,
-				C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App */,
-				C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension */,
+				C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS) */,
+				C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension) */,
 			);
 		};
 /* End PBXProject section */
@@ -491,12 +491,12 @@
 /* Begin PBXTargetDependency section */
 		C7BA0FF32525D4A7002BC9F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo WatchKit App */;
+			target = C7BA0FEF2525D4A7002BC9F7 /* BetterSafariViewDemo (watchOS) */;
 			targetProxy = C7BA0FF22525D4A7002BC9F7 /* PBXContainerItemProxy */;
 		};
 		C7BA0FFF2525D4A9002BC9F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo WatchKit Extension */;
+			target = C7BA0FFB2525D4A9002BC9F7 /* BetterSafariViewDemo (watchOS Extension) */;
 			targetProxy = C7BA0FFE2525D4A9002BC9F7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -836,7 +836,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C7BA10152525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo WatchKit Extension" */ = {
+		C7BA10152525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (watchOS Extension)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7BA10132525D4AA002BC9F7 /* Debug */,
@@ -845,7 +845,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7BA10162525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo WatchKit App" */ = {
+		C7BA10162525D4AA002BC9F7 /* Build configuration list for PBXNativeTarget "BetterSafariViewDemo (watchOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7BA10102525D4AA002BC9F7 /* Debug */,
