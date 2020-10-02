@@ -22,24 +22,44 @@ struct WebAuthenticationSessionOptionsForm: View {
             Form {
                 Section(header: Text("URL")) {
                     TextField(gitHubAuthorizationURLString, text: $temporaryOptions.urlString)
-                        .textContentType(.URL)
-                        .keyboardType(.URL)
-                        .autocapitalization(.none)
+                        .modify {
+                            #if os(iOS)
+                            $0
+                                .textContentType(.URL)
+                                .keyboardType(.URL)
+                                .autocapitalization(.none)
+                            #endif
+                        }
+                        .modify {
+                            #if os(watchOS)
+                            $0
+                                .textContentType(.URL)
+                            #endif
+                        }
                 }
                 
                 Section(header: Text("Callback URL Scheme")) {
                     TextField(gitHubCallbackURLScheme, text: $temporaryOptions.callbackURLScheme)
-                        .textContentType(.URL)
-                        .keyboardType(.asciiCapable)
-                        .autocapitalization(.none)
+                        .modify {
+                            #if os(iOS)
+                            $0
+                                .textContentType(.URL)
+                                .keyboardType(.asciiCapable)
+                                .autocapitalization(.none)
+                            #endif
+                        }
+                        .modify {
+                            #if os(watchOS)
+                            $0
+                                .textContentType(.URL)
+                            #endif
+                        }
                 }
                 
                 Section(header: Text("Modifiers")) {
                     Toggle("Ephemeral Session", isOn: $temporaryOptions.prefersEphemeralWebBrowserSession)
                 }
             }
-            .navigationTitle(Text("Session Options"))
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
@@ -52,6 +72,13 @@ struct WebAuthenticationSessionOptionsForm: View {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
+            }
+            .modify {
+                #if os(iOS)
+                $0
+                    .navigationTitle(Text("Session Options"))
+                    .navigationBarTitleDisplayMode(.inline)
+                #endif
             }
         }
     }
