@@ -94,16 +94,22 @@ extension SafariViewPresenter {
         }
         
         private func dismissSafariViewController(completion: (() -> Void)? = nil) {
+			let dismissCompletion: () -> Void = {
+				self.handleDismissalWithoutResettingItemBinding()
+				completion?()
+			}
+			
+			guard uiViewController.presentedViewController != nil else {
+				dismissCompletion()
+				return
+			}
             
             // Check if the `uiViewController` is a instance of the `SFSafariViewController`
             // to prevent other controllers presented by the container view from being dismissed unintentionally.
             guard uiViewController.presentedViewController is SFSafariViewController else {
                 return
             }
-            uiViewController.dismiss(animated: true) {
-                self.handleDismissalWithoutResettingItemBinding()
-                completion?()
-            }
+            uiViewController.dismiss(animated: true, completion: dismissCompletion)
         }
         
         // MARK: Dismissal Handlers
