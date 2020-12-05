@@ -73,6 +73,10 @@ extension SafariViewPresenter {
         // MARK: Presentation Handlers
         
         private func presentSafariViewController(with item: Item) {
+			guard uiViewController.presentedViewController == nil else {
+				return
+			}
+			
             let representation = parent.representationBuilder(item)
             let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
             safariViewController.delegate = self
@@ -81,8 +85,9 @@ extension SafariViewPresenter {
             // There is a problem that page loading and parallel push animation are not working when a modifier is attached to the view in a `List`.
             // As a workaround, use a `rootViewController` of the `window` for presenting.
             // (Unlike the other view controllers, a view controller hosted by a cell doesn't have a parent, but has the same window.)
-            let presentingViewController = uiViewController.view.window?.rootViewController ?? uiViewController
-            presentingViewController.present(safariViewController, animated: true)
+			var presentingViewController = uiViewController.view.window?.rootViewController
+			presentingViewController = presentingViewController?.presentedViewController ?? presentingViewController ?? uiViewController
+            presentingViewController?.present(safariViewController, animated: true)
         }
         
         private func updateSafariViewController(with item: Item) {
