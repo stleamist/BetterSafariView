@@ -111,10 +111,10 @@ extension SafariViewPresenter {
             
             // Check if the `uiViewController` is a instance of the `SFSafariViewController`
             // to prevent other controllers presented by the container view from being dismissed unintentionally.
-            guard uiViewController.presentedViewController is SFSafariViewController else {
+			guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
                 return
             }
-            uiViewController.dismiss(animated: true, completion: dismissCompletion)
+			safariViewController.dismiss(animated: true, completion: dismissCompletion)
         }
         
         // MARK: Dismissal Handlers
