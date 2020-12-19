@@ -37,6 +37,8 @@ struct RootView: View {
                 Text("Start Session")
             }
             .keyboardShortcut(.defaultAction)
+            // Fix an issue where SwiftUI doesn't pass the latest `webAuthenticationSessionOptions` to the modifier.
+            .onChange(of: webAuthenticationSessionOptions.url, perform: { _ in })
             .webAuthenticationSession(isPresented: $showingWebAuthenticationSession) {
                 WebAuthenticationSession(
                     url: webAuthenticationSessionOptions.url!,
