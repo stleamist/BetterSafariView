@@ -9,20 +9,23 @@ struct RootView: View {
     var body: some View {
         VStack(alignment: .trailing) {
             GroupBox(label: Text("WebAuthenticationSession")) {
-                VStack {
+                VStack(alignment: .preferenceLabel) {
                     HStack {
                         Text("URL:")
                         TextField(gitHubAuthorizationURLString, text: $webAuthenticationSessionOptions.urlString)
                             .frame(maxWidth: 240)
+                            .alignmentGuide(.preferenceLabel, computeValue: { $0[.leading] })
                     }
                     HStack {
                         Text("Callback URL Scheme:")
                         TextField(gitHubAuthorizationURLString, text: $webAuthenticationSessionOptions.callbackURLScheme)
                             .frame(maxWidth: 240)
+                            .alignmentGuide(.preferenceLabel, computeValue: { $0[.leading] })
                     }
                     HStack {
                         Text("Modifiers:")
                         Toggle("Ephemeral Session", isOn: $webAuthenticationSessionOptions.prefersEphemeralWebBrowserSession)
+                            .alignmentGuide(.preferenceLabel, computeValue: { $0[.leading] })
                     }
                     Spacer()
                 }
