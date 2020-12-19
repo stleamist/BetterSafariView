@@ -43,6 +43,11 @@ struct RootView: View {
         }
         .padding()
         .frame(width: 480, height: 320)
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Spacer()
+            }
+        }
     }
 }
 
