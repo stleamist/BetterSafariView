@@ -34,6 +34,7 @@
 		C7BA0FFD2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71240012524CF40001A648E /* WebAuthenticationSessionOptionsForm.swift */; };
 		C7DEBCBE258DC83E00690CC3 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = C7DEBCBD258DC83E00690CC3 /* BetterSafariView */; };
+		C7DEBCC4258DC87900690CC3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEBCC3258DC87900690CC3 /* RootView.swift */; };
 		C7EFD5222524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */; };
 		C7EFD5262524CED800A08BEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EFD5112524CED800A08BEA /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		C7BA0FF72525D4A8002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BA0FFC2525D4A9002BC9F7 /* BetterSafariViewDemo Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BetterSafariViewDemo Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BA100C2525D4A9002BC9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7DEBCC3258DC87900690CC3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C7EFD50F2524CED600A08BEA /* BetterSafariViewDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSafariViewDemoApp.swift; sourceTree = "<group>"; };
 		C7EFD5112524CED800A08BEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7EFD5162524CED800A08BEA /* BetterSafariViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterSafariViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 		C7EFD51F2524CED800A08BEA /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				C7DEBCC3258DC87900690CC3 /* RootView.swift */,
 				C7EFD5202524CED800A08BEA /* Info.plist */,
 			);
 			path = macOS;
@@ -441,6 +444,7 @@
 			files = (
 				C7EFD5232524CED800A08BEA /* BetterSafariViewDemoApp.swift in Sources */,
 				C712401C2524CF71001A648E /* WebAuthenticationSessionOptions.swift in Sources */,
+				C7DEBCC4258DC87900690CC3 /* RootView.swift in Sources */,
 				C7C1F8C52524D6D800B693F9 /* WebAuthenticationSessionOptionsForm.swift in Sources */,
 				C71240132524CF69001A648E /* Constants.swift in Sources */,
 				C754A76D2526A9D100A2A620 /* View+Modify.swift in Sources */,
