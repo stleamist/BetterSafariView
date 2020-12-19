@@ -11,7 +11,7 @@ typealias ConcreteViewController = UIViewController
 typealias ViewController = UIViewController
 typealias ViewControllerRepresentable = UIViewControllerRepresentable
 #elseif os(macOS)
-typealias ConcreteViewController = NSViewController
+typealias ConcreteViewController = NSTabViewController
 typealias ViewController = NSViewController
 typealias ViewControllerRepresentable = NSViewControllerRepresentable
 #elseif os(watchOS)
