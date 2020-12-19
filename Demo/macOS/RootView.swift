@@ -1,4 +1,5 @@
 import SwiftUI
+import BetterSafariView
 
 struct RootView: View {
     
@@ -36,6 +37,15 @@ struct RootView: View {
                 Text("Start Session")
             }
             .keyboardShortcut(.defaultAction)
+            .webAuthenticationSession(isPresented: $showingWebAuthenticationSession) {
+                WebAuthenticationSession(
+                    url: webAuthenticationSessionOptions.url!,
+                    callbackURLScheme: webAuthenticationSessionOptions.callbackURLScheme
+                ) { callbackURL, error in
+                    webAuthenticationSessionCallbackURL = callbackURL
+                }
+                .prefersEphemeralWebBrowserSession(webAuthenticationSessionOptions.prefersEphemeralWebBrowserSession)
+            }
             .alert(item: $webAuthenticationSessionCallbackURL) { callbackURL in
                 Alert(
                     title: Text("Session Completed with Callback URL"),
