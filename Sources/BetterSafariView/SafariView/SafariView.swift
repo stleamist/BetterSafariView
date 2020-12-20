@@ -47,7 +47,7 @@ public struct SafariView {
     ///     - url: The URL to navigate to. The URL must use the http or https scheme.
     ///     - configuration: The configuration for the new view controller.
     ///
-    public init(url: URL, configuration: SFSafariViewController.Configuration = .init()) {
+    public init(url: URL, configuration: Configuration = .init()) {
         self.url = url
         self.configuration = configuration
     }
