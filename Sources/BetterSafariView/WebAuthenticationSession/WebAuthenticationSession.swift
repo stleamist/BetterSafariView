@@ -98,7 +98,10 @@ public struct WebAuthenticationSession {
     }
 }
 
+/// Errors that a web authentication session can generate.
 public typealias WebAuthenticationSessionError = ASWebAuthenticationSessionError
+
+/// The error domain for a web authentication session.
 public let WebAuthenticationSessionErrorDomain = ASWebAuthenticationSessionErrorDomain
 
 #endif

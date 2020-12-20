@@ -29,6 +29,7 @@ import SafariServices
 ///
 public struct SafariView {
     
+    /// A configuration object that defines how a Safari view controller should be initialized.
     public typealias Configuration = SFSafariViewController.Configuration
     public typealias DismissButtonStyle = SFSafariViewController.DismissButtonStyle
     
