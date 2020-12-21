@@ -7,6 +7,10 @@ struct RootView: View {
     @State private var showingWebAuthenticationSession = false
     @State private var webAuthenticationSessionCallbackURL: URL? = nil
     
+    private var urlIsInvalid: Bool {
+        (webAuthenticationSessionOptions.url == nil) || !["http", "https"].contains(webAuthenticationSessionOptions.url?.scheme)
+    }
+    
     var body: some View {
         VStack(alignment: .trailing) {
             GroupBox(label: Text("WebAuthenticationSession")) {
@@ -37,6 +41,7 @@ struct RootView: View {
                 Text("Start Session")
             }
             .keyboardShortcut(.defaultAction)
+            .disabled(urlIsInvalid)
             // Capture `webAuthenticationSessionOptions` to fix an issue
             // where SwiftUI doesn't pass the latest value to the modifier.
             // https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)

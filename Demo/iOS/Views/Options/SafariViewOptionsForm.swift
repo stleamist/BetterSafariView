@@ -80,6 +80,7 @@ struct SafariViewOptionsForm: View {
                         options = temporaryOptions
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .disabled(urlIsInvalid)
                 }
             }
         }

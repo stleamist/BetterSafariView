@@ -71,6 +71,7 @@ struct WebAuthenticationSessionOptionsForm: View {
                         options = temporaryOptions
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .disabled(urlIsInvalid)
                 }
             }
             .modify {
