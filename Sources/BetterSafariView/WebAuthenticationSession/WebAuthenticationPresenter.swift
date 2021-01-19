@@ -102,7 +102,7 @@ extension WebAuthenticationPresenter {
         // MARK: View Controller Holding
         
         let viewController = ConcreteViewController()
-        private var session: ASWebAuthenticationSession?
+        private weak var session: ASWebAuthenticationSession?
         
         // MARK: Item Handling
         
@@ -146,13 +146,13 @@ extension WebAuthenticationPresenter {
             
             representation.applyModification(to: session)
             
-            self.session = session
             session.start()
+            
+            self.session = session
         }
         
         private func cancelWebAuthenticationSession() {
             session?.cancel()
-            session = nil
         }
         
         // MARK: Dismissal Handlers
