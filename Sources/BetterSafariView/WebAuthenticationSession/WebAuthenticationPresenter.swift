@@ -7,29 +7,26 @@ import SafariServices
 #endif
 
 #if os(iOS)
-typealias ConcreteViewController = UIViewController
-typealias ViewController = UIViewController
-typealias ViewControllerRepresentable = UIViewControllerRepresentable
+typealias ViewType = UIView
+typealias ViewRepresentableType = UIViewRepresentable
 #elseif os(macOS)
-typealias ConcreteViewController = NSTabViewController
-typealias ViewController = NSViewController
-typealias ViewControllerRepresentable = NSViewControllerRepresentable
+typealias ViewType = NSView
+typealias ViewRepresentableType = NSViewRepresentable
 #elseif os(watchOS)
 // Use `WKInterfaceInlineMovie` as a concrete interface objct type,
 // since there is no public initializer for `WKInterfaceObject`.
-typealias ConcreteViewController = WKInterfaceInlineMovie
-typealias ViewController = WKInterfaceObject
-typealias ViewControllerRepresentable = WKInterfaceObjectRepresentable
+typealias ViewType = WKInterfaceInlineMovie
+typealias ViewRepresentableType = WKInterfaceObjectRepresentable
 #endif
 
-struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentable {
+struct WebAuthenticationPresenter<Item: Identifiable>: ViewRepresentableType {
     
     // MARK: Representation
     
     @Binding var item: Item?
     var representationBuilder: (Item) -> WebAuthenticationSession
     
-    // MARK: ViewControllerRepresentable
+    // MARK: ViewRepresentable
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
@@ -37,16 +34,16 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
     
     #if os(iOS)
     
-    func makeUIViewController(context: Context) -> ViewController {
-        return makeViewController(context: context)
+    func makeUIView(context: Context) -> ViewType {
+        return makeView(context: context)
     }
     
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+    func updateUIView(_ uiView: ViewType, context: Context) {
         
-        updateViewController(uiViewController, context: context)
+        updateView(uiView, context: context)
         
         // To set a delegate for the presentation controller of an `SFAuthenticationViewController` as soon as possible,
-        // check the view controller presented by `uiViewController` then set it as a delegate on every view updates.
+        // check the view controller presented by `view.viewController` then set it as a delegate on every view updates.
         // INFO: `SFAuthenticationViewController` is a private subclass of `SFSafariViewController`.
         guard #available(iOS 14.0, *) else {
             context.coordinator.setInteractiveDismissalDelegateIfPossible()
@@ -56,31 +53,31 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewControllerRepresentab
     
     #elseif os(macOS)
     
-    func makeNSViewController(context: Context) -> ViewController {
-        return makeViewController(context: context)
+    func makeNSView(context: Context) -> ViewType {
+        return makeView(context: context)
     }
     
-    func updateNSViewController(_ nsViewController: ViewController, context: Context) {
-        updateViewController(nsViewController, context: context)
+    func updateNSView(_ nsView: ViewType, context: Context) {
+        updateView(nsView, context: context)
     }
     
     #elseif os(watchOS)
     
-    func makeWKInterfaceObject(context: Context) -> ViewController {
-        return makeViewController(context: context)
+    func makeWKInterfaceObject(context: Context) -> ViewType {
+        return makeView(context: context)
     }
     
-    func updateWKInterfaceObject(_ wkInterfaceObject: ViewController, context: Context) {
-        updateViewController(wkInterfaceObject, context: context)
+    func updateWKInterfaceObject(_ wkInterfaceObject: ViewType, context: Context) {
+        updateView(wkInterfaceObject, context: context)
     }
     
     #endif
     
-    private func makeViewController(context: Context) -> ViewController {
-        return context.coordinator.viewController
+    private func makeView(context: Context) -> ViewType {
+        return context.coordinator.view
     }
     
-    private func updateViewController(_ viewController: ViewController, context: Context) {
+    private func updateView(_ view: ViewType, context: Context) {
         // Keep the coordinator updated with a new presenter struct.
         context.coordinator.parent = self
         context.coordinator.item = item
@@ -101,7 +98,7 @@ extension WebAuthenticationPresenter {
         
         // MARK: View Controller Holding
         
-        let viewController = ConcreteViewController()
+        let view = ViewType()
         private weak var session: ASWebAuthenticationSession?
         
         // MARK: Item Handling
@@ -173,7 +170,7 @@ extension WebAuthenticationPresenter {
         
         class PresentationContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
             
-            weak var coordinator: WebAuthenticationPresenter.Coordinator?
+            unowned var coordinator: WebAuthenticationPresenter.Coordinator
             
             init(coordinator: WebAuthenticationPresenter.Coordinator) {
                 self.coordinator = coordinator
@@ -182,7 +179,7 @@ extension WebAuthenticationPresenter {
             // MARK: ASWebAuthenticationPresentationContextProviding
             
             func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-                return coordinator!.viewController.view.window!
+                return coordinator.view.window!
             }
         }
         
@@ -202,7 +199,7 @@ extension WebAuthenticationPresenter {
         
         @available(iOS, introduced: 13.0, deprecated: 14.0)
         func setInteractiveDismissalDelegateIfPossible() {
-            guard let safariViewController = viewController.presentedViewController as? SFSafariViewController else {
+            guard let safariViewController = view.viewController?.presentedViewController as? SFSafariViewController else {
                 return
             }
             safariViewController.presentationController?.delegate = interactiveDismissalDelegate
