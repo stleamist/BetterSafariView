@@ -282,7 +282,7 @@ func prefersEphemeralWebBrowserSession(_ prefersEphemeralWebBrowserSession: Bool
 Add the following line to the `dependencies` in your [`Package.swift`](https://developer.apple.com/documentation/swift_packages/package) file:
 
 ```swift
-.package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.0"))
+.package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.1"))
 ```
 
 Next, add `BetterSafariView` as a dependency for your targets:
@@ -301,7 +301,7 @@ import PackageDescription
 let package = Package(
     name: "MyPackage",
     dependencies: [
-        .package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.0"))
+        .package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.1"))
     ],
     targets: [
         .target(name: "MyTarget", dependencies: ["BetterSafariView"])
