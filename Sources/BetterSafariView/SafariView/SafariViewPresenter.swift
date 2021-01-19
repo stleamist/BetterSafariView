@@ -75,21 +75,18 @@ extension SafariViewPresenter {
         // MARK: Presentation Handlers
         
         private func presentSafariViewController(with item: Item) {
-            guard uiViewController.presentedViewController == nil else {
-                return
-            }
-            
             let representation = parent.representationBuilder(item)
             let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
             safariViewController.delegate = self
             representation.applyModification(to: safariViewController)
             
-            // There is a problem that page loading and parallel push animation are not working when a modifier is attached to the view in a `List`.
-            // As a workaround, use a `rootViewController` of the `window` for presenting.
-            // (Unlike the other view controllers, a view controller hosted by a cell doesn't have a parent, but has the same window.)
-            var presentingViewController = uiViewController.view.window?.rootViewController
-            presentingViewController = presentingViewController?.presentedViewController ?? presentingViewController ?? uiViewController
-            presentingViewController?.present(safariViewController, animated: true)
+            // Present `SFSafariViewController` from the super view controller of `uiViewController`, instead of `uiViewController`.
+            // This fixes an issue where the Safari view controller is not presented properly
+            // when the `uiViewController` is detached from the root view controller (e.g. `uiViewController` contained in `UITableViewCell`)
+            // while allowing it to be presented even on the modal sheets.
+            // Thanks to: Bohdan Hernandez Navia (@boherna)
+            let presentingViewController = uiViewController.view.superview?.viewController ?? uiViewController
+            presentingViewController.present(safariViewController, animated: true)
         }
         
         private func updateSafariViewController(with item: Item) {
