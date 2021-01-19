@@ -44,6 +44,7 @@ extension SafariViewPresenter {
         // MARK: View Controller Holding
         
         let uiViewController = UIViewController()
+        private weak var safariViewController: SFSafariViewController?
         
         // MARK: Item Handling
         
@@ -87,10 +88,12 @@ extension SafariViewPresenter {
             // Thanks to: Bohdan Hernandez Navia (@boherna)
             let presentingViewController = uiViewController.view.superview?.viewController ?? uiViewController
             presentingViewController.present(safariViewController, animated: true)
+            
+            self.safariViewController = safariViewController
         }
         
         private func updateSafariViewController(with item: Item) {
-            guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
+            guard let safariViewController = safariViewController else {
                 return
             }
             let representation = parent.representationBuilder(item)
@@ -98,22 +101,14 @@ extension SafariViewPresenter {
         }
         
         private func dismissSafariViewController(completion: (() -> Void)? = nil) {
-            let dismissCompletion: () -> Void = {
+            guard let safariViewController = safariViewController else {
+                return
+            }
+            
+            safariViewController.dismiss(animated: true) {
                 self.handleDismissalWithoutResettingItemBinding()
                 completion?()
             }
-            
-            guard uiViewController.presentedViewController != nil else {
-                dismissCompletion()
-                return
-            }
-            
-            // Check if the `uiViewController` is a instance of the `SFSafariViewController`
-            // to prevent other controllers presented by the container view from being dismissed unintentionally.
-            guard let safariViewController = uiViewController.presentedViewController as? SFSafariViewController else {
-                return
-            }
-            safariViewController.dismiss(animated: true, completion: dismissCompletion)
         }
         
         // MARK: Dismissal Handlers
