@@ -3,7 +3,7 @@
 import SwiftUI
 import SafariServices
 
-struct SafariViewPresenter<Item: Identifiable>: UIViewControllerRepresentable {
+struct SafariViewPresenter<Item: Identifiable>: UIViewRepresentable {
     
     // MARK: Representation
     
@@ -11,18 +11,17 @@ struct SafariViewPresenter<Item: Identifiable>: UIViewControllerRepresentable {
     var onDismiss: (() -> Void)? = nil
     var representationBuilder: (Item) -> SafariView
     
-    // MARK: UIViewControllerRepresentable
+    // MARK: UIViewRepresentable
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
     
-    func makeUIViewController(context: Context) -> UIViewController {
-        return context.coordinator.uiViewController
+    func makeUIView(context: Context) -> UIView {
+        return context.coordinator.uiView
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        
+    func updateUIView(_ uiView: UIView, context: Context) {
         // Keep the coordinator updated with a new presenter struct.
         context.coordinator.parent = self
         context.coordinator.item = item
@@ -43,7 +42,7 @@ extension SafariViewPresenter {
         
         // MARK: View Controller Holding
         
-        let uiViewController = UIViewController()
+        let uiView = UIView()
         private weak var safariViewController: SFSafariViewController?
         
         // MARK: Item Handling
@@ -81,12 +80,16 @@ extension SafariViewPresenter {
             safariViewController.delegate = self
             representation.applyModification(to: safariViewController)
             
-            // Present `SFSafariViewController` from the super view controller of `uiViewController`, instead of `uiViewController`.
+            // Present a Safari view controller from the `viewController` of `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
             // This fixes an issue where the Safari view controller is not presented properly
-            // when the `uiViewController` is detached from the root view controller (e.g. `uiViewController` contained in `UITableViewCell`)
+            // when the `UIViewControllerRepresentable` is detached from the root view controller (e.g. `UIViewController` contained in `UITableViewCell`)
             // while allowing it to be presented even on the modal sheets.
             // Thanks to: Bohdan Hernandez Navia (@boherna)
-            let presentingViewController = uiViewController.view.superview?.viewController ?? uiViewController
+            guard let presentingViewController = uiView.viewController else {
+                self.resetItemBinding()
+                return
+            }
+            
             presentingViewController.present(safariViewController, animated: true)
             
             self.safariViewController = safariViewController
@@ -106,15 +109,20 @@ extension SafariViewPresenter {
             }
             
             safariViewController.dismiss(animated: true) {
-                self.handleDismissalWithoutResettingItemBinding()
+                self.handleDismissal()
                 completion?()
             }
         }
         
         // MARK: Dismissal Handlers
         
+        // Used when the `viewController` of `uiView` does not exist during the preparation of presentation.
+        private func resetItemBinding() {
+            parent.item = nil
+        }
+        
         // Used when the Safari view controller is finished by an item change during view update.
-        private func handleDismissalWithoutResettingItemBinding() {
+        private func handleDismissal() {
             parent.onDismiss?()
         }
         
