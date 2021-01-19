@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.3.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.3.1) (2020-01-20)
+### Fixed
+- Fixed an issue where the `SafariView` is not presented on the modal sheets (#9). Thanks @boherna!
+
 ## [v2.3.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.3.0) (2021-01-19)
 ### Added
 - Added `WebAuthenticationSession` support for macOS and watchOS.
