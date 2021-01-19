@@ -5,22 +5,29 @@
 
 <p align="center">
     <a href="https://github.com/stleamist/BetterSafariView/releases/latest">
-        <img src="https://img.shields.io/github/v/release/stleamist/BetterSafariView?label=version" alt="version">
+        <img src="https://img.shields.io/github/v/release/stleamist/BetterSafariView?label=version&labelColor=303840" alt="version">
     </a>
     <a href="https://swift.org/">
-        <img src="https://img.shields.io/badge/Swift-5.1+-f05138" alt="Swift: 5.1+">
+        <img src="https://img.shields.io/badge/Swift-5.1+-F05138?labelColor=303840" alt="Swift: 5.1+">
     </a>
     <a href="https://www.apple.com/ios/">
-        <img src="https://img.shields.io/badge/iOS-13.0+-f05138" alt="iOS: 13.0+">
+        <img src="https://img.shields.io/badge/iOS-13.0+-007AFF?labelColor=303840" alt="iOS: 13.0+">
     </a>
+    <a href="https://www.apple.com/macos/">
+        <img src="https://img.shields.io/badge/macOS-10.15+-007AFF?labelColor=303840" alt="macOS: 10.15+">
+    </a>
+    <a href="https://www.apple.com/watchos/">
+        <img src="https://img.shields.io/badge/watchOS-6.2+-007AFF?labelColor=303840" alt="watchOS: 6.2+">
+    </a>
+    <br>
     <a href="https://swift.org/package-manager/">
-        <img src="https://img.shields.io/badge/SwiftPM-compatible-brightgreen" alt="SwiftPM: compatible">
+        <img src="https://img.shields.io/badge/SwiftPM-compatible-29CC52?labelColor=303840" alt="SwiftPM: compatible">
     </a>
     <a href="/LICENSE">
-        <img src="https://img.shields.io/github/license/stleamist/BetterSafariView" alt="license">
+        <img src="https://img.shields.io/github/license/stleamist/BetterSafariView?color=blue&labelColor=303840" alt="license">
     </a>
     <a href="https://twitter.com/stleamist">
-        <img src="https://img.shields.io/badge/contact-@stleamist-1da1f2" alt="contact: @stleamist">
+        <img src="https://img.shields.io/badge/contact-@stleamist-1DA1F2?labelColor=303840" alt="contact: @stleamist">
     </a>
 </p>
 
@@ -31,11 +38,11 @@ A better way to present a SFSafariViewController or start a ASWebAuthenticationS
 
 ## Contents
 - [Motivation](#motivation)
+- [Requirements](#requirements)
 - [Usage](#usage)
     - [SafariView](#safariview)
     - [WebAuthenticationSession](#webauthenticationsession)
 - [Known Issues](#known-issues)
-- [Requirements](#requirements)
 - [Installation](#installation)
     - [Swift Package Manager](#swift-package-manager)
     - [Xcode](#xcode)
@@ -53,19 +60,24 @@ However, there’s a problem in this approach: it can’t present the `SFSafariV
 
 `BetterSafariView` clearly achieves this goal by hosting a simple `UIViewController` to present a `SFSafariViewController` as a view’s background. In this way, a [`ASWebAuthenticationSession`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession) is also able to be started without any issue in SwiftUI.
 
+## Requirements
+- Xcode 11.0+
+- Swift 5.1+
+
+#### SafariView
+- iOS 13.0+
+- Mac Catalyst 13.0+
+
+#### WebAuthenticationSession
+- iOS 13.0+
+- Mac Catalyst 13.0+
+- macOS 10.15+
+- watchOS 6.2+
+
 ## Usage
 With the following modifiers, you can use it in a similar way to present a sheet.
 
 ### SafariView
-#### Modifiers
-```swift
-.safariView(isPresented:onDismiss:content:)
-```
-
-```swift
-.safariView(item:onDismiss:content:)
-```
-
 #### Example
 ```swift
 import SwiftUI
@@ -97,16 +109,81 @@ struct ContentView: View {
 }
 ```
 
+#### `View` Modifiers
+<details>
+<summary><code>safariView(isPresented:onDismiss:content:)</code></summary>
+
+```swift
+/// Presents a Safari view when a given condition is true.
+func safariView(
+    isPresented: Binding<Bool>,
+    onDismiss: (() -> Void)? = nil,
+    content: @escaping () -> SafariView
+) -> some View
+```
+</details>
+
+<details>
+<summary><code>safariView(item:onDismiss:content:)</code></summary>
+
+```swift
+/// Presents a Safari view using the given item as a data source for the `SafariView` to present.
+func safariView<Item: Identifiable>(
+    item: Binding<Item?>,
+    onDismiss: (() -> Void)? = nil,
+    content: @escaping (Item) -> SafariView
+) -> some View
+```
+</details>
+
+#### `SafariView` Initializers
+<details>
+<summary><code>init(url:)</code></summary>
+
+```swift
+/// Creates a Safari view that loads the specified URL.
+init(url: URL)
+```
+</details>
+
+<details>
+<summary><code>init(url:configuration:)</code></summary>
+    
+```swift
+/// Creates and configures a Safari view that loads the specified URL.
+init(url: URL, configuration: SafariView.Configuration)
+```
+</details>
+
+#### `SafariView` Modifiers
+<details>
+<summary><code>preferredBarAccentColor(_:)</code></summary>
+
+```swift
+/// Sets the accent color for the background of the navigation bar and the toolbar.
+func preferredBarAccentColor(_ color: Color?) -> SafariView
+```
+</details>
+
+<details>
+<summary><code>preferredControlAccentColor(_:)</code></summary>
+
+```swift
+/// Sets the accent color for the control buttons on the navigation bar and the toolbar.
+func preferredControlAccentColor(_ color: Color?) -> SafariView
+```
+</details>
+
+<details>
+<summary><code>dismissButtonStyle(_:)</code></summary>
+
+```swift
+/// Sets the style of dismiss button to use in the navigation bar to close `SafariView`.
+func dismissButtonStyle(_ style: SafariView.DismissButtonStyle) -> SafariView
+```
+</details>
+
 ### WebAuthenticationSession
-#### Modifiers
-```swift
-.webAuthenticationSession(isPresented:content:)
-```
-
-```swift
-.webAuthenticationSession(item:content:)
-```
-
 #### Example
 ```swift
 import SwiftUI
@@ -135,19 +212,77 @@ struct ContentView: View {
 }
 ```
 
+#### `View` Modifiers
+<details>
+<summary><code>webAuthenticationSession(isPresented:content:)</code></summary>
+
+```swift
+/// Starts a web authentication session when a given condition is true.
+func webAuthenticationSession(
+    isPresented: Binding<Bool>,
+    content: @escaping () -> WebAuthenticationSession
+) -> some View
+```
+</details>
+
+<details>
+<summary><code>webAuthenticationSession(item:content:)</code></summary>
+
+```swift
+/// Starts a web authentication session using the given item as a data source for the `WebAuthenticationSession` to start.
+func webAuthenticationSession<Item: Identifiable>(
+    item: Binding<Item?>,
+    content: @escaping (Item) -> WebAuthenticationSession
+) -> some View
+```
+</details>
+
+#### `WebAuthenticationSession` Initializers
+<details>
+<summary><code>init(url:callbackURLScheme:completionHandler:)</code></summary>
+
+```swift
+/// Creates a web authentication session instance.
+init(
+    url: URL,
+    callbackURLScheme: String?,
+    completionHandler: @escaping (URL?, Error?) -> Void
+)
+```
+</details>
+
+<details>
+<summary><code>init(url:callbackURLScheme:onCompletion:)</code></summary>
+
+```swift
+/// Creates a web authentication session instance.
+init(
+    url: URL,
+    callbackURLScheme: String?,
+    onCompletion: @escaping (Result<URL, Error>) -> Void
+)
+```
+</details>
+
+#### `WebAuthenticationSession` Modifier
+<details>
+<summary><code>prefersEphemeralWebBrowserSession(_:)</code></summary>
+
+```swift
+/// Configures whether the session should ask the browser for a private authentication session.
+func prefersEphemeralWebBrowserSession(_ prefersEphemeralWebBrowserSession: Bool) -> WebAuthenticationSession
+```
+</details>
+
 ## Known Issues
 - In `.webAuthenticationSession(item:content:)` modifier, the functionality that replaces a session on the `item`'s identity change is not implemented, as there is no non-hacky way to be notified when the session's dismissal animation is completed.
-
-## Requirements
-- Swift 5.1+
-- iOS 13.0+
 
 ## Installation
 ### Swift Package Manager
 Add the following line to the `dependencies` in your [`Package.swift`](https://developer.apple.com/documentation/swift_packages/package) file:
 
 ```swift
-.package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.2.2"))
+.package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.0"))
 ```
 
 Next, add `BetterSafariView` as a dependency for your targets:
@@ -166,7 +301,7 @@ import PackageDescription
 let package = Package(
     name: "MyPackage",
     dependencies: [
-        .package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.2.2"))
+        .package(url: "https://github.com/stleamist/BetterSafariView.git", .upToNextMajor(from: "2.3.0"))
     ],
     targets: [
         .target(name: "MyTarget", dependencies: ["BetterSafariView"])
@@ -185,11 +320,15 @@ https://github.com/stleamist/BetterSafariView.git
 For more details, see [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ## Demo
-<img src="/Docs/Images/BetterSafariViewDemo-RootView.png" width="375">
+<p>
+    <img src="/Docs/Images/BetterSafariViewDemo-iOS.png" width="275">
+    <img src="/Docs/Images/BetterSafariViewDemo-macOS.png" width="275">
+    <img src="/Docs/Images/BetterSafariViewDemo-watchOS.png" width="275">
+</p>
 
-You can compare the behavior of BetterSafariView with the other ways above in the demo project. Check out the demo app by opening BetterSafariView.xcworkspace.
+You can see how it works on each platform and compare it with the other naive implementations in the demo project. Check out the demo app by opening BetterSafariView.xcworkspace.
 
-**NOTE:** This demo project is designed for iOS 14.0+, though the package is compatible with iOS 13.0+.
+**NOTE:** This demo project is available for iOS 14.0+, macOS 11.0+, and watchOS 7.0+, while the package is compatible with iOS 13.0+, macOS 10.15+, and watchOS 6.2+.
 
 ## License
 BetterSafariView is released under the MIT license. See [LICENSE](/LICENSE) for details.

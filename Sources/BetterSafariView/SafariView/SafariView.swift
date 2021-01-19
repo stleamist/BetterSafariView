@@ -1,3 +1,5 @@
+#if os(iOS)
+
 import SwiftUI
 import SafariServices
 
@@ -27,6 +29,7 @@ import SafariServices
 ///
 public struct SafariView {
     
+    /// A configuration object that defines how a Safari view controller should be initialized.
     public typealias Configuration = SFSafariViewController.Configuration
     public typealias DismissButtonStyle = SFSafariViewController.DismissButtonStyle
     
@@ -45,7 +48,7 @@ public struct SafariView {
     ///     - url: The URL to navigate to. The URL must use the http or https scheme.
     ///     - configuration: The configuration for the new view controller.
     ///
-    public init(url: URL, configuration: SFSafariViewController.Configuration = .init()) {
+    public init(url: URL, configuration: Configuration = .init()) {
         self.url = url
         self.configuration = configuration
     }
@@ -56,7 +59,8 @@ public struct SafariView {
     var preferredControlTintColor: UIColor?
     var dismissButtonStyle: DismissButtonStyle = .done
     
-    #if compiler(>=5.3)
+    // There is a bug on Xcode 12.0 (Swift 5.3.0) where `UIColor.init(_ color: Color)` is missing for Mac Catalyst target.
+    #if compiler(>=5.3.1) || (compiler(>=5.3) && !targetEnvironment(macCatalyst))
     
     /// Sets the accent color for the background of the navigation bar and the toolbar.
     ///
@@ -161,3 +165,5 @@ public extension SafariView.Configuration {
         self.barCollapsingEnabled = barCollapsingEnabled
     }
 }
+
+#endif
