@@ -1,0 +1,29 @@
+name: Build on Xcode
+
+on:
+  push:
+    branches: '**'
+  pull_request:
+    branches: '**'
+
+jobs:
+  build:
+    name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }}
+    runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        scheme: [BetterSafariView]
+        sdk: [iphoneos, macosx, watchos]
+        include:
+          - scheme: BetterSafariViewDemo (iOS)
+            sdk: iphonesimulator
+          - scheme: BetterSafariViewDemo (macOS)
+            sdk: macosx
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }}
+        run: xcodebuild build-for-testing -scheme "${{ matrix.scheme }}" -sdk "${{ matrix.sdk }}"
