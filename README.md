@@ -20,6 +20,9 @@
         <img src="https://img.shields.io/badge/watchOS-6.2+-007AFF?labelColor=303840" alt="watchOS: 6.2+">
     </a>
     <br>
+    <a href="https://github.com/stleamist/BetterSafariView/actions?query=workflow%3A%22Build+on+Xcode%22">
+        <img src="https://github.com/stleamist/BetterSafariView/workflows/Build%20on%20Xcode/badge.svg" alt="Build on Xcode">
+    </a>
     <a href="https://swift.org/package-manager/">
         <img src="https://img.shields.io/badge/SwiftPM-compatible-29CC52?labelColor=303840" alt="SwiftPM: compatible">
     </a>
