@@ -17,6 +17,8 @@ struct RootView: View {
     
     @State private var webAuthenticationSessionCallbackURL: URL? = nil
     
+    @State private var showAnotherSheet = false
+    
     var body: some View {
         NavigationView {
             List {
@@ -101,6 +103,12 @@ struct RootView: View {
                         TitleLabel("NaiveSafariView", subtitle: "NavigationLink")
                     }
                 }
+                
+                Button("Show this view in another sheet", action: {
+                    self.showAnotherSheet.toggle()
+                }).sheet(isPresented: $showAnotherSheet, content: {
+                    RootView()
+                })
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("BetterSafariViewDemo")
