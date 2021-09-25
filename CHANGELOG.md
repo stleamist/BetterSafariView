@@ -1,5 +1,12 @@
 # Changelog
 
+## [v2.4.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.0) (2020-09-25)
+### Changed
+- `SafariViewPresenter` and `WebAuthenticationPresenter` now conforms to `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
+
+### Fixed
+- Fixed an issue where the `SafariView` is not presented on the multi-layered modal sheets (#20). Thanks @twodayslate!
+
 ## [v2.3.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.3.1) (2020-01-20)
 ### Fixed
 - Fixed an issue where the `SafariView` is not presented on the modal sheets (#9). Thanks @boherna!
