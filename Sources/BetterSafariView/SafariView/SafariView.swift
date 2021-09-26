@@ -59,8 +59,7 @@ public struct SafariView {
     var preferredControlTintColor: UIColor?
     var dismissButtonStyle: DismissButtonStyle = .done
     
-    // There is a bug on Xcode 12.0 (Swift 5.3.0) where `UIColor.init(_ color: Color)` is missing for Mac Catalyst target.
-    #if compiler(>=5.3.1) || (compiler(>=5.3) && !targetEnvironment(macCatalyst))
+    #if compiler(>=5.3)
     
     /// Sets the accent color for the background of the navigation bar and the toolbar.
     ///
