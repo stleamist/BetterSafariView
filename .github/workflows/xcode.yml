@@ -8,22 +8,35 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }}
-    runs-on: macos-latest
+    name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }} on Xcode ${{ matrix.xcode }}
+    runs-on: macos-11
     
     strategy:
+      fail-fast: false
       matrix:
         scheme: [BetterSafariView]
         sdk: [iphoneos, macosx, watchos]
+        xcode: ['13.0', '12.5.1', '11.7']
         include:
           - scheme: BetterSafariViewDemo (iOS)
             sdk: iphonesimulator
+            xcode: '13.0'
+          - scheme: BetterSafariViewDemo (iOS)
+            sdk: iphonesimulator
+            xcode: '12.5.1'
           - scheme: BetterSafariViewDemo (macOS)
             sdk: macosx
+            xcode: '13.0'
+          - scheme: BetterSafariViewDemo (macOS)
+            sdk: macosx
+            xcode: '12.5.1'
     
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Switch developer directory to /Applications/Xcode_${{ matrix.xcode }}.app
+        run: sudo xcode-select --switch "/Applications/Xcode_${{ matrix.xcode }}.app"
         
-      - name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }}
+      - name: Build ${{ matrix.scheme }} for ${{ matrix.sdk }} on Xcode ${{ matrix.xcode }}
         run: xcodebuild build-for-testing -scheme "${{ matrix.scheme }}" -sdk "${{ matrix.sdk }}"
