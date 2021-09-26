@@ -20,6 +20,36 @@ extension SafariView: View {
         }
     }
     
+    #else
+    
+    // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
+    // define nested `Representable` struct and wrap it with `View`.
+    public var body: some View {
+        Representable(parent: self)
+            .edgesIgnoringSafeArea(.all)
+            .accentColor(.red)
+    }
+    
+    #endif
+    
+    #if compiler(>=5.3)
+    
+    /// Sets the tint color for the control buttons on the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Note:
+    ///     This modifier is a convenience method of `preferredControlTint(_:)`.
+    ///
+    /// - Parameters:
+    ///     - accentColor: The tint `Color` to apply.
+    ///
+    @available(iOS 15.0, *)
+    public func tint(_ tint: Color?) -> some View {
+        return self.preferredControlTint(tint)
+    }
+    
     /// Sets the accent color for the control buttons on the navigation bar and the toolbar.
     ///
     /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
@@ -31,18 +61,9 @@ extension SafariView: View {
     /// - Parameters:
     ///     - accentColor: The color to use as a control accent color. If `nil`, the accent color continues to be inherited.
     ///
-    @available(iOS 14.0, *)
+    @available(iOS, introduced: 14.0, deprecated: 100000.0, renamed: "tint(_:)")
     public func accentColor(_ accentColor: Color?) -> Self {
         return self.preferredControlAccentColor(accentColor)
-    }
-    
-    #else
-    
-    // To apply `ignoresSafeArea(_:edges:)` modifier to the `UIViewRepresentable`,
-    // define nested `Representable` struct and wrap it with `View`.
-    public var body: some View {
-        Representable(parent: self)
-            .edgesIgnoringSafeArea(.all)
     }
     
     #endif

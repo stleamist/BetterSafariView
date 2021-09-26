@@ -61,6 +61,36 @@ public struct SafariView {
     
     #if compiler(>=5.3)
     
+    /// Sets the color to tint the background of the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Parameters:
+    ///     - tint: The color to use as a bar tint color. If `nil`, the tint color continues to be inherited.
+    ///
+    @available(iOS 15.0, *)
+    public func preferredBarTint(_ tint: Color?) -> Self {
+        var modified = self
+        modified.preferredBarTintColor = tint.flatMap(TintColor.color)
+        return modified
+    }
+    
+    /// Sets the color to tint the control buttons on the navigation bar and the toolbar.
+    ///
+    /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
+    /// After the view controller is presented, changes made are not reflected.
+    ///
+    /// - Parameters:
+    ///     - tint: The color to use as a control tint color. If `nil`, the tint color continues to be inherited.
+    ///
+    @available(iOS 15.0, *)
+    public func preferredControlTint(_ tint: Color?) -> Self {
+        var modified = self
+        modified.preferredControlTintColor = tint.flatMap(TintColor.color)
+        return modified
+    }
+    
     /// Sets the accent color for the background of the navigation bar and the toolbar.
     ///
     /// This color preference is ignored if the view controller is in Private Browsing mode or displaying an antiphishing warning.
@@ -69,7 +99,7 @@ public struct SafariView {
     /// - Parameters:
     ///     - color: The color to use as a bar accent color. If `nil`, the accent color continues to be inherited.
     ///
-    @available(iOS 14.0, *)
+    @available(iOS, introduced: 14.0, deprecated: 100000.0, renamed: "preferredBarTint(_:)")
     public func preferredBarAccentColor(_ color: Color?) -> Self {
         var modified = self
         modified.preferredBarTintColor = color.flatMap(TintColor.color)
@@ -84,7 +114,7 @@ public struct SafariView {
     /// - Parameters:
     ///     - color: The color to use as a control accent color. If `nil`, the accent color continues to be inherited.
     ///
-    @available(iOS 14.0, *)
+    @available(iOS, introduced: 14.0, deprecated: 100000.0, renamed: "preferredControlTint(_:)")
     public func preferredControlAccentColor(_ color: Color?) -> Self {
         var modified = self
         modified.preferredControlTintColor = color.flatMap(TintColor.color)
