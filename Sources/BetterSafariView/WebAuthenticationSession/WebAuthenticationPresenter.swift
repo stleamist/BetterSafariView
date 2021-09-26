@@ -141,7 +141,7 @@ extension WebAuthenticationPresenter {
             session.presentationContextProvider = presentationContextProvider
             #endif
             
-            representation.applyModification(to: session)
+            session.applyModification(representation)
             
             session.start()
             
@@ -222,6 +222,12 @@ extension WebAuthenticationPresenter {
         }
         
         #endif
+    }
+}
+
+extension ASWebAuthenticationSession {
+    func applyModification(_ modification: WebAuthenticationSession) {
+        self.prefersEphemeralWebBrowserSession = modification.prefersEphemeralWebBrowserSession
     }
 }
 

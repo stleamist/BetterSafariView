@@ -90,12 +90,6 @@ public struct WebAuthenticationSession {
         modified.prefersEphemeralWebBrowserSession = prefersEphemeralWebBrowserSession
         return modified
     }
-    
-    // MARK: Modification Applier
-    
-    func applyModification(to webAuthenticationSession: ASWebAuthenticationSession) {
-        webAuthenticationSession.prefersEphemeralWebBrowserSession = self.prefersEphemeralWebBrowserSession
-    }
 }
 
 /// Errors that a web authentication session can generate.
