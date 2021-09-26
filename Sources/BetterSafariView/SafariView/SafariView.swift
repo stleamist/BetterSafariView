@@ -55,8 +55,8 @@ public struct SafariView {
     
     // MARK: Modifiers
     
-    var preferredBarTintColor: UIColor?
-    var preferredControlTintColor: UIColor?
+    var preferredBarTintColor: TintColor?
+    var preferredControlTintColor: TintColor?
     var dismissButtonStyle: DismissButtonStyle = .done
     
     #if compiler(>=5.3)
@@ -72,11 +72,7 @@ public struct SafariView {
     @available(iOS 14.0, *)
     public func preferredBarAccentColor(_ color: Color?) -> Self {
         var modified = self
-        if let color = color {
-            modified.preferredBarTintColor = UIColor(color)
-        } else {
-            modified.preferredBarTintColor = nil
-        }
+        modified.preferredBarTintColor = color.flatMap(TintColor.color)
         return modified
     }
     
@@ -91,11 +87,7 @@ public struct SafariView {
     @available(iOS 14.0, *)
     public func preferredControlAccentColor(_ color: Color?) -> Self {
         var modified = self
-        if let color = color {
-            modified.preferredControlTintColor = UIColor(color)
-        } else {
-            modified.preferredControlTintColor = nil
-        }
+        modified.preferredControlTintColor = color.flatMap(TintColor.color)
         return modified
     }
     
@@ -112,7 +104,7 @@ public struct SafariView {
     @available(iOS, introduced: 13.0, deprecated: 14.0, renamed: "preferredBarAccentColor(_:)")
     public func preferredBarTintColor(_ color: UIColor?) -> Self {
         var modified = self
-        modified.preferredBarTintColor = color
+        modified.preferredBarTintColor = color.flatMap(TintColor.uiColor)
         return modified
     }
     
@@ -128,7 +120,7 @@ public struct SafariView {
     @available(iOS, introduced: 13.0, deprecated: 14.0, renamed: "preferredControlAccentColor(_:)")
     public func preferredControlTintColor(_ color: UIColor?) -> Self {
         var modified = self
-        modified.preferredControlTintColor = color
+        modified.preferredControlTintColor = color.flatMap(TintColor.uiColor)
         return modified
     }
     
@@ -147,13 +139,49 @@ public struct SafariView {
         modified.dismissButtonStyle = style
         return modified
     }
+}
+
+extension SafariView {
     
-    // MARK: Modification Applier
-    
-    func applyModification(to safariViewController: SFSafariViewController) {
-        safariViewController.preferredBarTintColor = self.preferredBarTintColor
-        safariViewController.preferredControlTintColor = self.preferredControlTintColor
-        safariViewController.dismissButtonStyle = self.dismissButtonStyle
+    struct TintColor {
+        
+        private enum AnyColor {
+            case uiColor(UIColor)
+            case color(Color)
+        }
+        
+        static func uiColor(_ uiColor: UIColor) -> Self {
+            return .init(anyColor: .uiColor(uiColor))
+        }
+        
+        #if compiler(>=5.3)
+        
+        @available(iOS 14.0, *)
+        static func color(_ color: Color) -> Self {
+            return .init(anyColor: .color(color))
+        }
+        
+        #endif
+        
+        private var anyColor: AnyColor
+        
+        func resolvedUIColor(withInheritedTintColor inheritedTintColor: UIColor?) -> UIColor? {
+            switch self.anyColor {
+            case .uiColor(let uiColor): return uiColor
+            case .color(.accentColor): return inheritedTintColor
+            case .color(let color):
+                #if compiler(>=5.3)
+                if #available(iOS 14.0, *) {
+                    return UIColor(color)
+                } else {
+                    assertionFailure()
+                    return nil
+                }
+                #else
+                return nil
+                #endif
+            }
+        }
     }
 }
 

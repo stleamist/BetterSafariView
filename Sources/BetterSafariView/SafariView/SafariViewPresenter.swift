@@ -78,7 +78,7 @@ extension SafariViewPresenter {
             let representation = parent.representationBuilder(item)
             let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
             safariViewController.delegate = self
-            representation.applyModification(to: safariViewController)
+            safariViewController.applyModification(representation, withInheritedTintColor: uiView.tintColor)
             
             // Present a Safari view controller from the `viewController` of `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
             // This fixes an issue where the Safari view controller is not presented properly
@@ -100,7 +100,7 @@ extension SafariViewPresenter {
                 return
             }
             let representation = parent.representationBuilder(item)
-            representation.applyModification(to: safariViewController)
+            safariViewController.applyModification(representation, withInheritedTintColor: uiView.tintColor)
         }
         
         private func dismissSafariViewController(completion: (() -> Void)? = nil) {
@@ -137,6 +137,14 @@ extension SafariViewPresenter {
         func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
             resetItemBindingAndHandleDismissal()
         }
+    }
+}
+
+extension SFSafariViewController {
+    func applyModification(_ modification: SafariView, withInheritedTintColor inheritedTintColor: UIColor?) {
+        self.preferredBarTintColor = modification.preferredBarTintColor?.resolvedUIColor(withInheritedTintColor: inheritedTintColor)
+        self.preferredControlTintColor = modification.preferredControlTintColor?.resolvedUIColor(withInheritedTintColor: inheritedTintColor)
+        self.dismissButtonStyle = modification.dismissButtonStyle
     }
 }
 

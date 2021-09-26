@@ -69,12 +69,12 @@ extension SafariView {
             )
             // Disable interactive pop gesture recognizer
             safariViewController.modalPresentationStyle = .none
-            parent.applyModification(to: safariViewController)
+            safariViewController.applyModification(parent, withInheritedTintColor: nil)
             return safariViewController
         }
         
         func updateUIViewController(_ safariViewController: SFSafariViewController, context: Context) {
-            parent.applyModification(to: safariViewController)
+            safariViewController.applyModification(parent, withInheritedTintColor: nil)
         }
     }
 }
