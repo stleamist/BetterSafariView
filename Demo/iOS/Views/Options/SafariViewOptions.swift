@@ -13,11 +13,11 @@ struct SafariViewOptions {
     var barCollapsingEnabled: Bool = true
     
     // MARK: Modifiers
-    var usePreferredBarAccentColor: Bool = false
-    var usePreferredControlAccentColor: Bool = false
-    var preferredBarAccentColorInUse: Color = .clear
-    var preferredControlAccentColorInUse: Color = .accentColor
-    var preferredBarAccentColor: Color? { usePreferredBarAccentColor ? preferredBarAccentColorInUse : nil }
-    var preferredControlAccentColor: Color? { usePreferredControlAccentColor ? preferredControlAccentColorInUse : nil }
+    var usePreferredBarTintColor: Bool = false
+    var usePreferredControlTintColor: Bool = false
+    var preferredBarTintColorInUse: Color = .clear
+    var preferredControlTintColorInUse: Color = .accentColor
+    var preferredBarTintColor: Color? { usePreferredBarTintColor ? preferredBarTintColorInUse : nil }
+    var preferredControlTintColor: Color? { usePreferredControlTintColor ? preferredControlTintColorInUse : nil }
     var dismissButtonStyle: SafariView.DismissButtonStyle = .done
 }

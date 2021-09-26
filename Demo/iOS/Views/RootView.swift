@@ -37,8 +37,8 @@ struct RootView: View {
                                 barCollapsingEnabled: safariViewOptions.barCollapsingEnabled
                             )
                         )
-                        .preferredBarAccentColor(safariViewOptions.preferredBarAccentColor)
-                        .preferredControlAccentColor(safariViewOptions.preferredControlAccentColor)
+                        .preferredBarAccentColor(safariViewOptions.preferredBarTintColor)
+                        .preferredControlAccentColor(safariViewOptions.preferredControlTintColor)
                         .dismissButtonStyle(safariViewOptions.dismissButtonStyle)
                     }
                     .sheet(isPresented: $showingSafariViewOptionsForm) {

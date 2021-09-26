@@ -34,26 +34,26 @@ struct SafariViewOptionsForm: View {
                 
                 Section(header: Text("Modifiers")) {
                     HStack {
-                        let labelText = "Control Accent Color"
+                        let labelText = "Control Tint Color"
                         Text(labelText)
                         Spacer()
-                        if temporaryOptions.usePreferredControlAccentColor {
-                            ColorPicker(labelText, selection: $temporaryOptions.preferredControlAccentColorInUse)
+                        if temporaryOptions.usePreferredControlTintColor {
+                            ColorPicker(labelText, selection: $temporaryOptions.preferredControlTintColorInUse)
                                 .labelsHidden()
                         }
-                        Toggle(labelText, isOn: $temporaryOptions.usePreferredControlAccentColor)
+                        Toggle(labelText, isOn: $temporaryOptions.usePreferredControlTintColor)
                             .labelsHidden()
                     }
                     
                     HStack {
-                        let labelText = "Bar Accent Color"
+                        let labelText = "Bar Tint Color"
                         Text(labelText)
                         Spacer()
-                        if temporaryOptions.usePreferredBarAccentColor {
-                            ColorPicker(labelText, selection: $temporaryOptions.preferredBarAccentColorInUse)
+                        if temporaryOptions.usePreferredBarTintColor {
+                            ColorPicker(labelText, selection: $temporaryOptions.preferredBarTintColorInUse)
                                 .labelsHidden()
                         }
-                        Toggle(labelText, isOn: $temporaryOptions.usePreferredBarAccentColor)
+                        Toggle(labelText, isOn: $temporaryOptions.usePreferredBarTintColor)
                             .labelsHidden()
                     }
                     
