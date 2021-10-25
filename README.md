@@ -329,8 +329,7 @@ For more details, see [Adding Package Dependencies to Your App](https://develope
     <img src="/Docs/Images/BetterSafariViewDemo-watchOS.png" width="275">
 </p>
 
-You can see how it works on each platform and compare it with the other naive implementations in the demo project. Check out the demo app by opening BetterSafariView.xcworkspace.
-
+You can see how it works on each platform and compare it with the other naive implementations in the demo project. Check out the demo app by opening BetterSafariViewDemo.xcodeproj, adding the BetterSafariView package dependency in Xcode (`File` > `Add Packages` > `Add Local` > select the root folder of BetterSafariView), and finally run build.
 **NOTE:** This demo project is available for iOS 14.0+, macOS 11.0+, and watchOS 7.0+, while the package is compatible with iOS 13.0+, macOS 10.15+, and watchOS 6.2+.
 
 ## License
