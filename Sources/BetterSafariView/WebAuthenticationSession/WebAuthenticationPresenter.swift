@@ -179,7 +179,7 @@ extension WebAuthenticationPresenter {
             // MARK: ASWebAuthenticationPresentationContextProviding
             
             func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-                return coordinator.view.window!
+                return coordinator.view.window ?? ASPresentationAnchor()
             }
         }
         
