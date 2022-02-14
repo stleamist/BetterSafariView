@@ -2,6 +2,8 @@
 
 import SwiftUI
 import AuthenticationServices
+@_spi(Private) import Shared
+
 #if os(iOS)
 import SafariServices
 #endif
@@ -199,7 +201,7 @@ extension WebAuthenticationPresenter {
         
         @available(iOS, introduced: 13.0, deprecated: 14.0)
         func setInteractiveDismissalDelegateIfPossible() {
-            guard let safariViewController = view.viewController?.presentedViewController as? SFSafariViewController else {
+            guard let safariViewController = view._viewController?.presentedViewController as? SFSafariViewController else {
                 return
             }
             safariViewController.presentationController?.delegate = interactiveDismissalDelegate

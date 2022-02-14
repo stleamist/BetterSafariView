@@ -1,6 +1,7 @@
 #if os(iOS)
 
 import SwiftUI
+import Shared
 
 struct SafariViewPresentationModifier: ViewModifier {
     

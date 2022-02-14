@@ -2,6 +2,7 @@
 
 import SwiftUI
 import SafariServices
+@_spi(Private) import Shared
 
 struct SafariViewPresenter<Item: Identifiable>: UIViewRepresentable {
     
@@ -85,7 +86,7 @@ extension SafariViewPresenter {
             // when the `UIViewControllerRepresentable` is detached from the root view controller (e.g. `UIViewController` contained in `UITableViewCell`)
             // while allowing it to be presented even on the modal sheets.
             // Thanks to: Bohdan Hernandez Navia (@boherna)
-            guard let presentingViewController = uiView.viewController else {
+            guard let presentingViewController = uiView._viewController else {
                 self.resetItemBinding()
                 return
             }

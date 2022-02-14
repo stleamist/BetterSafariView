@@ -1,6 +1,7 @@
 #if os(iOS) || os(macOS) || os(watchOS)
 
 import SwiftUI
+import Shared
 
 struct WebAuthenticationPresentationModifier: ViewModifier {
     
