@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.4.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.1) (2023-01-15)
+### Fixed
+- Fixed an issue where the `WebAuthenticationPresenter` fails to find its presentation anchor (#22). Thanks, @kevvdevv, @exentrich, and @ldstreet!
+
 ## [v2.4.0](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.0) (2021-09-25)
 ### Changed
 - `SafariViewPresenter` and `WebAuthenticationPresenter` now conforms to `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
