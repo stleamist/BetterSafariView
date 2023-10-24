@@ -79,20 +79,31 @@ extension SafariViewPresenter {
             let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
             safariViewController.delegate = self
             representation.applyModification(to: safariViewController)
-            
-            // Present a Safari view controller from the `viewController` of `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
-            // This fixes an issue where the Safari view controller is not presented properly
-            // when the `UIViewControllerRepresentable` is detached from the root view controller (e.g. `UIViewController` contained in `UITableViewCell`)
-            // while allowing it to be presented even on the modal sheets.
-            // Thanks to: Bohdan Hernandez Navia (@boherna)
-            guard let presentingViewController = uiView.viewController else {
-                self.resetItemBinding()
+
+            if #available(iOS 17.0, *) {
+                if var topController = UIApplication.shared.windows.filter(\.isKeyWindow).first?.rootViewController {
+                    while let presentedViewController = topController.presentedViewController {
+                        topController = presentedViewController
+                    }
+                    topController.present(safariViewController, animated: true, completion: nil)
+                }
+                self.safariViewController = safariViewController
                 return
+            } else {
+                // Present a Safari view controller from the `viewController` of `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
+                // This fixes an issue where the Safari view controller is not presented properly
+                // when the `UIViewControllerRepresentable` is detached from the root view controller (e.g. `UIViewController` contained in `UITableViewCell`)
+                // while allowing it to be presented even on the modal sheets.
+                // Thanks to: Bohdan Hernandez Navia (@boherna)
+                guard let presentingViewController = uiView.viewController else {
+                    self.resetItemBinding()
+                    return
+                }
+
+                presentingViewController.present(safariViewController, animated: true)
+
+                self.safariViewController = safariViewController
             }
-            
-            presentingViewController.present(safariViewController, animated: true)
-            
-            self.safariViewController = safariViewController
         }
         
         private func updateSafariViewController(with item: Item) {
