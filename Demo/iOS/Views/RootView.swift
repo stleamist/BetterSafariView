@@ -16,9 +16,7 @@ struct RootView: View {
     @State private var showingWebAuthenticationSessionOptionsForm = false
     
     @State private var webAuthenticationSessionCallbackURL: URL? = nil
-
-    @State private var text = ""
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -75,8 +73,6 @@ struct RootView: View {
                         WebAuthenticationSessionOptionsForm(options: $webAuthenticationSessionOptions)
                     }
                 }
-
-                TextField("Text field", text: $text)
 
                 Section(header: Text("NaiveSafariView" + "\n" + "(Just for comparison. Do not use in practice.)").textCase(nil)) {
                     Button(action: { showingNaiveSafariViewSheet = true }) {
