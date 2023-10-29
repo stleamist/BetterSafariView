@@ -155,7 +155,9 @@ extension WebAuthenticationPresenter {
         // MARK: Dismissal Handlers
         
         private func resetItemBinding() {
-            parent.item = nil
+            DispatchQueue.main.async {
+                self.parent.item = nil
+            }
         }
         
         #if os(iOS) || os(macOS)
