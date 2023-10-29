@@ -7,23 +7,18 @@ struct WebAuthenticationPresentationModifier: ViewModifier {
     @Binding var isPresented: Bool
     var representationBuilder: () -> WebAuthenticationSession
     
-    private var item: Binding<Bool?> {
+    private var item: Binding<Identified<Bool>?> {
         .init(
-            get: { self.isPresented ? true : nil },
+            get: { self.isPresented ? Identified(true) : nil },
             set: { self.isPresented = ($0 != nil) }
         )
-    }
-    
-    // Converts `() -> Void` closure to `(Bool) -> Void`
-    private func itemRepresentationBuilder(bool: Bool) -> WebAuthenticationSession {
-        return representationBuilder()
     }
     
     func body(content: Content) -> some View {
         content.background(
             WebAuthenticationPresenter(
                 item: item,
-                representationBuilder: itemRepresentationBuilder
+                representationBuilder: { _ in representationBuilder() }
             )
         )
     }
