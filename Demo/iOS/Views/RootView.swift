@@ -73,7 +73,7 @@ struct RootView: View {
                         WebAuthenticationSessionOptionsForm(options: $webAuthenticationSessionOptions)
                     }
                 }
-                
+
                 Section(header: Text("NaiveSafariView" + "\n" + "(Just for comparison. Do not use in practice.)").textCase(nil)) {
                     Button(action: { showingNaiveSafariViewSheet = true }) {
                         HStack {

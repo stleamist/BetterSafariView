@@ -3,6 +3,10 @@
 import SwiftUI
 import SafariServices
 
+// `SafariViewPresenter` conforms `UIViewRepresentable` instead of `UIViewControllerRepresentable`.
+// This fixes an issue where the Safari view controller is not presented properly
+// when the `UIViewControllerRepresentable` is detached from the root view controller
+// (e.g. `UIViewController` contained in `UITableViewCell`).
 struct SafariViewPresenter<Item: Identifiable>: UIViewRepresentable {
     
     // MARK: Representation
@@ -79,13 +83,14 @@ extension SafariViewPresenter {
             let safariViewController = SFSafariViewController(url: representation.url, configuration: representation.configuration)
             safariViewController.delegate = self
             representation.applyModification(to: safariViewController)
-            
-            // Present a Safari view controller from the `viewController` of `UIViewRepresentable`, instead of `UIViewControllerRepresentable`.
-            // This fixes an issue where the Safari view controller is not presented properly
-            // when the `UIViewControllerRepresentable` is detached from the root view controller (e.g. `UIViewController` contained in `UITableViewCell`)
-            // while allowing it to be presented even on the modal sheets.
-            // Thanks to: Bohdan Hernandez Navia (@boherna)
-            guard let presentingViewController = uiView.viewController else {
+
+            // Presents a Safari view controller from the farthest `presentedViewController` of `UIWindow`.
+            // (same approach when presenting `UIAlertController`)
+            guard let presentingViewController = uiView.window?.farthestPresentedViewController else {
+                assertionFailure(
+                    "Cannot find the view controller to present from."
+                    + " This happens when a 'SafariViewPresenter' is detached from the window, or the window doesn't have 'rootViewController.'"
+                )
                 self.resetItemBinding()
                 return
             }

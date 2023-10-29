@@ -199,7 +199,7 @@ extension WebAuthenticationPresenter {
         
         @available(iOS, introduced: 13.0, deprecated: 14.0)
         func setInteractiveDismissalDelegateIfPossible() {
-            guard let safariViewController = view.viewController?.presentedViewController as? SFSafariViewController else {
+            guard let safariViewController = view.window?.farthestPresentedViewController as? SFSafariViewController else {
                 return
             }
             safariViewController.presentationController?.delegate = interactiveDismissalDelegate
