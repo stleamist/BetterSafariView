@@ -1,5 +1,9 @@
 # Changelog
 
+## [v2.4.2](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.2) (2023-10-30)
+### Fixed
+- Fixed an issue where the `SafariViewPresenter` fails to find a view controller to presented from (#41 & #46). Thanks, @Tunous and @SongJiyeon!
+
 ## [v2.4.1](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.1) (2023-01-15)
 ### Fixed
 - Fixed an issue where the `WebAuthenticationPresenter` fails to find its presentation anchor (#22). Thanks, @kevvdevv, @exentrich, and @ldstreet!
