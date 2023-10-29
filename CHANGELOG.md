@@ -1,5 +1,9 @@
 # Changelog
 
+## [v3.0.0](https://github.com/stleamist/BetterSafariView/releases/tag/v3.0.0) (2023-10-30)
+### Removed
+- Removed public `Identifiable` conformance from `Bool` & `URL`.
+
 ## [v2.4.2](https://github.com/stleamist/BetterSafariView/releases/tag/v2.4.2) (2023-10-30)
 ### Fixed
 - Fixed an issue where the `SafariViewPresenter` fails to find a view controller to presented from (#41 & #46). Thanks, @Tunous and @SongJiyeon!
