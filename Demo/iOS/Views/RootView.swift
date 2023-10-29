@@ -62,10 +62,15 @@ struct RootView: View {
                         }
                         .prefersEphemeralWebBrowserSession(webAuthenticationSessionOptions.prefersEphemeralWebBrowserSession)
                     }
-                    .alert(item: $webAuthenticationSessionCallbackURL) { callbackURL in
+                    .alert(
+                        isPresented: Binding(
+                            get: { webAuthenticationSessionCallbackURL != nil },
+                            set: { if !$0 { webAuthenticationSessionCallbackURL = nil } }
+                        )
+                    ) {
                         Alert(
                             title: Text("Session Completed with Callback URL"),
-                            message: Text(callbackURL.absoluteString),
+                            message: (webAuthenticationSessionCallbackURL?.absoluteString).flatMap(Text.init(_:)),
                             dismissButton: nil
                         )
                     }

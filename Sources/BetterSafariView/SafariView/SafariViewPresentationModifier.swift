@@ -8,16 +8,11 @@ struct SafariViewPresentationModifier: ViewModifier {
     var onDismiss: (() -> Void)? = nil
     var representationBuilder: () -> SafariView
     
-    private var item: Binding<Bool?> {
+    private var item: Binding<Identified<Bool>?> {
         .init(
-            get: { self.isPresented ? true : nil },
+            get: { self.isPresented ? Identified(true) : nil },
             set: { self.isPresented = ($0 != nil) }
         )
-    }
-    
-    // Converts `() -> Void` closure to `(Bool) -> Void`
-    private func itemRepresentationBuilder(bool: Bool) -> SafariView {
-        return representationBuilder()
     }
     
     func body(content: Content) -> some View {
@@ -25,7 +20,7 @@ struct SafariViewPresentationModifier: ViewModifier {
             SafariViewPresenter(
                 item: item,
                 onDismiss: onDismiss,
-                representationBuilder: itemRepresentationBuilder
+                representationBuilder: { _ in representationBuilder() }
             )
         )
     }
