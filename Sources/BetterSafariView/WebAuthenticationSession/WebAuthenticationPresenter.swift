@@ -132,8 +132,10 @@ extension WebAuthenticationPresenter {
                 url: representation.url,
                 callbackURLScheme: representation.callbackURLScheme,
                 completionHandler: { (callbackURL, error) in
-                    self.resetItemBinding()
-                    representation.completionHandler(callbackURL, error)
+                    Task { @MainActor in
+                        self.resetItemBinding()
+                        representation.completionHandler(callbackURL, error)
+                    }
                 }
             )
             
@@ -154,6 +156,7 @@ extension WebAuthenticationPresenter {
         
         // MARK: Dismissal Handlers
         
+        @MainActor
         private func resetItemBinding() {
             parent.item = nil
         }
