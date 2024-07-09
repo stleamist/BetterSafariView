@@ -95,6 +95,18 @@ extension SafariViewPresenter {
                 return
             }
             
+            // There is a case where attempts to present a Safari view controller could happen while
+            // a context menu is appearing/dismissing. Usually context menu automatically disappears and
+            // is not present in a hierarchy, but in rare occasion it might still be here. Then, after
+            // we present Safari view controller on top of that context menu, the system will dismiss
+            // incorrect view controller. All that combined causes further presentation attempts to no
+            // longer work.
+            // A quick hack is to skip presentation attempt if we see context menu on top of hierarchy.
+            if NSStringFromClass(type(of: presentingViewController)) == "_UIContextMenuActionsOnlyViewController" {
+                self.resetItemBinding()
+                return
+            }
+
             presentingViewController.present(safariViewController, animated: true)
             
             self.safariViewController = safariViewController
