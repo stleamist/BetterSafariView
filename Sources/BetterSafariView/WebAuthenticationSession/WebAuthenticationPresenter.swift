@@ -1,4 +1,4 @@
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 
 import SwiftUI
 import AuthenticationServices
@@ -6,7 +6,7 @@ import AuthenticationServices
 import SafariServices
 #endif
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 typealias ViewType = UIView
 typealias ViewRepresentableType = UIViewRepresentable
 #elseif os(macOS)
@@ -32,8 +32,8 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewRepresentableType {
         return Coordinator(parent: self)
     }
     
-    #if os(iOS)
-    
+    #if os(iOS) || os(visionOS)
+
     func makeUIView(context: Context) -> ViewType {
         return makeView(context: context)
     }
@@ -45,10 +45,14 @@ struct WebAuthenticationPresenter<Item: Identifiable>: ViewRepresentableType {
         // To set a delegate for the presentation controller of an `SFAuthenticationViewController` as soon as possible,
         // check the view controller presented by `view.viewController` then set it as a delegate on every view updates.
         // INFO: `SFAuthenticationViewController` is a private subclass of `SFSafariViewController`.
-        guard #available(iOS 14.0, *) else {
+
+
+      #if os(iOS)
+      guard #available(iOS 14.0, *) else {
             context.coordinator.setInteractiveDismissalDelegateIfPossible()
             return
         }
+      #endif
     }
     
     #elseif os(macOS)
@@ -137,7 +141,7 @@ extension WebAuthenticationPresenter {
                 }
             )
             
-            #if os(iOS) || os(macOS)
+            #if os(iOS) || os(macOS) || os(visionOS)
             session.presentationContextProvider = presentationContextProvider
             #endif
             
@@ -158,8 +162,8 @@ extension WebAuthenticationPresenter {
             parent.item = nil
         }
         
-        #if os(iOS) || os(macOS)
-        
+        #if os(iOS) || os(macOS) || os(visionOS)
+
         // MARK: PresentationContextProvider
         
         // INFO: `ASWebAuthenticationPresentationContextProviding` provides an window

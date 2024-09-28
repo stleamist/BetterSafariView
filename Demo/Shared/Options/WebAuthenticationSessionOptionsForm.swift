@@ -23,7 +23,7 @@ struct WebAuthenticationSessionOptionsForm: View {
                 Section(header: Text("URL")) {
                     TextField(gitHubAuthorizationURLString, text: $temporaryOptions.urlString)
                         .modify {
-                            #if os(iOS)
+                            #if os(iOS) || os(visionOS)
                             $0
                                 .textContentType(.URL)
                                 .keyboardType(.URL)
